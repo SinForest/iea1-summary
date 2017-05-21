@@ -1,0 +1,136 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\setlength{\parindent}{0bp}
+\usepackage{fancybox}
+\usepackage{calc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+  \theoremstyle{definition}
+  \newtheorem{defn}{\protect\definitionname}[section]
+ \theoremstyle{definition}
+ \newtheorem*{defn*}{\protect\definitionname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+\renewcommand{\labelenumiii}{(\arabic{enumi}.\arabic{enumii}.\arabic{enumiii})}
+\renewcommand{\labelenumiv}{(\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv})}
+
+\makeatother
+
+\usepackage{babel}
+  \providecommand{\definitionname}{Definition}
+
+\begin{document}
+
+\title{\noindent Effiziente Algorithmen 1 - Zusammenfassung}
+
+\author{\noindent Patrick Dammann}
+
+\date{\noindent 21.05.2017}
+\maketitle
+
+\section{Probleme und Algorithmen}
+\begin{quotation}
+\noindent %
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Lineares kombinatorisches Optimierungsproblem}
+
+\smallskip{}
+
+Gegeben sind eine endliche Menge $E$, ein System von Teilmengen $\mathcal{I}\subseteq2^{E}$
+(zulässige Lösungen) und eine Funktion $c:E\rightarrow\mathbb{R}$.
+Es ist eine Menge $I^{\ast}\in\mathcal{I}$ zu bestimmen, so dass
+${\displaystyle c(I^{\ast})=\sum_{e\in I^{\ast}}c(e)}$ minimal bzw.
+maximal ist.%
+\end{minipage}}
+
+\medskip{}
+
+\noindent %
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Euklidisches Traveling-Salesman-Problem}
+
+\smallskip{}
+
+Gegeben sind $n$ Punkte in der Euklidischen Ebene. Zu bestimmen ist
+eine geschlossene Tour, die jeden Punkt genau einmal besucht und möglichst
+kurz ist.
+
+$E=$ Menge der Kanten
+
+$\mathcal{I}=$ Alle Mengen von Kanten, die eine Tour bilden%
+\end{minipage}}
+
+\medskip{}
+
+\noindent %
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Euklidisches Matching-Problem}
+
+\smallskip{}
+
+Gegeben sind $n$ Punkte in der Euklidischen Ebene ($n$ gerade).
+Zu bestimmen sind $\frac{n}{2}$ Linien, so dass jeder Punkt Endpunkt
+genau einer Linie ist und die Summe der Linienlängen so klein wie
+möglich ist.
+
+$E=$ Menge der Kanten
+
+$\mathcal{I}=$ Alle Mengen von Kanten mit der Eigenschaft, dass jeder
+Knoten zu genau einer der Kanten gehört.%
+\end{minipage}}
+\end{quotation}
+\begin{description}
+\item [{Einheitskosten-Modell}] Es werden nur die Schritte des Algorithmus
+gezählt, die Zahlengrößen bleiben unberücksichtigt.
+\item [{Bit-Modell}] Die Laufzeit für eine arithmetische Operation ist
+$M$, wobei $M$ die größte Kodierungslänge einer an dieser Operation
+beteiligten Zahl ist.
+\end{description}
+\begin{defn}
+\noindent Die Laufzeitfunktion $f_{A}:\mathbb{N}\rightarrow\mathcal{\mathbb{N}}$
+ist in $\mathcal{O}(g)$ für eine Funktion $g:\mathbb{N}\rightarrow\mathcal{\mathbb{N}}$
+falls es eine Konstante $c>0$ und $n_{o}\in\mathbb{N}$ gibt, so
+dass $f_{A}\leq c\cdot g(n)$ für alle $n\geq n_{o}$.
+\end{defn}
+%
+\begin{defn}
+Ein Algorithmus heißt \textbf{effizient} bzw. \textbf{polynomialer
+Algorithmus}, wenn seine Laufzeit in $\mathcal{O}\left(n^{k}\right)$
+liegt.
+
+Ein Problem, das mit einem polynomialen Algorithmus gelöst werden
+kann, heißt \textbf{polynomiales Problem}.
+\end{defn}
+%
+\pagebreak{}
+\begin{defn*}
+Ein Graph $G$ ist ein Tupel $G=(V,E)$\footnote{In der Vorlesung werden primär endliche, einfache, schleifenfreie
+Graphen behandelt, die der einfachheit halber eine Notation ohne Inzendenzfunktion
+nutzen können.} bestehend aus einer nicht-leeren Knotenmenge $V$ und einer Kantenmenge
+$E$.
+
+Ein Graph heißt endlich, wenn $V$ und $E$ eindlich sind.
+
+Wenn $e=\left\{ u,v\right\} \in E$ und $u,v\in V$, dann sind $u$
+und $v$ Nachbarn bzw. adjazent, sind Endknoten von $e$ und werden
+von $e$ verbunden.
+
+Eine Kante $E\ni e=\{u,u\}$ heißt Schleife.
+
+Kanten mit $E\ni e=\{u,v\}=f\in E$ heißen parallel oder mehrfach.
+
+Ein Graph ohne Mehrfachkanten heißt einfach.
+\end{defn*}
+
+\end{document}
