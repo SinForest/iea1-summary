@@ -849,7 +849,11 @@ bipartit
 \end_inset
 
  teilen lässt, ohne dass es Kanten 
-\begin_inset Formula $\left\{ u,v\right\} ,u\in V_{1},v\in V_{2}$
+\begin_inset Formula $\left\{ u,v\right\} $
+\end_inset
+
+ mit 
+\begin_inset Formula $u,v\in V_{1}\vee u,v\in V_{2}$
 \end_inset
 
  gibt.
