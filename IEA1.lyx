@@ -414,7 +414,11 @@ polynomiales Problem
 \end_layout
 
 \begin_layout Definition*
-Ein Graph 
+Ein 
+\series bold
+Graph
+\series default
+ 
 \begin_inset Formula $G$
 \end_inset
 
@@ -428,8 +432,10 @@ status collapsed
 
 \begin_layout Plain Layout
 In der Vorlesung werden primär endliche, einfache, schleifenfreie Graphen
- behandelt, die der einfachheit halber eine Notation ohne Inzendenzfunktion
+ behandelt, die der Einfachheit halber eine Notation ohne Inzendenzfunktion
  nutzen können.
+ In diesem Skript wird (sofern nicht anders angegeben) von solchen Graphen
+ ausgegangen.
 \end_layout
 
 \end_inset
@@ -445,8 +451,13 @@ In der Vorlesung werden primär endliche, einfache, schleifenfreie Graphen
 .
 \end_layout
 
-\begin_layout Definition*
-Ein Graph heißt endlich, wenn 
+\begin_layout Itemize
+\noindent
+Ein Graph heißt 
+\series bold
+endlich
+\series default
+, wenn 
 \begin_inset Formula $V$
 \end_inset
 
@@ -457,7 +468,8 @@ Ein Graph heißt endlich, wenn
  eindlich sind.
 \end_layout
 
-\begin_layout Definition*
+\begin_layout Itemize
+\noindent
 Wenn 
 \begin_inset Formula $e=\left\{ u,v\right\} \in E$
 \end_inset
@@ -474,8 +486,20 @@ Wenn
 \begin_inset Formula $v$
 \end_inset
 
- Nachbarn bzw.
- adjazent, sind Endknoten von 
+ 
+\series bold
+Nachbarn
+\series default
+ bzw.
+ 
+\series bold
+adjazen
+\series default
+t, sind 
+\series bold
+Endknoten
+\series default
+ von 
 \begin_inset Formula $e$
 \end_inset
 
@@ -483,27 +507,352 @@ Wenn
 \begin_inset Formula $e$
 \end_inset
 
- verbunden.
+ 
+\series bold
+verbunden
+\series default
+.
 \end_layout
 
-\begin_layout Definition*
+\begin_layout Itemize
+\noindent
 Eine Kante 
 \begin_inset Formula $E\ni e=\{u,u\}$
 \end_inset
 
- heißt Schleife.
+ heißt 
+\series bold
+Schleife
+\series default
+.
 \end_layout
 
-\begin_layout Definition*
+\begin_layout Itemize
+\noindent
 Kanten mit 
 \begin_inset Formula $E\ni e=\{u,v\}=f\in E$
 \end_inset
 
- heißen parallel oder mehrfach.
+ heißen 
+\series bold
+parallel
+\series default
+ oder 
+\series bold
+mehrfach
+\series default
+.
 \end_layout
 
-\begin_layout Definition*
-Ein Graph ohne Mehrfachkanten heißt einfach.
+\begin_layout Itemize
+\noindent
+Ein Graph ohne Mehrfachkanten heißt 
+\series bold
+einfach
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Für 
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+ bekommt die Menge aller Knoten in 
+\begin_inset Formula $V\setminus W$
+\end_inset
+
+ mit Nachbarn in 
+\begin_inset Formula $W$
+\end_inset
+
+ die Bezeichnung 
+\begin_inset Formula $\Gamma(W)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Kurzform von 
+\begin_inset Formula $\Gamma\left(\left\{ v\right\} \right)$
+\end_inset
+
+ ist 
+\begin_inset Formula $\Gamma\left(v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Die Menge 
+\begin_inset Formula $\delta\left(W\right)$
+\end_inset
+
+ aller Kanten mit je einem Endknoten in 
+\begin_inset Formula $W$
+\end_inset
+
+ und 
+\begin_inset Formula $V\setminus W$
+\end_inset
+
+ heißt 
+\series bold
+Schnitt
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Kurzform von 
+\begin_inset Formula $\delta\left(\left\{ v\right\} \right)$
+\end_inset
+
+ ist 
+\begin_inset Formula $\delta\left(v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Der 
+\series bold
+Grad
+\series default
+ eines Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ ist die Anzahl seiner Nachbarn, bzw.
+ 
+\begin_inset Formula $\left|\delta\left(v\right)\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Ein 
+\series bold
+(s,t)-Schnitt
+\series default
+ ist ein Schnitt 
+\begin_inset Formula $\delta\left(V\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $s\in W$
+\end_inset
+
+ und 
+\begin_inset Formula $t\in V\setminus W$
+\end_inset
+
+ und gleichzeitig ein (t,s)-Schnitt.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Mit 
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+ ist 
+\begin_inset Formula $E\left(W\right)$
+\end_inset
+
+ die Menge aller Kanten mit beiden Endknoten in 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Mit 
+\begin_inset Formula $F\subseteq E$
+\end_inset
+
+ ist 
+\begin_inset Formula $V\left(F\right)$
+\end_inset
+
+ die Menge aller Knoten, die Endknoten von mind.
+ einer Kante in 
+\begin_inset Formula $F$
+\end_inset
+
+ sind.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Sind 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $H=\left(W,F\right)$
+\end_inset
+
+ Graphen und 
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+ und 
+\begin_inset Formula $F\subseteq E$
+\end_inset
+
+, so heißt H 
+\series bold
+Untergraph
+\series default
+ von G.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Mit 
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+ ist 
+\begin_inset Formula $G-W$
+\end_inset
+
+ der Graph 
+\begin_inset Formula $G$
+\end_inset
+
+ ohne die Knoten in 
+\begin_inset Formula $W$
+\end_inset
+
+ und ohne alle Kanten an 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\begin_inset Formula $G\left[W\right]=G-\left(V\setminus W\right)$
+\end_inset
+
+ ist der 
+\series bold
+von 
+\begin_inset Formula $W$
+\end_inset
+
+ induzierte Untergraph
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Mit 
+\begin_inset Formula $F\subseteq E$
+\end_inset
+
+ ist 
+\begin_inset Formula $G-F=\left(V,E\setminus F\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Kurzform von 
+\begin_inset Formula $G-\left\{ x\right\} $
+\end_inset
+
+ ist 
+\begin_inset Formula $G-x$
+\end_inset
+
+ für 
+\begin_inset Formula $x\in E$
+\end_inset
+
+ oder 
+\begin_inset Formula $x\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Ein einfacher Graph heißt 
+\series bold
+vollständig
+\series default
+, wenn jede mögliche Kante zwischen seinen Knoten existiert.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Der vollstängige Graph mit 
+\begin_inset Formula $n$
+\end_inset
+
+ Knoten wird mit 
+\begin_inset Formula $K_{n}=\left(V_{n},E_{n}\right)$
+\end_inset
+
+ bezeichnet.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Das 
+\series bold
+Komplement
+\series default
+ des Graphen 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ ist 
+\begin_inset Formula $\bar{G}=(V,E_{n}\setminus E)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Ein Graph heißt 
+\series bold
+bipartit
+\series default
+, wenn er sich in zwei disjunkte Teilmengen 
+\begin_inset Formula $V_{1},V_{2}$
+\end_inset
+
+ mit 
+\begin_inset Formula $V_{1}\cup V_{2}=V$
+\end_inset
+
+ teilen lässt, ohne dass es Kanten 
+\begin_inset Formula $\left\{ u,v\right\} ,u\in V_{1},v\in V_{2}$
+\end_inset
+
+ gibt.
 \end_layout
 
 \end_body

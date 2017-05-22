@@ -115,22 +115,52 @@ kann, heiﬂt \textbf{polynomiales Problem}.
 %
 \pagebreak{}
 \begin{defn*}
-Ein Graph $G$ ist ein Tupel $G=(V,E)$\footnote{In der Vorlesung werden prim‰r endliche, einfache, schleifenfreie
-Graphen behandelt, die der einfachheit halber eine Notation ohne Inzendenzfunktion
-nutzen kˆnnen.} bestehend aus einer nicht-leeren Knotenmenge $V$ und einer Kantenmenge
+Ein \textbf{Graph} $G$ ist ein Tupel $G=(V,E)$\footnote{In der Vorlesung werden prim‰r endliche, einfache, schleifenfreie
+Graphen behandelt, die der Einfachheit halber eine Notation ohne Inzendenzfunktion
+nutzen kˆnnen. In diesem Skript wird (sofern nicht anders angegeben)
+von solchen Graphen ausgegangen.} bestehend aus einer nicht-leeren Knotenmenge $V$ und einer Kantenmenge
 $E$.
-
-Ein Graph heiﬂt endlich, wenn $V$ und $E$ eindlich sind.
-
-Wenn $e=\left\{ u,v\right\} \in E$ und $u,v\in V$, dann sind $u$
-und $v$ Nachbarn bzw. adjazent, sind Endknoten von $e$ und werden
-von $e$ verbunden.
-
-Eine Kante $E\ni e=\{u,u\}$ heiﬂt Schleife.
-
-Kanten mit $E\ni e=\{u,v\}=f\in E$ heiﬂen parallel oder mehrfach.
-
-Ein Graph ohne Mehrfachkanten heiﬂt einfach.
 \end{defn*}
+\begin{itemize}
+\item Ein Graph heiﬂt \textbf{endlich}, wenn $V$ und $E$ eindlich sind.
+\item Wenn $e=\left\{ u,v\right\} \in E$ und $u,v\in V$, dann sind $u$
+und $v$ \textbf{Nachbarn} bzw. \textbf{adjazen}t, sind \textbf{Endknoten}
+von $e$ und werden von $e$ \textbf{verbunden}.
+\item Eine Kante $E\ni e=\{u,u\}$ heiﬂt \textbf{Schleife}.
+\item Kanten mit $E\ni e=\{u,v\}=f\in E$ heiﬂen \textbf{parallel} oder
+\textbf{mehrfach}.
+\item Ein Graph ohne Mehrfachkanten heiﬂt \textbf{einfach}.
+\item F¸r $W\subseteq V$ bekommt die Menge aller Knoten in $V\setminus W$
+mit Nachbarn in $W$ die Bezeichnung $\Gamma(W)$.
+\item Kurzform von $\Gamma\left(\left\{ v\right\} \right)$ ist $\Gamma\left(v\right)$.
+\item Die Menge $\delta\left(W\right)$ aller Kanten mit je einem Endknoten
+in $W$ und $V\setminus W$ heiﬂt \textbf{Schnitt}.
+\item Kurzform von $\delta\left(\left\{ v\right\} \right)$ ist $\delta\left(v\right)$.
+\item Der \textbf{Grad} eines Knoten $v$ ist die Anzahl seiner Nachbarn,
+bzw. $\left|\delta\left(v\right)\right|$.
+\item Ein \textbf{(s,t)-Schnitt} ist ein Schnitt $\delta\left(V\right)$
+mit $s\in W$ und $t\in V\setminus W$ und gleichzeitig ein (t,s)-Schnitt.
+\item Mit $W\subseteq V$ ist $E\left(W\right)$ die Menge aller Kanten
+mit beiden Endknoten in $W$.
+\item Mit $F\subseteq E$ ist $V\left(F\right)$ die Menge aller Knoten,
+die Endknoten von mind. einer Kante in $F$ sind.
+\item Sind $G=\left(V,E\right)$ und $H=\left(W,F\right)$ Graphen und $W\subseteq V$
+und $F\subseteq E$, so heiﬂt H \textbf{Untergraph} von G.
+\item Mit $W\subseteq V$ ist $G-W$ der Graph $G$ ohne die Knoten in $W$
+und ohne alle Kanten an $W$.
+\item $G\left[W\right]=G-\left(V\setminus W\right)$ ist der \textbf{von
+$W$ induzierte Untergraph}.
+\item Mit $F\subseteq E$ ist $G-F=\left(V,E\setminus F\right)$.
+\item Kurzform von $G-\left\{ x\right\} $ ist $G-x$ f¸r $x\in E$ oder
+$x\in V$.
+\item Ein einfacher Graph heiﬂt \textbf{vollst‰ndig}, wenn jede mˆgliche
+Kante zwischen seinen Knoten existiert.
+\item Der vollst‰ngige Graph mit $n$ Knoten wird mit $K_{n}=\left(V_{n},E_{n}\right)$
+bezeichnet.
+\item Das \textbf{Komplement} des Graphen $G=\left(V,E\right)$ ist $\bar{G}=(V,E_{n}\setminus E)$.
+\item Ein Graph heiﬂt \textbf{bipartit}, wenn er sich in zwei disjunkte
+Teilmengen $V_{1},V_{2}$ mit $V_{1}\cup V_{2}=V$ teilen l‰sst, ohne
+dass es Kanten $\left\{ u,v\right\} ,u\in V_{1},v\in V_{2}$ gibt.
+\end{itemize}
 
 \end{document}
