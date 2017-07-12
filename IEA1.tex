@@ -1,25 +1,48 @@
 %% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[english]{article}
+\documentclass[ngerman]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
 \usepackage{geometry}
-\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 \setlength{\parindent}{0bp}
+\usepackage{array}
 \usepackage{fancybox}
 \usepackage{calc}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{graphicx}
 
 \makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
   \theoremstyle{definition}
-  \newtheorem{defn}{\protect\definitionname}[section]
+  \newtheorem{defn}[thm]{\protect\definitionname}
  \theoremstyle{definition}
  \newtheorem*{defn*}{\protect\definitionname}
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{\protect\lemmaname}
+  \theoremstyle{plain}
+  \newtheorem{prop}[thm]{\protect\propositionname}
+  \theoremstyle{plain}
+  \newtheorem{cor}[thm]{\protect\corollaryname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{pstricks}
 \renewcommand{\labelenumi}{(\arabic{enumi})}
 \renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
 \renewcommand{\labelenumiii}{(\arabic{enumi}.\arabic{enumii}.\arabic{enumiii})}
@@ -28,7 +51,11 @@
 \makeatother
 
 \usepackage{babel}
+  \providecommand{\corollaryname}{Korollar}
   \providecommand{\definitionname}{Definition}
+  \providecommand{\lemmaname}{Lemma}
+  \providecommand{\propositionname}{Satz}
+\providecommand{\theoremname}{Theorem}
 
 \begin{document}
 
@@ -40,7 +67,7 @@
 \maketitle
 
 \section{Probleme und Algorithmen}
-\begin{quotation}
+
 \noindent %
 \noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
 \textbf{Lineares kombinatorisches Optimierungsproblem}
@@ -89,7 +116,6 @@ $E=$ Menge der Kanten
 $\mathcal{I}=$ Alle Mengen von Kanten mit der Eigenschaft, dass jeder
 Knoten zu genau einer der Kanten gehört.%
 \end{minipage}}
-\end{quotation}
 \begin{description}
 \item [{Einheitskosten-Modell}] Es werden nur die Schritte des Algorithmus
 gezählt, die Zahlengrößen bleiben unberücksichtigt.
@@ -103,7 +129,7 @@ ist in $\mathcal{O}(g)$ für eine Funktion $g:\mathbb{N}\rightarrow\mathcal{\math
 falls es eine Konstante $c>0$ und $n_{o}\in\mathbb{N}$ gibt, so
 dass $f_{A}\leq c\cdot g(n)$ für alle $n\geq n_{o}$.
 \end{defn}
-%
+
 \begin{defn}
 Ein Algorithmus heißt \textbf{effizient} bzw. \textbf{polynomialer
 Algorithmus}, wenn seine Laufzeit in $\mathcal{O}\left(n^{k}\right)$
@@ -112,7 +138,7 @@ liegt.
 Ein Problem, das mit einem polynomialen Algorithmus gelöst werden
 kann, heißt \textbf{polynomiales Problem}.
 \end{defn}
-%
+
 \pagebreak{}
 \begin{defn*}
 Ein \textbf{Graph} $G$ ist ein Tupel $G=(V,E)$\footnote{In der Vorlesung werden primär endliche, einfache, schleifenfreie
@@ -122,11 +148,11 @@ von solchen Graphen ausgegangen.} bestehend aus einer nicht-leeren Knotenmenge $
 $E$.
 \end{defn*}
 \begin{itemize}
-\item Ein Graph heißt \textbf{endlich}, wenn $V$ und $E$ eindlich sind.
+\item Ein Graph heißt \textbf{endlich}, wenn $V$ und $E$ endlich sind.
 \item Wenn $e=\left\{ u,v\right\} \in E$ und $u,v\in V$, dann sind $u$
 und $v$ \textbf{Nachbarn} bzw. \textbf{adjazen}t, sind \textbf{Endknoten}
 von $e$ und werden von $e$ \textbf{verbunden}.
-\item Eine Kante $E\ni e=\{u,u\}$ heißt \textbf{Schleife}.
+\item Eine Kante $e=\{u,u\}\in E$ heißt \textbf{Schleife}.
 \item Kanten mit $E\ni e=\{u,v\}=f\in E$ heißen \textbf{parallel} oder
 \textbf{mehrfach}.
 \item Ein Graph ohne Mehrfachkanten heißt \textbf{einfach}.
@@ -163,5 +189,697 @@ Teilmengen $V_{1},V_{2}$ mit $V_{1}\cup V_{2}=V$ teilen lässt, ohne
 dass es Kanten $\left\{ u,v\right\} $ mit $u,v\in V_{1}\vee u,v\in V_{2}$
 gibt.
 \end{itemize}
+\begin{defn*}
+Ein \textbf{Digraph} $G$ ist ein Tupel $D=(V,A)$ bestehend aus einer
+nicht-leeren Knotenmenge $V$ und einer Kantenmenge $A$.
+\end{defn*}
+\begin{itemize}
+\item Wenn $a=\left(u,v\right)\in A$ und $u,v\in V$, dann ist $u$ \textbf{Anfangsknoten}
+und $v$ \textbf{Endknoten }von $a$. Hier heißt $u$ \textbf{Vorgänger}
+von $v$ und $v$ \textbf{Nachfolger} von $u$.
+\item Die Kanten $\left(u,v\right)$ und $\left(v,u\right)$ heißen \textbf{antiparallel}.
+\item Mit $W\subseteq V$ ist $A\left(W\right)$ die Menge aller Kanten
+mit Anfangs- und Endknoten in $W$.
+\item Mit $B\subseteq A$ ist $V\left(A\right)$ die Menge aller Knoten,
+die Anfangs- oder Endknoten von mind. einer Kante in $B$ sind.
+\item $G=\left(V,E\right)$ ist der unterliegende Graph von $D=\left(V,A\right)$,
+wenn $E$ genau die Kanten $\left\{ u,v\right\} $ enthält, für die
+$\left(u,v\right)$ oder $\left(v,u\right)$ in $A$ liegen.
+\item Ein einfacher Digraph heißt \textbf{vollständig}, wenn jede mögliche
+Kante (in beide Richtungen) zwischen seinen Knoten existiert.
+\item Der vollstängige Digraph mit $n$ Knoten wird mit $D_{n}=\left(V_{n},A_{n}\right)$
+bezeichnet.
+\item Für $W\subseteq V,W\neq V\neq\emptyset$ enthält $\delta^{+}\left(W\right)=\left\{ \left(i,j\right)\in A\,\vert\,i\in W,j\notin W\right\} $
+alle Kanten, die $W$ verlassen, $\delta^{-}\left(W\right)=\delta^{+}\left(V\setminus W\right)$
+alle Kanten, die in $W$ hinein führen und $\delta\left(W\right)=\delta^{+}\left(W\right)\cup\delta^{-}\left(W\right)$
+beide. Diese Mengen heißen \textbf{Schnitt}. Es gelten die Kurzformen
+für einzelne Knoten.
+\item Für $s\in W$ und $t\notin W$ heißt $\delta^{+}\left(W\right)$ auch
+\textbf{$\left(s,t\right)$-Schnitt}.
+\item Die Kardinalitäten der Schnitte heißen \textbf{Außengrad} $\left(\left|\delta^{+}\left(v\right)\right|\right)$,
+\textbf{Innengrad} $\left(\left|\delta^{-}\left(v\right)\right|\right)$
+und \textbf{Grad} $\left(\left|\delta\left(v\right)\right|\right)$.
+\item $\delta^{+}\left(W\right)$ heißt \textbf{gerichteter Schnitt}, wenn
+$\delta^{-}\left(W\right)=\emptyset$.
+\end{itemize}
+\begin{defn*}
+Eine endliche Folge $W=\left(v_{0},e_{1},v_{1},e_{2},v_{2},\ldots,e_{k},v_{k}\right)$
+heißt \textbf{Kette} oder $\left[v_{0},v_{k}\right]$-Kette der Länge
+$k$, wenn jede Kante $e_{i}$ die Knoten $v_{i-1}$ und $v_{i}$
+in einem (Di-)Graphen indiziert und \textbf{gerichtete Kette} oder
+$\left(v_{0},v_{k}\right)$-Kette, wenn alle Kanten in der Form $e_{i}=\left(v_{i-1},v_{i}\right)$
+sind. $v_{0}$ und $v_{k}$ heißen \textbf{Anfangs- und Endknoten}.
+\end{defn*}
+\begin{itemize}
+\item Gibt es in einem (Di-)Graphen keine parallelen Kanten, ist eine (gerichtete)
+Kette durch ihre Knoten eindeutig identifiziert.
+\item Ein \textbf{(gerichteter) Weg} oder \textbf{(gerichteter) Pfad} ist
+eine (gerichtete) Kette, in der alle Knoten verschieden sind.
+\item Die Notation $u\underset{D}{\rightarrow}v$ bedeutet, dass es einen
+$\left(u,v\right)$-Weg in D gibt.
+\item Man spricht auch von $\left(u,v\right)$-Wegen bzw. $\left(u,v\right)$-Pfaden.
+\item Die Knoten $s$ und $t$ eines Graphen heißen \textbf{zusammenhängend},
+wenn ein $\left(s,t\right)$-Weg existiert.
+\item Ein \textbf{zusammenhängender Graph} enthält nur Knoten, die paarweise
+zusammenhängend sind.
+\item Ein Digraph heißt \textbf{stark zusammenhängend}, wenn es zu jedem
+Knotenpaar $s,t$ einen $\left(s,t\right)$-Weg und einen $\left(t,s\right)$-Weg
+gibt.
+\item \textbf{Kompontenten} eines Graphen sind die (bezüglich Kanteninklusion)
+maximalen zusammenhängenden Untergraphen.
+\item \textbf{Starke Kompontenten} eines Diraphen sind die (bezüglich Kanteninklusion)
+maximalen stark zusammenhängenden Unterdigraphen.
+\item Ein Graph heißt \textbf{$k$-fach zusammenhängend}, wenn jedes Paar
+Knoten $s,t$ durch mindestens $k$ $\left(s,t\right)$-Wege verbunden
+ist, die keine inneren Knoten gemeinsam haben.
+\item Ein Digraph heißt \textbf{$k$-fach stark zusammenhängend}, wenn jedes
+Paar Knoten $s,t$ durch mindestens $k$ $\left(s,t\right)$-Wege
+und $\left(t,s\right)$-Wege verbunden ist, die keine inneren Knoten
+gemeinsam haben.
+\item Eine \textbf{geschlossene Kette} hat mehr als $0$ Kanten und den
+gleichen Anfangs- und Endknoten.
+\item Ein \textbf{Kreis} ist eine geschlossene Kette mit paarweise verschiedenen
+inneren Knoten. Seine \textbf{Länge} ist die Anzahl seiner Kanten.
+\item Ein \textbf{Eulerpfad} ist eine Kette, die jede Kante eines (Di-)Graphen
+einmal enthält.
+\item Eine \textbf{Eulertour} ist ein geschlossener Eulerpfad.
+\item Ein \textbf{Eulergraph} ist ein Graph, der eine Eulertour enthält.
+\item Ein \textbf{Hamiltonkreis} (oder \textbf{Hamiltontour}) ist ein Kreis
+der Länge $\left|V\right|$.
+\item Ein \textbf{hamiltonischer} Graph enthält einen Hamiltonkreis.
+\item Ein \textbf{Hamiltonweg} ist ein (gerichteter) Weg der Länge $\left|V\right|-1$.
+\item Ein \textbf{Wald} ist eine Kantenmenge in einem Graphen, die keinen
+Kreis enthält.
+\item Ein \textbf{Baum} ist ein zusammenhängender Wald.
+\item Ein \textbf{aufspannender} Baum enthält alle Knoten des Graphen.
+\item Ein \textbf{azyklischer} Digraph enthält keine gerichteten Kreise.
+\item Ein \textbf{Branching} in einem Digraphen ist eine azyklische Kantenmenge,
+sodass jeder Knoten maximal eine Eingangskante besitzt.
+\item Eine \textbf{Arboreszenz} ist ein zusammenhängendes Branching.
+\item Eine \textbf{aufspannende Arboreszenz} enthält alle Knoten ihres Digraphen.
+\item \textbf{Gewichte} (auch ``Kosten'', ``Distanzen'', ``Kapazitäten'',
+usw.) werden durch Funktionen der Form $c:E\rightarrow\mathbb{R}$
+bzw. $c:A\rightarrow\mathbb{R}$ mit Kanten assoziiert.
+\end{itemize}
 
+\section{Grundlegende Graphenalgorithmen}
+
+\subsection{Repräsentationen von Graphen}
+\begin{description}
+\item [{Adjazenzliste}] Jeder Knoten hat eine Liste seiner Nachbarn gespeichert.
+Speichersparend für dünne Graphen. Hinzufügen und Entfernen von Knoten
+und Kanten sehr einfach. Existenz von Kanten prüfen teuer (einen Knoten
+durchlaufen). Speicheraufwand: $\mathfrak{\mathcal{O}}(V+E)$
+\item [{Adjazenzmatrix}] $\left|V\right|\times\left|V\right|$-Matrix,
+die an der Stelle $(u,v)$ eine $1$ hat, wenn die Kante $\left(u,v\right)$
+bzw. $\left\{ u,v\right\} $ existiert. Existenz von Kanten prüfen
+in $\mathcal{O}(1)$. Nachbarn durchlaufen unanhängig von ihrer Anzahl
+in $\mathcal{O}(V)$. Speicheraufwand: $\mathcal{O}\left(V^{2}\right)$
+\item [{Inzidenzmatrix}] $\left|V\right|\times\left|E\right|$-Matrix,
+die an der Stelle $(v,e)$ eine $1$ hat, wenn der Knoten $v$ Endknoten
+der Kante $e$ ist. Erlaubt Untersuchung des Graphen mit diversen,
+algebraischen Methoden. \emph{{[}Kein Beispiel{]}}
+\end{description}
+\begin{tabular}{>{\centering}m{0.3\textwidth}>{\centering}m{0.3\textwidth}>{\centering}m{0.3\textwidth}}
+\includegraphics[scale=0.15]{diagramme/adjazenz} & $\begin{bmatrix}1 & \rightarrow2 & \rightarrow5\\
+2 & \rightarrow1 & \rightarrow3 & \rightarrow4 & \rightarrow5\\
+3 & \rightarrow2 & \rightarrow4\\
+4 & \rightarrow2 & \rightarrow3 & \rightarrow5\\
+5 & \rightarrow1 & \rightarrow2 & \rightarrow4
+\end{bmatrix}$ & $\left[\begin{array}{c|ccccc}
+ & 1 & 2 & 3 & 4 & 5\\
+\hline 1 & 0 & 1 & 0 & 0 & 1\\
+2 & 1 & 0 & 1 & 1 & 1\\
+3 & 0 & 1 & 0 & 1 & 0\\
+4 & 0 & 1 & 1 & 0 & 1\\
+5 & 1 & 1 & 0 & 1 & 0
+\end{array}\right]$\tabularnewline
+ &  & \tabularnewline
+\includegraphics[scale=0.15]{diagramme/adjazenz_dir} & $\begin{bmatrix}1 & \rightarrow2 & \rightarrow5\\
+2 & \rightarrow4\\
+3 & \rightarrow4\\
+4\\
+5 & \rightarrow2 & \rightarrow4
+\end{bmatrix}$ & $\left[\begin{array}{c|ccccc}
+\nearrow & 1 & 2 & 3 & 4 & 5\\
+\hline 1 & 0 & 1 & 0 & 0 & 1\\
+2 & 0 & 0 & 0 & 1 & 0\\
+3 & 0 & 0 & 0 & 1 & 0\\
+4 & 0 & 0 & 0 & 0 & 0\\
+5 & 0 & 1 & 0 & 1 & 0
+\end{array}\right]$\tabularnewline
+\end{tabular}
+
+\subsection{Durchsuchen von Graphen}
+
+Das ``färben'' von Knoten ist eine Kurzschreibweise für folgende
+Sachverhalte:
+\begin{lyxlist}{00.00.0000}
+\item [{weiß}] Der Knoten ist noch nicht erreicht. (Im Normalfall Grundzustand)
+\item [{grau}] Der Knoten wurde erreicht, seine Nachbarn jedoch noch nicht
+abgearbeitet.
+\item [{schwarz}] Der Knoten wurde komplett bearbeitet.
+\end{lyxlist}
+
+\subsubsection{Breitensuche (BFS)}
+
+Start bei Knoten $s$. $\pi\left[u\right]=v$ heißt $v$ ist direkter
+Vorgänger von $u$. $Q$ ist eine Queue.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{BFS}$\left(G,s\right)$:
+\begin{enumerate}
+\item Färbe $s$ grau, setze $d\left[s\right]=0$, $\pi\left[s\right]=\textrm{\ensuremath{\bot}}$
+und initialisiere $Q$ mit $s$.
+\item Färbe alle Knoten $v\in V\setminus\left\{ s\right\} $ weiß und setze
+$d\left[v\right]=+\infty$ und $\pi\left[v\right]=\bot$.
+\item Falls $Q$ leer, \emph{Stop}(``BFS beendet''), sonst sei $u$ erster
+Knoten in $Q$.
+\item Für alle $v$ aus Adjazenzliste von $u$:
+\begin{enumerate}
+\item Falls $v$ weiß ist, färbe $v$ grau, setze $d\left[v\right]=d\left[u\right]+1$,
+$\pi\left[v\right]=u$ und füge $v$ ans Ende von $Q$ ein.
+\end{enumerate}
+\item Entferne $u$ aus $Q$, färbe $u$ schwarz und gehe zu $\left(3\right)$.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: linear in Bezug auf Adjazenzstruktur. Das heißt $\mathcal{O}\left(V+E\right)$
+bei Adjazenzlisten und $\mathcal{O}\left(V^{2}\right)$ bei Adjazenzmatrizen.
+\begin{defn*}
+Für $v\in V$ sei $\delta\left(s,u\right)$ die Zahl der Kanten des
+kürzesten $\left(s,u\right)$-Weges, bzw. $\infty$ wenn kein solcher
+existiert.
+\end{defn*}
+\begin{lem}
+Sei $G=\left(V,E\right)$ ein Graph und $s\in V$.
+\begin{itemize}
+\item Für jede Kante $uv\in E$ gilt: $\delta\left(s,v\right)\leq\delta\left(s,u\right)+1$.
+\item Nach Terminierung von BFS$\left(G,s\right)$ gilt: $\forall v\in V:d\left[v\right]\geq\delta\left(s,v\right)$
+\item Enthält $Q$ während BFS$\left(G,s\right)$ $v_{1},v_{2},\ldots,v_{r}$
+gilt: $d\left[v_{r}\right]\leq d\left[v_{1}\right]+1$ und $d\left[v_{i}\right]\leq d\left[v_{i+1}\right],1\leq i<r$
+\end{itemize}
+\end{lem}
+
+\begin{prop}
+Sei $G=\left(V,E\right)$, $s\in V$ und BFS$\left(G,s\right)$ ausgeführt.
+Dann ist jeder Knoten, der von $s$ aus erreichbar ist, schwarz gefärbt
+und es gilt $d\left[v\right]=\delta\left(s,v\right)$.
+\end{prop}
+
+
+\subsubsection{Tiefensuche (DFS)}
+
+Kein spezieller Startknoten. Die Zeit der Grau-Färbung wird in $d\left[v\right]$
+gespeichtert, die Zeit der Schwarz-Färbung (Terminierungszeit) in
+$t\left[v\right].$
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{DFS}$\left(D\right)$:
+\begin{enumerate}
+\item Färbe alle Knoten $u\in V$ weiß und setze $\pi\left[u\right]=\bot$.
+\item Setze globale Zeit $t=0$.
+\item Für jeden Knoten $u\in V$:
+\begin{enumerate}
+\item Falls $u$ weiß gefärbt ist, dann DFSVisit$\left(u\right)$.
+\end{enumerate}
+\end{enumerate}
+\rule[1ex]{1\columnwidth}{1pt}
+
+\textbf{DFSVisit}$\left(u\right)$:
+\begin{enumerate}
+\item Färbe $u$ grau, setze $t=t+1$ und $d[u]=t.$
+\item Für alle $v$ aus Adjazenzliste von $u$:
+\begin{enumerate}
+\item Falls $v$ weiß ist, dann setze $\pi\left[v\right]=u$ und vollziehe
+DFSVisit$\left(v\right)$.
+\end{enumerate}
+\item Färbe $u$ schwarz, setze $t=t+1$ und $f\left[u\right]=t$.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: linear in Bezug auf Adjazenzstruktur. Das heißt $\mathcal{O}\left(V+A\right)$
+bei Adjazenzlisten und $\mathcal{O}\left(V^{2}\right)$ bei Adjazenzmatrizen.
+\begin{defn*}
+Der \textbf{DFS-Wald} des (Di-)Graphen $G=\left(V,E\right)$ ist ein
+Digraph der Form $\left(V,\left\{ \left\{ \pi\left[v\right],v\right\} |v\in V,\pi\left[v\right]\neq\bot\right\} \right)$.
+Er symbolisiert also den Weg durch den Graphen während einer DFS.
+
+Alle Kanten $\left\{ u,v\right\} $ aus $E$, die nicht zum Wald gehören
+sind:
+\begin{description}
+\item [{Vorwärtskanten}] Es gibt einen $\left(u,v\right)$-Weg im DFS-Wald
+\item [{Rückwärtskanten}] Es gibt einen $(v,u)$-Weg im DFS-Wald
+\item [{Kreuzungskanten}] Es gibt keinen der Wege im DFS-Wald
+\end{description}
+Für ungerichtete Graphen gibt es nur Rückwärtskanten.
+\end{defn*}
+\begin{prop}
+Ein Knoten $v$ ist Nachfolger eines Knotens $u$ im DFS-Wald genau
+dann, wenn gilt: Zu dem Zeitpunkt, zu dem $u$ grau gefärbt wird,
+ist $v$ von $u$ aus auf einem Weg erreichbar, der nur aus weißen
+Knoten besteht.
+\end{prop}
+
+
+\subsection{Topologisches Sortieren}
+
+Die topologische Sortierung eines Digraphen ist eine Knotenreihenfolge,
+in der alle Kanten nur zu später auftretenden Knoten führen.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Topsort}$\left(D\right)$:
+\begin{enumerate}
+\item Initialisiere leere Liste $L=\emptyset$.
+\item Führe DFS$\left(D\right)$ aus, mit Zusatz: Wenn ein Knoten $v$ schwarz
+gefärbt wird, füge ihn am Anfang der Liste $L$ ein.
+\item $L$ liefert topologische Sortierung.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: siehe DFS$\left(D\right)$
+\begin{lem}
+Ein Digraph $D$ ist genau dann kreisfrei, wenn DFS$\left(D\right)$
+keine Ruckwärtskanten liefert.
+\end{lem}
+
+\begin{prop}
+Ein azyklischer Digraph $D$ wird durch Topsort$\left(D\right)$ topologisch
+sortiert.
+\end{prop}
+
+
+\subsection{Starke Zusammenhangskomponenten}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{StrongComponents}$\left(D\right)$:
+\begin{enumerate}
+\item Führe DFS$\left(D\right)$ aus, merke Terminierungszeiten $f\left[u\right]$
+für alle $u\in V$.
+\item Generiere $D^{\top}$.
+\item Führe DFS$\left(D^{\top}\right)$ aus, wobei im Schritt $\left(3\right)$
+die Knoten nach absteigenden Werten von $f\left[u\right]$ sortiert
+werden.
+\item Die Knoten jedes Baumes im DFS-Wald von $D^{\top}$ bestimmen eine
+starke Zusammenhangskomponente.
+\end{enumerate}
+%
+\end{minipage}}
+\begin{lem}
+Jeder Weg, der zwei Knoten aus derselben Komponente verbindet, enthält
+nur Knoten aus dieser Komponente.
+\end{lem}
+
+\begin{lem}
+Alle Knoten einer Komponente sind im gleichen DFS-Baum enthalten.
+\end{lem}
+
+\begin{defn*}
+Für einen Knoten $u$ bezeichne $\phi(u)$ den Knoten $v$ mit der
+größten Terminierungszeit bei DFS$\left(D\right)$, der von $u$ aus
+in $D$ erreichbar ist, das heißt:
+
+$\phi\left(u\right)=\mathrm{argmax}{}_{v}\left\{ f\left[v\right]|u\underset{D}{\rightarrow}v\right\} $
+\end{defn*}
+\begin{prop}
+Für $D=\left(V,A\right)$ sei DFS$\left(D\right)$ ausgeführt. Dann
+ist für jeden Knoten $\phi\left(u\right)$ Vorgänger von $u$ im DFS-Wald.
+\end{prop}
+
+\begin{prop}
+Nach DFS$\left(D\right)$ liegen zwei Knoten $u$ und $v$ genau dann
+in der gleichen Komponente, wenn $\phi\left(u\right)=\phi\left(v\right)$.
+\end{prop}
+
+\begin{prop}
+Der Algorithmus StrongComponents identifiziert die starken Zusammenhangskomponenten
+eines Digraphen.
+\end{prop}
+
+
+\section{Optimale Bäume und Branchings}
+
+\subsection{Minimale aufspannende Bäume}
+
+Die Probleme, einen minimalen, aufspannenden Baum oder einen maximalen,
+aufspannenden Wald zu finden lassen sich einfach ineinander transformieren.
+Darum beschränken wir uns auf ersteres.
+
+\noindent %
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Minimaler-aufspannender-Baum-Problem}
+
+\smallskip{}
+
+Gegeben ist ein Graph $G=\left(V,E\right)$ mit Kantengewichten $c_{e}$
+für $e\in E$. Zu bestimmen ist ein aufspannender Baum für G, dessen
+Gesamtgewicht möglichst klein ist.
+
+(Wir nehmen an, dass $G$ zusammenhängend ist, da das Problem sonst
+einzeln pro Komponente lösbar wäre.)%
+\end{minipage}}
+
+\subsubsection{Ein allgemeiner MST-Algorithmus}
+
+Dieser Algorithmus färbt Kanten nach festen Regeln blau und rot. Es
+ist stets die Invariante \emph{\glqq Es gibt einen minimalen, aufspannenden
+Baum, der alle blauen und keine rote Kante enthält.``} erfüllt.
+\begin{description}
+\item [{Regel~B}] Wähle einen Schnitt, der keine blaue Kante enthält.
+Färbe eine seiner kürzesten Kanten blau.
+\item [{Regel~R}] Wähle einen Kreis, der keine rote Kante enthält. Färbe
+eine seiner längsten Kanten rot.
+\end{description}
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{MinimumSpanningTree}$\left(G,c\right):$
+\begin{enumerate}
+\item Zu Beginn seien alle Kanten ungefärbt.
+\item Wende Regeln B und R an, bis alle Kanten gefärbt sind.
+\item Die blauen Kanten bilden einen minimalen aufspannenden Baum.
+\end{enumerate}
+%
+\end{minipage}}
+\begin{prop}
+Der Algorithmus färbt alle Kanten eines zusammenhängenden Graphen
+und erhält dabei die Invarianz-Bedingung, d.h. er berechnet einen
+minimalen aufspannenden Baum.
+\end{prop}
+
+
+\subsubsection{Der Algorithmus von Boruvka}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Boruvka}$\left(G,c\right)$:
+\begin{enumerate}
+\item Initialisiere $n$ blaue Bäume bestehend aus je einem Knoten.
+\item Solange mehr als ein blauer Baum vorhanden ist, wähle gleichzeitig
+zu jedem blauen Baum die minimale inzidente Kante und färbe alle ausgewählten
+Kanten blau.
+\item Die blauen Kanten bilden einen minimalen Baum.
+\end{enumerate}
+%
+\end{minipage}}
+
+Der Algorithmus kann blaue Kreise erzeugen, wenn es im Graphen Kanten
+gleichen Gewichts gibt.
+
+\subsubsection{Der Algorithmus von Kruskal}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Kruskal}$\left(G,c\right)$:
+\begin{enumerate}
+\item Initialisiere $n$ blaue Bäume bestehend aus je einem Knoten.
+\item Sortiere die Kanten von $G$ nach nichtabsteigenden Gewichten, so
+dass $c_{e_{1}}\leq c_{e_{2}}\leq\ldots\leq c_{e_{m}}$.
+\item Für $i=1,2,\ldots,m:$
+\begin{enumerate}
+\item Sind die Endknoten von $e_{i}$ im gleichen blauen Baum, färbe $e_{i}$
+rot, andernfalls blau.
+\end{enumerate}
+\item Die blauen Kanten bilden einen minimalen Baum.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(E\log V\right)$, wenn die Bäume per fast-union-find
+verwaltet werden. Ein Heap ermöglicht Optimierung bezöglich der Sortierung,
+da abgebrochen werden kann, wenn es $n-1$ blaue Kanten gibt.
+
+\subsubsection{Der Algorithmus von Prim}
+
+Der Algorithmus verwendet nur Regel R und benötigt einen Startknoten
+$s$.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Prim}$\left(G,c,s\right)$:
+\begin{enumerate}
+\item Initialisiere $n$ blaue Bäume bestehend aus je einem Knoten.
+\item Solange noch blaue Bäume aus einem Knoten existieren, färbe minimale
+Kante im Schnitt induziert durch den Baum, der $s$ enthält, blau.
+\item Die blauen Kanten bilden einen minimalen Baum.
+\end{enumerate}
+%
+\end{minipage}}
+
+Es folgt eine einfach Implementierung. $T$ ist der angehende Baum:
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Prim1}$\left(G,c,s\right)$:
+\begin{enumerate}
+\item Setze $V_{T}=\left\{ s\right\} $, $T=\emptyset$ und $i=0$.
+\item Falls $i=n-1$, \emph{Stop}(,,T ist MST``).
+\item Bestimme $u\in V_{T}$ und $v\in V\setminus T_{T}$ mit $c_{uv}=\min\left\{ c_{xy}|x\in V_{T},y\in V\setminus V_{T}\right\} $.
+\item Setze $V_{T}=V_{T}\cup\left\{ v\right\} $ und $T=T\cup\left\{ uv\right\} $
+und $i=i+1$. Gehe zu (2).
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(VE\right)$
+
+Es gibt eine bessere Implementierung.$t\left[v\right]$ speichert
+den nächsten Baumknoten, $d\left[v\right]$ die zugehörige Distanz.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Prim2}$\left(G,c,s\right)$:
+\begin{enumerate}
+\item Setze $V_{T}=\left\{ s\right\} $, $T=\emptyset$ und $i=0$. Setze
+$d\left[v\right]=c_{sv}$ und $t\left[v\right]=s$, falls $sv\in E$,
+setze $d\left[v\right]=\infty$ und $t\left[v\right]=\bot$, falls
+$sv\notin E$.
+\item Falls $i=n-1$, \emph{Stop}(,,T ist MST``).
+\item Bestimme $v\in V\setminus T_{T}$ mit $d\left[v\right]=\min\left\{ d\left[u\right]|u\in V\setminus V_{T}\right\} $.
+\item Setze $V_{T}=V_{T}\cup\left\{ v\right\} $ und $T=T\cup\left\{ t\left[v\right]v\right\} $.
+\item Für alle $w$ adjazent zu $v$:
+\begin{enumerate}
+\item Falls $w\in V\setminus V_{T}$ und $c_{vw}<d\left[w\right]$, dann
+setze $d\left[w\right]=c_{vw}$ und $t\left[w\right]=v$.
+\end{enumerate}
+\item Setze $i=i+1$ und gehe zu (2).
+\end{enumerate}
+%
+\end{minipage}} 
+
+\begin{tabular}{ll}
+Laufzeit (naiv): & $\mathcal{O}\left(V^{2}\right)$\tabularnewline
+Laufzeit (Heap): & $\mathcal{O}\left(E\log V\right)$ (besser für dünnbesetzte Graphen)\tabularnewline
+Laufzeit (Fib-Heap): & $\mathcal{O}\left(E+V\log V\right)$\tabularnewline
+\end{tabular}
+
+\subsubsection{Der Round-Robin-Algorithmus}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{RoundRobin}$\left(G,c\right)$:
+\begin{enumerate}
+\item Initialisiere $n$ blaue Bäume bestehend aus je einem Knoten.
+\item Solange weniger als $n-1$ blaue Kanten vorhanden sind, wähle einen
+blauen Baum, bestimme die kürzeste Kante im durch diesen Baum induzierten
+Schnitt und färbe sie blau.
+\item Die blauen Kanten bilden einen minimalen Baum.
+\end{enumerate}
+%
+\end{minipage}}
+
+Eine $\mathcal{O}\left(E\log\log V\right)$-Implementation ist möglich,
+wenn immer der kleinste Baum gewählt wird.
+
+\subsubsection{Eine Anwendung aufspannender Bäume}
+
+Sogenannte 1-Bäume sind eine untere Schranke für eine optimale TSM-Tour.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{OneTree}$\left(G,c\right)$:
+\begin{enumerate}
+\item Bestimme für die Knoten $\left\{ 2,3,\ldots,n\right\} $einen MST
+$T$. Sei $c_{T}$ die Länge des MST.
+\item Seien $e_{1}$ und $e_{2}$ die zwei kürzesten Kanten an Knoten $1$.
+\item $T\cup\left\{ e_{1},e_{2}\right\} $ist optimaler 1-Baum mit Wert
+$c_{T}+c_{e_{1}}+c_{e_{2}}$.
+\end{enumerate}
+%
+\end{minipage}}
+
+\subsection{Maximale Branchings}
+
+Neue Notationen: $s:A\rightarrow V$, $t:A\rightarrow V$ und $c:A\rightarrow\mathbb{R}$
+sind Start- und Endknoten sowie Gewichte von Kanten.
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Maximales-Branching-Problem}
+
+Gegeben ist ein Digraph $D=\left(V,A\right)$ mit Kantengewichten
+$c_{e}$, für $e\in A$. Zu bestimmen ist ein Branching für $D$,
+dessen Gesamtgewicht möglichst groß ist.%
+\end{minipage}}
+
+\subsubsection{Der Branching-Algorithmus von Edmonds}
+\begin{defn}
+Sei $D=\left(V,A\right)$ ein Digraph mit Kantengewichten $c_{e}$,
+für $e\in A$.
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] Eine Kante $e\in A$ heißt \textbf{kritisch}, falls $c\left(e\right)>0$
+und falls $c\left(e^{\prime}\right)\leq c\left(e\right)$, für alle
+$e^{\prime}\in A$ mit $t\left(e^{\prime}\right)=t\left(e\right)$.
+\item [{b)}] Ein Subgraph $H\subseteq A$ heißt \textbf{kritisch}, falls
+er nur aus kritischen Kanten besteht, jeder Knoten Endknoten von höchstens
+einer dieser Kanten ist, und falls er inklusionsmaximal bezüglich
+dieser Eigenschaft ist.
+\end{lyxlist}
+\end{defn}
+
+\begin{lem}
+Ein azyklischer kritischer Graph $H$ ist ein maximaler Branching.
+\end{lem}
+
+\begin{lem}
+Sei $H$ ein kritischer Graph. Dann ist jeder Knoten von $H$ in maximal
+einem Kreis enthalten.
+\end{lem}
+
+\begin{lem}
+Seien $B$ ein Branching und $u$, $v$, $w$ drei Knoten. Falls $u\underset{B}{\rightarrow}v$
+und $w\underset{B}{\rightarrow}v$, dann gilt entweder $u\underset{B}{\rightarrow}w$
+oder $w\underset{B}{\rightarrow}u$.
+\end{lem}
+
+\begin{defn*}
+Sei $B$ ein Branching. Eine Kante $e\notin B$ heißt \textbf{zulässig}
+(relativ zu B), falls die Menge $B^{\prime}=B\cup\left\{ e\right\} \setminus\left\{ f|f\in B\wedge t\left(f\right)=t\left(e\right)\right\} $
+ebenfalls ein Branching ist.
+\end{defn*}
+\begin{lem}
+Sei $B$ ein Branching und $e\in A\setminus B$. Dann ist $e$ genau
+dann zulässig relativ zu $B$, wenn kein Weg von $t\left(e\right)$
+nach $s\left(e\right)$ in $B$ existiert.
+\end{lem}
+
+\begin{lem}
+Sei $B$ ein Branching und $C$ ein Kreis mit der Eigenschaft, dass
+keine Kante aus $C\setminus B$ zulässig relativ zu $B$ ist. Dann
+gilt $\left|C\setminus B\right|=1$. 
+\end{lem}
+
+\begin{prop}
+Sei $H$ ein kritischer Graph. Dann existiert ein Branching$B$ mit
+maximalem Gewicht, so dass für jeden Kreis $C\subseteq H$ gilt $\left|C\setminus B\right|=1$.
+\end{prop}
+
+Im Folgenden bezeichne $V_{i}=V\left(C_{i}\right)$ und $a_{i}$ die
+kürzeste Kante in $C_{i}$.
+\begin{cor}
+Sei $D=\left(V,A\right)$ ein Digraph mit Kantengewichten und $H$
+ein kritischer Graph mit Kreisen $C_{i},i=1,2,\ldots,k$. Es existiert
+ein gewichtsmaximales Branching $B$ mit den Eigenschaften
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] $\left|C_{i}\setminus B\right|=1$, für $i=1,2,\ldots,k$
+\item [{b)}] Falls für jede Kante $e\in B\setminus C_{i}$ gilt, dass $t\left(e\right)\notin V_{i},$dann
+folgt $C_{i}\setminus B=\left\{ a_{i}\right\} $.
+\end{lyxlist}
+\end{cor}
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Schrumpfen von kritischen Graphen}:
+
+Sei $\widetilde{V}=V\setminus\bigcup_{i=1}^{k}V_{i}$. Für $v\in V_{i}$
+sei $\widetilde{e}\left(v\right)$ die Kante aus $C_{i}$ mit $t\left(\widetilde{e}\left(v\right)\right)=v$,
+d.h. die Kreiskante mit Endknoten $v$.
+
+\[
+\begin{aligned}\overline{A}= & \left\{ e\in A|\text{für kein }i\text{ gilt }s\left(e\right)\in V_{i}\text{ und }t\left(e\right)\in V_{i}\right\} \\
+= & A\setminus\bigcup_{i=1}^{k}A\left(V\left(C_{i}\right)\right)\text{,}\\
+\overline{V}= & \widetilde{V}\cup\left\{ w_{1},w_{2},\ldots,w_{k}\right\} \text{, wobei die \ensuremath{w_{i}} neue Symbole sind,}\\
+\overline{s}\left(e\right)= & \begin{cases}
+s\left(e\right)\text{,} & \text{falls \ensuremath{s\left(e\right)\in\widetilde{V}},}\\
+w_{i} & \text{falls \ensuremath{s\left(e\right)\in V_{i}},}
+\end{cases}\\
+\overline{t}\left(e\right)= & \begin{cases}
+t\left(e\right)\text{,} & \text{falls \ensuremath{t\left(e\right)\in\widetilde{V}},}\\
+w_{i} & \text{falls \ensuremath{t\left(e\right)\in V_{i}},}
+\end{cases}\\
+\overline{c}\left(e\right)= & \begin{cases}
+c\left(e\right)\text{,} & \text{falls \ensuremath{t\left(e\right)\in\widetilde{V}},}\\
+c\left(e\right)-c\left(\widetilde{e}\left(t\left(e\right)\right)\right)+c\left(a_{i}\right) & \text{falls \ensuremath{t\left(e\right)\in V_{i}}.}
+\end{cases}
+\end{aligned}
+\]
+
+Es entsteht ein neues Problem $\overline{P}$ im Digraphen $\overline{D}=\left(\overline{V},\overline{A}\right)$
+mit den neuen Inzidenzfunktionen $\overline{s}$, $\overline{t}$
+und Gewichtsfunktion $\overline{c}$.%
+\end{minipage}}
+\begin{prop}
+Es gibt eine bijektive Abbildung zwischen $\mathcal{B}$ (der Menge
+der Branchings im Originalproblem) und der Menge der Branchings im
+Problem $\overline{P}$. Es korrespondiert das Branching $B\in\mathcal{B}$
+mit dem Branching $\overline{B}=B\cap\overline{A}$ in $\overline{P}$
+und es gilt:
+
+\[
+c\left(B\right)-\overline{c}\left(\overline{B}\right)=\sum_{i=1}^{k}c\left(C_{i}\right)-\sum_{i=1}^{k}c\left(a_{i}\right)\text{.}
+\]
+\end{prop}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Branching}$\left(D,c\right)$:
+\begin{enumerate}
+\item Bestimme einen kritischen Graphen $H$ für $D$.
+\item Ist $H$ azyklisch, dann \emph{Stop}(,,$H$ ist optimales Branching
+für $D$``).
+\item Schrumpfe die Kreise von $H$, um $\overline{D}$ und $\overline{c}$
+zu erhalten.
+\item Berechne durch den rekursiven Aufruf \emph{Branching}$\left(\overline{D},\overline{c}\right)$
+ein optimales Branching $\overline{B}$ für $\overline{D}$.
+\item Expandiere das Branching $\overline{B}$ zu einem optimalen Branching
+$B$ für $D$.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(A\log V\right)$ oder $\mathcal{O}\left(V^{2}\right)$.
+
+\subsubsection{Arboreszenzen und das asymmetrische TSP}
+
+$\rightarrow$analog zum symmetrischen Fall
+
+\section{Kürzeste Wege}
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Kürstester-$\left(s,t\right)$-Weg-Problem}
+
+Gegeben sind ein Digraph $D=\left(V,A\right)$ mit Kantengewichten
+$c_{e}$ für $e\in A$, und zwei Knoten $s,t\in V$. Zu bestimmen
+ist ein $\left(s,t\right)$-Weg in $D$, dessen Gesamtlänge möglichst
+klein ist.%
+\end{minipage}}
+\begin{defn*}
+Im folgenden ist $s\in V$ der Startknoten, dessen kürzeste Wege berechnet
+werden sollen. $\delta\left(u,v\right)$ ist die Länge des kürzesten
+$\left(u,v\right)$-Weges, bzw. $+\infty$ (oder $-\infty$) wenn
+keiner existiert. $\pi\left[v\right]$ ist der Vorgängerknoten von
+$v$ auf dem kürstesten $\left(s,v\right)$-Weg.
+\end{defn*}
+\begin{lem}
+Sei $p=\left(v_{1}v_{2},v_{2}v_{3},\ldots,v_{k-1}v_{k},\right)$ ein
+kürzester Weg von $v_{1}$ nach $v_{k}$. Dann ist für $1\leq i\leq j\leq k$
+der Teilweg $\left(v_{i}v_{i+1},\ldots,v_{j-1}v_{j},\right)$ ein
+kürzester Weg von $v_{i}$ nach $v_{j}$.
+\end{lem}
+
+\begin{lem}
+Für jede Kante $\left(u,v\right)$ gilt $\delta\left(s,v\right)\leq\delta\left(s,u\right)+c_{uv}$.
+\end{lem}
+
+Die \textbf{Standardinitialisierung} für $d$ ist $d\left[s\right]=0$
+und $d\left[v\right]=\infty,v\in V\setminus\left\{ s\right\} $ und
+$\pi\left[v\right]=\bot,v\in V$. 
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Correct}$\left(u,v\right)$:
+
+Falls $d\left[v\right]>d\left[u\right]+c_{uv}$, dann setze $d\left[v\right]=d\left[u\right]+c_{uv}$
+und $\pi\left[v\right]=u$.%
+\end{minipage}}
 \end{document}

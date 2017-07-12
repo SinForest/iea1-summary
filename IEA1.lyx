@@ -6,6 +6,7 @@
 \origin unavailable
 \textclass article
 \begin_preamble
+\usepackage{pstricks}
 \renewcommand{\labelenumi}{(\arabic{enumi})}
 \renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
 \renewcommand{\labelenumiii}{(\arabic{enumi}.\arabic{enumii}.\arabic{enumiii})}
@@ -13,11 +14,11 @@
 \end_preamble
 \use_default_options true
 \begin_modules
-theorems-ams-bytype
-theorems-sec-bytype
+theorems-ams
+theorems-sec
 \end_modules
 \maintain_unincluded_children false
-\language english
+\language ngerman
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -64,15 +65,15 @@ theorems-sec-bytype
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 3cm
-\topmargin 3cm
-\rightmargin 3cm
-\bottommargin 3cm
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation 0bp
-\quotes_language english
+\quotes_language german
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -105,7 +106,7 @@ Patrick Dammann
 Probleme und Algorithmen
 \end_layout
 
-\begin_layout Quotation
+\begin_layout Standard
 \noindent
 \begin_inset Box Shadowbox
 position "t"
@@ -169,14 +170,14 @@ Gegeben sind eine endliche Menge
 
 \end_layout
 
-\begin_layout Quotation
+\begin_layout Standard
 \begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Quotation
+\begin_layout Standard
 \noindent
 \begin_inset Box Shadowbox
 position "t"
@@ -238,14 +239,14 @@ Gegeben sind
 
 \end_layout
 
-\begin_layout Quotation
+\begin_layout Standard
 \begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Quotation
+\begin_layout Standard
 \noindent
 \begin_inset Box Shadowbox
 position "t"
@@ -465,7 +466,7 @@ endlich
 \begin_inset Formula $E$
 \end_inset
 
- eindlich sind.
+ endlich sind.
 \end_layout
 
 \begin_layout Itemize
@@ -517,7 +518,7 @@ verbunden
 \begin_layout Itemize
 \noindent
 Eine Kante 
-\begin_inset Formula $E\ni e=\{u,u\}$
+\begin_inset Formula $e=\{u,u\}\in E$
 \end_inset
 
  heißt 
@@ -857,6 +858,3749 @@ bipartit
 \end_inset
 
  gibt.
+\end_layout
+
+\begin_layout Definition*
+Ein 
+\series bold
+Digraph
+\series default
+ 
+\begin_inset Formula $G$
+\end_inset
+
+ ist ein Tupel 
+\begin_inset Formula $D=(V,A)$
+\end_inset
+
+ bestehend aus einer nicht-leeren Knotenmenge 
+\begin_inset Formula $V$
+\end_inset
+
+ und einer Kantenmenge 
+\begin_inset Formula $A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Wenn 
+\begin_inset Formula $a=\left(u,v\right)\in A$
+\end_inset
+
+ und 
+\begin_inset Formula $u,v\in V$
+\end_inset
+
+, dann ist 
+\begin_inset Formula $u$
+\end_inset
+
+ 
+\series bold
+Anfangsknoten
+\series default
+ und 
+\begin_inset Formula $v$
+\end_inset
+
+ 
+\series bold
+Endknoten 
+\series default
+von 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Hier heißt 
+\begin_inset Formula $u$
+\end_inset
+
+ 
+\series bold
+Vorgänger
+\series default
+ von 
+\begin_inset Formula $v$
+\end_inset
+
+ und 
+\begin_inset Formula $v$
+\end_inset
+
+ 
+\series bold
+Nachfolger
+\series default
+ von 
+\begin_inset Formula $u$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Die Kanten 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $\left(v,u\right)$
+\end_inset
+
+ heißen 
+\series bold
+antiparallel
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Mit 
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+ ist 
+\begin_inset Formula $A\left(W\right)$
+\end_inset
+
+ die Menge aller Kanten mit Anfangs- und Endknoten in 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Mit 
+\begin_inset Formula $B\subseteq A$
+\end_inset
+
+ ist 
+\begin_inset Formula $V\left(A\right)$
+\end_inset
+
+ die Menge aller Knoten, die Anfangs- oder Endknoten von mind.
+ einer Kante in 
+\begin_inset Formula $B$
+\end_inset
+
+ sind.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ ist der unterliegende Graph von 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+, wenn 
+\begin_inset Formula $E$
+\end_inset
+
+ genau die Kanten 
+\begin_inset Formula $\left\{ u,v\right\} $
+\end_inset
+
+ enthält, für die 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ oder 
+\begin_inset Formula $\left(v,u\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $A$
+\end_inset
+
+ liegen.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Ein einfacher Digraph heißt 
+\series bold
+vollständig
+\series default
+, wenn jede mögliche Kante (in beide Richtungen) zwischen seinen Knoten
+ existiert.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Der vollstängige Digraph mit 
+\begin_inset Formula $n$
+\end_inset
+
+ Knoten wird mit 
+\begin_inset Formula $D_{n}=\left(V_{n},A_{n}\right)$
+\end_inset
+
+ bezeichnet.
+\end_layout
+
+\begin_layout Itemize
+Für 
+\begin_inset Formula $W\subseteq V,W\neq V\neq\emptyset$
+\end_inset
+
+ enthält 
+\begin_inset Formula $\delta^{+}\left(W\right)=\left\{ \left(i,j\right)\in A\,\vert\,i\in W,j\notin W\right\} $
+\end_inset
+
+ alle Kanten, die 
+\begin_inset Formula $W$
+\end_inset
+
+ verlassen, 
+\begin_inset Formula $\delta^{-}\left(W\right)=\delta^{+}\left(V\setminus W\right)$
+\end_inset
+
+ alle Kanten, die in 
+\begin_inset Formula $W$
+\end_inset
+
+ hinein führen und 
+\begin_inset Formula $\delta\left(W\right)=\delta^{+}\left(W\right)\cup\delta^{-}\left(W\right)$
+\end_inset
+
+ beide.
+ Diese Mengen heißen 
+\series bold
+Schnitt
+\series default
+.
+ Es gelten die Kurzformen für einzelne Knoten.
+\end_layout
+
+\begin_layout Itemize
+Für 
+\begin_inset Formula $s\in W$
+\end_inset
+
+ und 
+\begin_inset Formula $t\notin W$
+\end_inset
+
+ heißt 
+\begin_inset Formula $\delta^{+}\left(W\right)$
+\end_inset
+
+ auch 
+\series bold
+
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Schnitt
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Die Kardinalitäten der Schnitte heißen 
+\series bold
+Außengrad
+\series default
+ 
+\begin_inset Formula $\left(\left|\delta^{+}\left(v\right)\right|\right)$
+\end_inset
+
+, 
+\series bold
+Innengrad
+\series default
+ 
+\begin_inset Formula $\left(\left|\delta^{-}\left(v\right)\right|\right)$
+\end_inset
+
+ und 
+\series bold
+Grad
+\series default
+ 
+\begin_inset Formula $\left(\left|\delta\left(v\right)\right|\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta^{+}\left(W\right)$
+\end_inset
+
+ heißt 
+\series bold
+gerichteter Schnitt
+\series default
+, wenn 
+\begin_inset Formula $\delta^{-}\left(W\right)=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+Eine endliche Folge 
+\begin_inset Formula $W=\left(v_{0},e_{1},v_{1},e_{2},v_{2},\ldots,e_{k},v_{k}\right)$
+\end_inset
+
+ heißt 
+\series bold
+Kette
+\series default
+ oder 
+\begin_inset Formula $\left[v_{0},v_{k}\right]$
+\end_inset
+
+-Kette der Länge 
+\begin_inset Formula $k$
+\end_inset
+
+, wenn jede Kante 
+\begin_inset Formula $e_{i}$
+\end_inset
+
+ die Knoten 
+\begin_inset Formula $v_{i-1}$
+\end_inset
+
+ und 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ in einem (Di-)Graphen indiziert und 
+\series bold
+gerichtete Kette
+\series default
+ oder 
+\begin_inset Formula $\left(v_{0},v_{k}\right)$
+\end_inset
+
+-Kette, wenn alle Kanten in der Form 
+\begin_inset Formula $e_{i}=\left(v_{i-1},v_{i}\right)$
+\end_inset
+
+ sind.
+ 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ und 
+\begin_inset Formula $v_{k}$
+\end_inset
+
+ heißen 
+\series bold
+Anfangs- und Endknoten
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Gibt es in einem (Di-)Graphen keine parallelen Kanten, ist eine (gerichtete)
+ Kette durch ihre Knoten eindeutig identifiziert.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+(gerichteter) Weg
+\series default
+ oder 
+\series bold
+(gerichteter) Pfad
+\series default
+ ist eine (gerichtete) Kette, in der alle Knoten verschieden sind.
+\end_layout
+
+\begin_layout Itemize
+Die Notation 
+\begin_inset Formula $u\underset{D}{\rightarrow}v$
+\end_inset
+
+ bedeutet, dass es einen 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Weg in D gibt.
+\end_layout
+
+\begin_layout Itemize
+Man spricht auch von 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Wegen bzw.
+ 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Pfaden.
+\end_layout
+
+\begin_layout Itemize
+Die Knoten 
+\begin_inset Formula $s$
+\end_inset
+
+ und 
+\begin_inset Formula $t$
+\end_inset
+
+ eines Graphen heißen 
+\series bold
+zusammenhängend
+\series default
+, wenn ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg existiert.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+zusammenhängender Graph
+\series default
+ enthält nur Knoten, die paarweise zusammenhängend sind.
+\end_layout
+
+\begin_layout Itemize
+Ein Digraph heißt 
+\series bold
+stark zusammenhängend
+\series default
+, wenn es zu jedem Knotenpaar 
+\begin_inset Formula $s,t$
+\end_inset
+
+ einen 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg und einen 
+\begin_inset Formula $\left(t,s\right)$
+\end_inset
+
+-Weg gibt.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Kompontenten
+\series default
+ eines Graphen sind die (bezüglich Kanteninklusion) maximalen zusammenhängenden
+ Untergraphen.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Starke Kompontenten
+\series default
+ eines Diraphen sind die (bezüglich Kanteninklusion) maximalen stark zusammenhän
+genden Unterdigraphen.
+\end_layout
+
+\begin_layout Itemize
+Ein Graph heißt 
+\series bold
+
+\begin_inset Formula $k$
+\end_inset
+
+-fach zusammenhängend
+\series default
+, wenn jedes Paar Knoten 
+\begin_inset Formula $s,t$
+\end_inset
+
+ durch mindestens 
+\begin_inset Formula $k$
+\end_inset
+
+ 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Wege verbunden ist, die keine inneren Knoten gemeinsam haben.
+\end_layout
+
+\begin_layout Itemize
+Ein Digraph heißt 
+\series bold
+
+\begin_inset Formula $k$
+\end_inset
+
+-fach stark zusammenhängend
+\series default
+, wenn jedes Paar Knoten 
+\begin_inset Formula $s,t$
+\end_inset
+
+ durch mindestens 
+\begin_inset Formula $k$
+\end_inset
+
+ 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Wege und 
+\begin_inset Formula $\left(t,s\right)$
+\end_inset
+
+-Wege verbunden ist, die keine inneren Knoten gemeinsam haben.
+\end_layout
+
+\begin_layout Itemize
+Eine 
+\series bold
+geschlossene Kette
+\series default
+ hat mehr als 
+\begin_inset Formula $0$
+\end_inset
+
+ Kanten und den gleichen Anfangs- und Endknoten.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Kreis
+\series default
+ ist eine geschlossene Kette mit paarweise verschiedenen inneren Knoten.
+ Seine 
+\series bold
+Länge
+\series default
+ ist die Anzahl seiner Kanten.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Eulerpfad
+\series default
+ ist eine Kette, die jede Kante eines (Di-)Graphen einmal enthält.
+\end_layout
+
+\begin_layout Itemize
+Eine 
+\series bold
+Eulertour
+\series default
+ ist ein geschlossener Eulerpfad.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Eulergraph
+\series default
+ ist ein Graph, der eine Eulertour enthält.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Hamiltonkreis
+\series default
+ (oder 
+\series bold
+Hamiltontour
+\series default
+) ist ein Kreis der Länge 
+\begin_inset Formula $\left|V\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+hamiltonischer
+\series default
+ Graph enthält einen Hamiltonkreis.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Hamiltonweg
+\series default
+ ist ein (gerichteter) Weg der Länge 
+\begin_inset Formula $\left|V\right|-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Wald
+\series default
+ ist eine Kantenmenge in einem Graphen, die keinen Kreis enthält.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Baum
+\series default
+ ist ein zusammenhängender Wald.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+aufspannender
+\series default
+ Baum enthält alle Knoten des Graphen.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+azyklischer
+\series default
+ Digraph enthält keine gerichteten Kreise.
+\end_layout
+
+\begin_layout Itemize
+Ein 
+\series bold
+Branching
+\series default
+ in einem Digraphen ist eine azyklische Kantenmenge, sodass jeder Knoten
+ maximal eine Eingangskante besitzt.
+\end_layout
+
+\begin_layout Itemize
+Eine 
+\series bold
+Arboreszenz
+\series default
+ ist ein zusammenhängendes Branching.
+\end_layout
+
+\begin_layout Itemize
+Eine 
+\series bold
+aufspannende Arboreszenz
+\series default
+ enthält alle Knoten ihres Digraphen.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Gewichte
+\series default
+ (auch 
+\begin_inset Quotes eld
+\end_inset
+
+Kosten
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Distanzen
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Kapazitäten
+\begin_inset Quotes erd
+\end_inset
+
+, usw.) werden durch Funktionen der Form 
+\begin_inset Formula $c:E\rightarrow\mathbb{R}$
+\end_inset
+
+ bzw.
+ 
+\begin_inset Formula $c:A\rightarrow\mathbb{R}$
+\end_inset
+
+ mit Kanten assoziiert.
+\end_layout
+
+\begin_layout Section
+Grundlegende Graphenalgorithmen
+\end_layout
+
+\begin_layout Subsection
+Repräsentationen von Graphen
+\end_layout
+
+\begin_layout Description
+Adjazenzliste Jeder Knoten hat eine Liste seiner Nachbarn gespeichert.
+ Speichersparend für dünne Graphen.
+ Hinzufügen und Entfernen von Knoten und Kanten sehr einfach.
+ Existenz von Kanten prüfen teuer (einen Knoten durchlaufen).
+ Speicheraufwand: 
+\begin_inset Formula $\mathfrak{\mathcal{O}}(V+E)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Adjazenzmatrix 
+\begin_inset Formula $\left|V\right|\times\left|V\right|$
+\end_inset
+
+-Matrix, die an der Stelle 
+\begin_inset Formula $(u,v)$
+\end_inset
+
+ eine 
+\begin_inset Formula $1$
+\end_inset
+
+ hat, wenn die Kante 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ bzw.
+ 
+\begin_inset Formula $\left\{ u,v\right\} $
+\end_inset
+
+ existiert.
+ Existenz von Kanten prüfen in 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+.
+ Nachbarn durchlaufen unanhängig von ihrer Anzahl in 
+\begin_inset Formula $\mathcal{O}(V)$
+\end_inset
+
+.
+ Speicheraufwand: 
+\begin_inset Formula $\mathcal{O}\left(V^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Inzidenzmatrix 
+\begin_inset Formula $\left|V\right|\times\left|E\right|$
+\end_inset
+
+-Matrix, die an der Stelle 
+\begin_inset Formula $(v,e)$
+\end_inset
+
+ eine 
+\begin_inset Formula $1$
+\end_inset
+
+ hat, wenn der Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ Endknoten der Kante 
+\begin_inset Formula $e$
+\end_inset
+
+ ist.
+ Erlaubt Untersuchung des Graphen mit diversen, algebraischen Methoden.
+ 
+\emph on
+[Kein Beispiel]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="middle" width="30text%">
+<column alignment="center" valignment="middle" width="30text%">
+<column alignment="center" valignment="middle" width="30text%">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagramme/adjazenz.svg
+	lyxscale 20
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{bmatrix}1 & \rightarrow2 & \rightarrow5\\
+2 & \rightarrow1 & \rightarrow3 & \rightarrow4 & \rightarrow5\\
+3 & \rightarrow2 & \rightarrow4\\
+4 & \rightarrow2 & \rightarrow3 & \rightarrow5\\
+5 & \rightarrow1 & \rightarrow2 & \rightarrow4
+\end{bmatrix}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\begin{array}{c|ccccc}
+ & 1 & 2 & 3 & 4 & 5\\
+\hline 1 & 0 & 1 & 0 & 0 & 1\\
+2 & 1 & 0 & 1 & 1 & 1\\
+3 & 0 & 1 & 0 & 1 & 0\\
+4 & 0 & 1 & 1 & 0 & 1\\
+5 & 1 & 1 & 0 & 1 & 0
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagramme/adjazenz_dir.svg
+	lyxscale 20
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{bmatrix}1 & \rightarrow2 & \rightarrow5\\
+2 & \rightarrow4\\
+3 & \rightarrow4\\
+4\\
+5 & \rightarrow2 & \rightarrow4
+\end{bmatrix}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\begin{array}{c|ccccc}
+\nearrow & 1 & 2 & 3 & 4 & 5\\
+\hline 1 & 0 & 1 & 0 & 0 & 1\\
+2 & 0 & 0 & 0 & 1 & 0\\
+3 & 0 & 0 & 0 & 1 & 0\\
+4 & 0 & 0 & 0 & 0 & 0\\
+5 & 0 & 1 & 0 & 1 & 0
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Durchsuchen von Graphen
+\end_layout
+
+\begin_layout Standard
+Das 
+\begin_inset Quotes eld
+\end_inset
+
+färben
+\begin_inset Quotes erd
+\end_inset
+
+ von Knoten ist eine Kurzschreibweise für folgende Sachverhalte:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+weiß Der Knoten ist noch nicht erreicht.
+ (Im Normalfall Grundzustand)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+grau Der Knoten wurde erreicht, seine Nachbarn jedoch noch nicht abgearbeitet.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+schwarz Der Knoten wurde komplett bearbeitet.
+\end_layout
+
+\begin_layout Subsubsection
+Breitensuche (BFS)
+\end_layout
+
+\begin_layout Standard
+Start bei Knoten 
+\begin_inset Formula $s$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\pi\left[u\right]=v$
+\end_inset
+
+ heißt 
+\begin_inset Formula $v$
+\end_inset
+
+ ist direkter Vorgänger von 
+\begin_inset Formula $u$
+\end_inset
+
+.
+ 
+\begin_inset Formula $Q$
+\end_inset
+
+ ist eine Queue.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+BFS
+\series default
+
+\begin_inset Formula $\left(G,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Färbe 
+\begin_inset Formula $s$
+\end_inset
+
+ grau, setze 
+\begin_inset Formula $d\left[s\right]=0$
+\end_inset
+
+, 
+\begin_inset Formula $\pi\left[s\right]=\textrm{\bot}$
+\end_inset
+
+ und initialisiere 
+\begin_inset Formula $Q$
+\end_inset
+
+ mit 
+\begin_inset Formula $s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Färbe alle Knoten 
+\begin_inset Formula $v\in V\setminus\left\{ s\right\} $
+\end_inset
+
+ weiß und setze 
+\begin_inset Formula $d\left[v\right]=+\infty$
+\end_inset
+
+ und 
+\begin_inset Formula $\pi\left[v\right]=\bot$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $Q$
+\end_inset
+
+ leer, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes eld
+\end_inset
+
+BFS beendet
+\begin_inset Quotes erd
+\end_inset
+
+), sonst sei 
+\begin_inset Formula $u$
+\end_inset
+
+ erster Knoten in 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $v$
+\end_inset
+
+ aus Adjazenzliste von 
+\begin_inset Formula $u$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $v$
+\end_inset
+
+ weiß ist, färbe 
+\begin_inset Formula $v$
+\end_inset
+
+ grau, setze 
+\begin_inset Formula $d\left[v\right]=d\left[u\right]+1$
+\end_inset
+
+, 
+\begin_inset Formula $\pi\left[v\right]=u$
+\end_inset
+
+ und füge 
+\begin_inset Formula $v$
+\end_inset
+
+ ans Ende von 
+\begin_inset Formula $Q$
+\end_inset
+
+ ein.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Entferne 
+\begin_inset Formula $u$
+\end_inset
+
+ aus 
+\begin_inset Formula $Q$
+\end_inset
+
+, färbe 
+\begin_inset Formula $u$
+\end_inset
+
+ schwarz und gehe zu 
+\begin_inset Formula $\left(3\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: linear in Bezug auf Adjazenzstruktur.
+ Das heißt 
+\begin_inset Formula $\mathcal{O}\left(V+E\right)$
+\end_inset
+
+ bei Adjazenzlisten und 
+\begin_inset Formula $\mathcal{O}\left(V^{2}\right)$
+\end_inset
+
+ bei Adjazenzmatrizen.
+\end_layout
+
+\begin_layout Definition*
+Für 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ sei 
+\begin_inset Formula $\delta\left(s,u\right)$
+\end_inset
+
+ die Zahl der Kanten des kürzesten 
+\begin_inset Formula $\left(s,u\right)$
+\end_inset
+
+-Weges, bzw.
+ 
+\begin_inset Formula $\infty$
+\end_inset
+
+ wenn kein solcher existiert.
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ ein Graph und 
+\begin_inset Formula $s\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Für jede Kante 
+\begin_inset Formula $uv\in E$
+\end_inset
+
+ gilt: 
+\begin_inset Formula $\delta\left(s,v\right)\leq\delta\left(s,u\right)+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Nach Terminierung von BFS
+\begin_inset Formula $\left(G,s\right)$
+\end_inset
+
+ gilt: 
+\begin_inset Formula $\forall v\in V:d\left[v\right]\geq\delta\left(s,v\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Enthält 
+\begin_inset Formula $Q$
+\end_inset
+
+ während BFS
+\begin_inset Formula $\left(G,s\right)$
+\end_inset
+
+ 
+\begin_inset Formula $v_{1},v_{2},\ldots,v_{r}$
+\end_inset
+
+ gilt: 
+\begin_inset Formula $d\left[v_{r}\right]\leq d\left[v_{1}\right]+1$
+\end_inset
+
+ und 
+\begin_inset Formula $d\left[v_{i}\right]\leq d\left[v_{i+1}\right],1\leq i<r$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proposition
+Sei 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+, 
+\begin_inset Formula $s\in V$
+\end_inset
+
+ und BFS
+\begin_inset Formula $\left(G,s\right)$
+\end_inset
+
+ ausgeführt.
+ Dann ist jeder Knoten, der von 
+\begin_inset Formula $s$
+\end_inset
+
+ aus erreichbar ist, schwarz gefärbt und es gilt 
+\begin_inset Formula $d\left[v\right]=\delta\left(s,v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Tiefensuche (DFS)
+\end_layout
+
+\begin_layout Standard
+Kein spezieller Startknoten.
+ Die Zeit der Grau-Färbung wird in 
+\begin_inset Formula $d\left[v\right]$
+\end_inset
+
+ gespeichtert, die Zeit der Schwarz-Färbung (Terminierungszeit) in 
+\begin_inset Formula $t\left[v\right].$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+DFS
+\series default
+
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Färbe alle Knoten 
+\begin_inset Formula $u\in V$
+\end_inset
+
+ weiß und setze 
+\begin_inset Formula $\pi\left[u\right]=\bot$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze globale Zeit 
+\begin_inset Formula $t=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für jeden Knoten 
+\begin_inset Formula $u\in V$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $u$
+\end_inset
+
+ weiß gefärbt ist, dann DFSVisit
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "1ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+DFSVisit
+\series default
+
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Färbe 
+\begin_inset Formula $u$
+\end_inset
+
+ grau, setze 
+\begin_inset Formula $t=t+1$
+\end_inset
+
+ und 
+\begin_inset Formula $d[u]=t.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $v$
+\end_inset
+
+ aus Adjazenzliste von 
+\begin_inset Formula $u$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $v$
+\end_inset
+
+ weiß ist, dann setze 
+\begin_inset Formula $\pi\left[v\right]=u$
+\end_inset
+
+ und vollziehe DFSVisit
+\begin_inset Formula $\left(v\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Färbe 
+\begin_inset Formula $u$
+\end_inset
+
+ schwarz, setze 
+\begin_inset Formula $t=t+1$
+\end_inset
+
+ und 
+\begin_inset Formula $f\left[u\right]=t$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: linear in Bezug auf Adjazenzstruktur.
+ Das heißt 
+\begin_inset Formula $\mathcal{O}\left(V+A\right)$
+\end_inset
+
+ bei Adjazenzlisten und 
+\begin_inset Formula $\mathcal{O}\left(V^{2}\right)$
+\end_inset
+
+ bei Adjazenzmatrizen.
+\end_layout
+
+\begin_layout Definition*
+Der 
+\series bold
+DFS-Wald
+\series default
+ des (Di-)Graphen 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ ist ein Digraph der Form 
+\begin_inset Formula $\left(V,\left\{ \left\{ \pi\left[v\right],v\right\} |v\in V,\pi\left[v\right]\neq\bot\right\} \right)$
+\end_inset
+
+.
+ Er symbolisiert also den Weg durch den Graphen während einer DFS.
+\end_layout
+
+\begin_layout Definition*
+Alle Kanten 
+\begin_inset Formula $\left\{ u,v\right\} $
+\end_inset
+
+ aus 
+\begin_inset Formula $E$
+\end_inset
+
+, die nicht zum Wald gehören sind:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Vorwärtskanten Es gibt einen 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Weg im DFS-Wald
+\end_layout
+
+\begin_layout Description
+Rückwärtskanten Es gibt einen 
+\begin_inset Formula $(v,u)$
+\end_inset
+
+-Weg im DFS-Wald
+\end_layout
+
+\begin_layout Description
+Kreuzungskanten Es gibt keinen der Wege im DFS-Wald
+\end_layout
+
+\end_deeper
+\begin_layout Definition*
+Für ungerichtete Graphen gibt es nur Rückwärtskanten.
+\end_layout
+
+\begin_layout Proposition
+Ein Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ ist Nachfolger eines Knotens 
+\begin_inset Formula $u$
+\end_inset
+
+ im DFS-Wald genau dann, wenn gilt: Zu dem Zeitpunkt, zu dem 
+\begin_inset Formula $u$
+\end_inset
+
+ grau gefärbt wird, ist 
+\begin_inset Formula $v$
+\end_inset
+
+ von 
+\begin_inset Formula $u$
+\end_inset
+
+ aus auf einem Weg erreichbar, der nur aus weißen Knoten besteht.
+\end_layout
+
+\begin_layout Subsection
+Topologisches Sortieren
+\end_layout
+
+\begin_layout Standard
+Die topologische Sortierung eines Digraphen ist eine Knotenreihenfolge,
+ in der alle Kanten nur zu später auftretenden Knoten führen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Topsort
+\series default
+
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere leere Liste 
+\begin_inset Formula $L=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Führe DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+ aus, mit Zusatz: Wenn ein Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ schwarz gefärbt wird, füge ihn am Anfang der Liste 
+\begin_inset Formula $L$
+\end_inset
+
+ ein.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $L$
+\end_inset
+
+ liefert topologische Sortierung.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: siehe DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Ein Digraph 
+\begin_inset Formula $D$
+\end_inset
+
+ ist genau dann kreisfrei, wenn DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+ keine Ruckwärtskanten liefert.
+\end_layout
+
+\begin_layout Proposition
+Ein azyklischer Digraph 
+\begin_inset Formula $D$
+\end_inset
+
+ wird durch Topsort
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+ topologisch sortiert.
+\end_layout
+
+\begin_layout Subsection
+Starke Zusammenhangskomponenten
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+StrongComponents
+\series default
+
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Führe DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+ aus, merke Terminierungszeiten 
+\begin_inset Formula $f\left[u\right]$
+\end_inset
+
+ für alle 
+\begin_inset Formula $u\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Generiere 
+\begin_inset Formula $D^{\top}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Führe DFS
+\begin_inset Formula $\left(D^{\top}\right)$
+\end_inset
+
+ aus, wobei im Schritt 
+\begin_inset Formula $\left(3\right)$
+\end_inset
+
+ die Knoten nach absteigenden Werten von 
+\begin_inset Formula $f\left[u\right]$
+\end_inset
+
+ sortiert werden.
+\end_layout
+
+\begin_layout Enumerate
+Die Knoten jedes Baumes im DFS-Wald von 
+\begin_inset Formula $D^{\top}$
+\end_inset
+
+ bestimmen eine starke Zusammenhangskomponente.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Jeder Weg, der zwei Knoten aus derselben Komponente verbindet, enthält nur
+ Knoten aus dieser Komponente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Alle Knoten einer Komponente sind im gleichen DFS-Baum enthalten.
+\end_layout
+
+\begin_layout Definition*
+Für einen Knoten 
+\begin_inset Formula $u$
+\end_inset
+
+ bezeichne 
+\begin_inset Formula $\phi(u)$
+\end_inset
+
+ den Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ mit der größten Terminierungszeit bei DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+, der von 
+\begin_inset Formula $u$
+\end_inset
+
+ aus in 
+\begin_inset Formula $D$
+\end_inset
+
+ erreichbar ist, das heißt:
+\end_layout
+
+\begin_layout Definition*
+\begin_inset Formula $\phi\left(u\right)=\mathrm{argmax}{}_{v}\left\{ f\left[v\right]|u\underset{D}{\rightarrow}v\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Für 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ sei DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+ ausgeführt.
+ Dann ist für jeden Knoten 
+\begin_inset Formula $\phi\left(u\right)$
+\end_inset
+
+ Vorgänger von 
+\begin_inset Formula $u$
+\end_inset
+
+ im DFS-Wald.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Nach DFS
+\begin_inset Formula $\left(D\right)$
+\end_inset
+
+ liegen zwei Knoten 
+\begin_inset Formula $u$
+\end_inset
+
+ und 
+\begin_inset Formula $v$
+\end_inset
+
+ genau dann in der gleichen Komponente, wenn 
+\begin_inset Formula $\phi\left(u\right)=\phi\left(v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Der Algorithmus StrongComponents identifiziert die starken Zusammenhangskomponen
+ten eines Digraphen.
+\end_layout
+
+\begin_layout Section
+Optimale Bäume und Branchings
+\end_layout
+
+\begin_layout Subsection
+Minimale aufspannende Bäume
+\end_layout
+
+\begin_layout Standard
+Die Probleme, einen minimalen, aufspannenden Baum oder einen maximalen,
+ aufspannenden Wald zu finden lassen sich einfach ineinander transformieren.
+ Darum beschränken wir uns auf ersteres.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Minimaler-aufspannender-Baum-Problem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben ist ein Graph 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ mit Kantengewichten 
+\begin_inset Formula $c_{e}$
+\end_inset
+
+ für 
+\begin_inset Formula $e\in E$
+\end_inset
+
+.
+ Zu bestimmen ist ein aufspannender Baum für G, dessen Gesamtgewicht möglichst
+ klein ist.
+\end_layout
+
+\begin_layout Plain Layout
+(Wir nehmen an, dass 
+\begin_inset Formula $G$
+\end_inset
+
+ zusammenhängend ist, da das Problem sonst einzeln pro Komponente lösbar
+ wäre.)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ein allgemeiner MST-Algorithmus
+\end_layout
+
+\begin_layout Standard
+Dieser Algorithmus färbt Kanten nach festen Regeln blau und rot.
+ Es ist stets die Invariante 
+\emph on
+
+\begin_inset Quotes gld
+\end_inset
+
+Es gibt einen minimalen, aufspannenden Baum, der alle blauen und keine rote
+ Kante enthält.
+\begin_inset Quotes grd
+\end_inset
+
+
+\emph default
+ erfüllt.
+\end_layout
+
+\begin_layout Description
+Regel
+\begin_inset space ~
+\end_inset
+
+B Wähle einen Schnitt, der keine blaue Kante enthält.
+ Färbe eine seiner kürzesten Kanten blau.
+\end_layout
+
+\begin_layout Description
+Regel
+\begin_inset space ~
+\end_inset
+
+R Wähle einen Kreis, der keine rote Kante enthält.
+ Färbe eine seiner längsten Kanten rot.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+MinimumSpanningTree
+\series default
+
+\begin_inset Formula $\left(G,c\right):$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Zu Beginn seien alle Kanten ungefärbt.
+\end_layout
+
+\begin_layout Enumerate
+Wende Regeln B und R an, bis alle Kanten gefärbt sind.
+\end_layout
+
+\begin_layout Enumerate
+Die blauen Kanten bilden einen minimalen aufspannenden Baum.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Der Algorithmus färbt alle Kanten eines zusammenhängenden Graphen und erhält
+ dabei die Invarianz-Bedingung, d.h.
+ er berechnet einen minimalen aufspannenden Baum.
+\end_layout
+
+\begin_layout Subsubsection
+Der Algorithmus von Boruvka
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Boruvka
+\series default
+
+\begin_inset Formula $\left(G,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere 
+\begin_inset Formula $n$
+\end_inset
+
+ blaue Bäume bestehend aus je einem Knoten.
+\end_layout
+
+\begin_layout Enumerate
+Solange mehr als ein blauer Baum vorhanden ist, wähle gleichzeitig zu jedem
+ blauen Baum die minimale inzidente Kante und färbe alle ausgewählten Kanten
+ blau.
+\end_layout
+
+\begin_layout Enumerate
+Die blauen Kanten bilden einen minimalen Baum.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der Algorithmus kann blaue Kreise erzeugen, wenn es im Graphen Kanten gleichen
+ Gewichts gibt.
+\end_layout
+
+\begin_layout Subsubsection
+Der Algorithmus von Kruskal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Kruskal
+\series default
+
+\begin_inset Formula $\left(G,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere 
+\begin_inset Formula $n$
+\end_inset
+
+ blaue Bäume bestehend aus je einem Knoten.
+\end_layout
+
+\begin_layout Enumerate
+Sortiere die Kanten von 
+\begin_inset Formula $G$
+\end_inset
+
+ nach nichtabsteigenden Gewichten, so dass 
+\begin_inset Formula $c_{e_{1}}\leq c_{e_{2}}\leq\ldots\leq c_{e_{m}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für 
+\begin_inset Formula $i=1,2,\ldots,m:$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Sind die Endknoten von 
+\begin_inset Formula $e_{i}$
+\end_inset
+
+ im gleichen blauen Baum, färbe 
+\begin_inset Formula $e_{i}$
+\end_inset
+
+ rot, andernfalls blau.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Die blauen Kanten bilden einen minimalen Baum.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(E\log V\right)$
+\end_inset
+
+, wenn die Bäume per fast-union-find verwaltet werden.
+ Ein Heap ermöglicht Optimierung bezöglich der Sortierung, da abgebrochen
+ werden kann, wenn es 
+\begin_inset Formula $n-1$
+\end_inset
+
+ blaue Kanten gibt.
+\end_layout
+
+\begin_layout Subsubsection
+Der Algorithmus von Prim
+\end_layout
+
+\begin_layout Standard
+Der Algorithmus verwendet nur Regel R und benötigt einen Startknoten 
+\begin_inset Formula $s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Prim
+\series default
+
+\begin_inset Formula $\left(G,c,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere 
+\begin_inset Formula $n$
+\end_inset
+
+ blaue Bäume bestehend aus je einem Knoten.
+\end_layout
+
+\begin_layout Enumerate
+Solange noch blaue Bäume aus einem Knoten existieren, färbe minimale Kante
+ im Schnitt induziert durch den Baum, der 
+\begin_inset Formula $s$
+\end_inset
+
+ enthält, blau.
+\end_layout
+
+\begin_layout Enumerate
+Die blauen Kanten bilden einen minimalen Baum.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es folgt eine einfach Implementierung.
+ 
+\begin_inset Formula $T$
+\end_inset
+
+ ist der angehende Baum:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Prim1
+\series default
+
+\begin_inset Formula $\left(G,c,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $V_{T}=\left\{ s\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $T=\emptyset$
+\end_inset
+
+ und 
+\begin_inset Formula $i=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $i=n-1$
+\end_inset
+
+, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+T ist MST
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Bestimme 
+\begin_inset Formula $u\in V_{T}$
+\end_inset
+
+ und 
+\begin_inset Formula $v\in V\setminus T_{T}$
+\end_inset
+
+ mit 
+\begin_inset Formula $c_{uv}=\min\left\{ c_{xy}|x\in V_{T},y\in V\setminus V_{T}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $V_{T}=V_{T}\cup\left\{ v\right\} $
+\end_inset
+
+ und 
+\begin_inset Formula $T=T\cup\left\{ uv\right\} $
+\end_inset
+
+ und 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+.
+ Gehe zu (2).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(VE\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es gibt eine bessere Implementierung.
+\begin_inset Formula $t\left[v\right]$
+\end_inset
+
+ speichert den nächsten Baumknoten, 
+\begin_inset Formula $d\left[v\right]$
+\end_inset
+
+ die zugehörige Distanz.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Prim2
+\series default
+
+\begin_inset Formula $\left(G,c,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $V_{T}=\left\{ s\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $T=\emptyset$
+\end_inset
+
+ und 
+\begin_inset Formula $i=0$
+\end_inset
+
+.
+ Setze 
+\begin_inset Formula $d\left[v\right]=c_{sv}$
+\end_inset
+
+ und 
+\begin_inset Formula $t\left[v\right]=s$
+\end_inset
+
+, falls 
+\begin_inset Formula $sv\in E$
+\end_inset
+
+, setze 
+\begin_inset Formula $d\left[v\right]=\infty$
+\end_inset
+
+ und 
+\begin_inset Formula $t\left[v\right]=\bot$
+\end_inset
+
+, falls 
+\begin_inset Formula $sv\notin E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $i=n-1$
+\end_inset
+
+, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+T ist MST
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Bestimme 
+\begin_inset Formula $v\in V\setminus T_{T}$
+\end_inset
+
+ mit 
+\begin_inset Formula $d\left[v\right]=\min\left\{ d\left[u\right]|u\in V\setminus V_{T}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $V_{T}=V_{T}\cup\left\{ v\right\} $
+\end_inset
+
+ und 
+\begin_inset Formula $T=T\cup\left\{ t\left[v\right]v\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $w$
+\end_inset
+
+ adjazent zu 
+\begin_inset Formula $v$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $w\in V\setminus V_{T}$
+\end_inset
+
+ und 
+\begin_inset Formula $c_{vw}<d\left[w\right]$
+\end_inset
+
+, dann setze 
+\begin_inset Formula $d\left[w\right]=c_{vw}$
+\end_inset
+
+ und 
+\begin_inset Formula $t\left[w\right]=v$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+ und gehe zu (2).
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Laufzeit (naiv):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{O}\left(V^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Laufzeit (Heap):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{O}\left(E\log V\right)$
+\end_inset
+
+ (besser für dünnbesetzte Graphen)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Laufzeit (Fib-Heap):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{O}\left(E+V\log V\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Der Round-Robin-Algorithmus
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+RoundRobin
+\series default
+
+\begin_inset Formula $\left(G,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere 
+\begin_inset Formula $n$
+\end_inset
+
+ blaue Bäume bestehend aus je einem Knoten.
+\end_layout
+
+\begin_layout Enumerate
+Solange weniger als 
+\begin_inset Formula $n-1$
+\end_inset
+
+ blaue Kanten vorhanden sind, wähle einen blauen Baum, bestimme die kürzeste
+ Kante im durch diesen Baum induzierten Schnitt und färbe sie blau.
+\end_layout
+
+\begin_layout Enumerate
+Die blauen Kanten bilden einen minimalen Baum.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eine 
+\begin_inset Formula $\mathcal{O}\left(E\log\log V\right)$
+\end_inset
+
+-Implementation ist möglich, wenn immer der kleinste Baum gewählt wird.
+\end_layout
+
+\begin_layout Subsubsection
+Eine Anwendung aufspannender Bäume
+\end_layout
+
+\begin_layout Standard
+Sogenannte 1-Bäume sind eine untere Schranke für eine optimale TSM-Tour.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+OneTree
+\series default
+
+\begin_inset Formula $\left(G,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Bestimme für die Knoten 
+\begin_inset Formula $\left\{ 2,3,\ldots,n\right\} $
+\end_inset
+
+einen MST 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ Sei 
+\begin_inset Formula $c_{T}$
+\end_inset
+
+ die Länge des MST.
+\end_layout
+
+\begin_layout Enumerate
+Seien 
+\begin_inset Formula $e_{1}$
+\end_inset
+
+ und 
+\begin_inset Formula $e_{2}$
+\end_inset
+
+ die zwei kürzesten Kanten an Knoten 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $T\cup\left\{ e_{1},e_{2}\right\} $
+\end_inset
+
+ist optimaler 1-Baum mit Wert 
+\begin_inset Formula $c_{T}+c_{e_{1}}+c_{e_{2}}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Maximale Branchings
+\end_layout
+
+\begin_layout Standard
+Neue Notationen: 
+\begin_inset Formula $s:A\rightarrow V$
+\end_inset
+
+, 
+\begin_inset Formula $t:A\rightarrow V$
+\end_inset
+
+ und 
+\begin_inset Formula $c:A\rightarrow\mathbb{R}$
+\end_inset
+
+ sind Start- und Endknoten sowie Gewichte von Kanten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Maximales-Branching-Problem
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben ist ein Digraph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Kantengewichten 
+\begin_inset Formula $c_{e}$
+\end_inset
+
+, für 
+\begin_inset Formula $e\in A$
+\end_inset
+
+.
+ Zu bestimmen ist ein Branching für 
+\begin_inset Formula $D$
+\end_inset
+
+, dessen Gesamtgewicht möglichst groß ist.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Der Branching-Algorithmus von Edmonds
+\end_layout
+
+\begin_layout Definition
+Sei 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ ein Digraph mit Kantengewichten 
+\begin_inset Formula $c_{e}$
+\end_inset
+
+, für 
+\begin_inset Formula $e\in A$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) Eine Kante 
+\begin_inset Formula $e\in A$
+\end_inset
+
+ heißt 
+\series bold
+kritisch
+\series default
+, falls 
+\begin_inset Formula $c\left(e\right)>0$
+\end_inset
+
+ und falls 
+\begin_inset Formula $c\left(e^{\prime}\right)\leq c\left(e\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $e^{\prime}\in A$
+\end_inset
+
+ mit 
+\begin_inset Formula $t\left(e^{\prime}\right)=t\left(e\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) Ein Subgraph 
+\begin_inset Formula $H\subseteq A$
+\end_inset
+
+ heißt 
+\series bold
+kritisch
+\series default
+, falls er nur aus kritischen Kanten besteht, jeder Knoten Endknoten von
+ höchstens einer dieser Kanten ist, und falls er inklusionsmaximal bezüglich
+ dieser Eigenschaft ist.
+\end_layout
+
+\end_deeper
+\begin_layout Lemma
+Ein azyklischer kritischer Graph 
+\begin_inset Formula $H$
+\end_inset
+
+ ist ein maximaler Branching.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $H$
+\end_inset
+
+ ein kritischer Graph.
+ Dann ist jeder Knoten von 
+\begin_inset Formula $H$
+\end_inset
+
+ in maximal einem Kreis enthalten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Seien 
+\begin_inset Formula $B$
+\end_inset
+
+ ein Branching und 
+\begin_inset Formula $u$
+\end_inset
+
+, 
+\begin_inset Formula $v$
+\end_inset
+
+, 
+\begin_inset Formula $w$
+\end_inset
+
+ drei Knoten.
+ Falls 
+\begin_inset Formula $u\underset{B}{\rightarrow}v$
+\end_inset
+
+ und 
+\begin_inset Formula $w\underset{B}{\rightarrow}v$
+\end_inset
+
+, dann gilt entweder 
+\begin_inset Formula $u\underset{B}{\rightarrow}w$
+\end_inset
+
+ oder 
+\begin_inset Formula $w\underset{B}{\rightarrow}u$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+Sei 
+\begin_inset Formula $B$
+\end_inset
+
+ ein Branching.
+ Eine Kante 
+\begin_inset Formula $e\notin B$
+\end_inset
+
+ heißt 
+\series bold
+zulässig
+\series default
+ (relativ zu B), falls die Menge 
+\begin_inset Formula $B^{\prime}=B\cup\left\{ e\right\} \setminus\left\{ f|f\in B\wedge t\left(f\right)=t\left(e\right)\right\} $
+\end_inset
+
+ ebenfalls ein Branching ist.
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $B$
+\end_inset
+
+ ein Branching und 
+\begin_inset Formula $e\in A\setminus B$
+\end_inset
+
+.
+ Dann ist 
+\begin_inset Formula $e$
+\end_inset
+
+ genau dann zulässig relativ zu 
+\begin_inset Formula $B$
+\end_inset
+
+, wenn kein Weg von 
+\begin_inset Formula $t\left(e\right)$
+\end_inset
+
+ nach 
+\begin_inset Formula $s\left(e\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $B$
+\end_inset
+
+ existiert.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $B$
+\end_inset
+
+ ein Branching und 
+\begin_inset Formula $C$
+\end_inset
+
+ ein Kreis mit der Eigenschaft, dass keine Kante aus 
+\begin_inset Formula $C\setminus B$
+\end_inset
+
+ zulässig relativ zu 
+\begin_inset Formula $B$
+\end_inset
+
+ ist.
+ Dann gilt 
+\begin_inset Formula $\left|C\setminus B\right|=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proposition
+Sei 
+\begin_inset Formula $H$
+\end_inset
+
+ ein kritischer Graph.
+ Dann existiert ein Branching
+\begin_inset Formula $B$
+\end_inset
+
+ mit maximalem Gewicht, so dass für jeden Kreis 
+\begin_inset Formula $C\subseteq H$
+\end_inset
+
+ gilt 
+\begin_inset Formula $\left|C\setminus B\right|=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Im Folgenden bezeichne 
+\begin_inset Formula $V_{i}=V\left(C_{i}\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ die kürzeste Kante in 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Corollary
+Sei 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ ein Digraph mit Kantengewichten und 
+\begin_inset Formula $H$
+\end_inset
+
+ ein kritischer Graph mit Kreisen 
+\begin_inset Formula $C_{i},i=1,2,\ldots,k$
+\end_inset
+
+.
+ Es existiert ein gewichtsmaximales Branching 
+\begin_inset Formula $B$
+\end_inset
+
+ mit den Eigenschaften
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) 
+\begin_inset Formula $\left|C_{i}\setminus B\right|=1$
+\end_inset
+
+, für 
+\begin_inset Formula $i=1,2,\ldots,k$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) Falls für jede Kante 
+\begin_inset Formula $e\in B\setminus C_{i}$
+\end_inset
+
+ gilt, dass 
+\begin_inset Formula $t\left(e\right)\notin V_{i},$
+\end_inset
+
+dann folgt 
+\begin_inset Formula $C_{i}\setminus B=\left\{ a_{i}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Schrumpfen von kritischen Graphen
+\series default
+:
+\end_layout
+
+\begin_layout Plain Layout
+Sei 
+\begin_inset Formula $\widetilde{V}=V\setminus\bigcup_{i=1}^{k}V_{i}$
+\end_inset
+
+.
+ Für 
+\begin_inset Formula $v\in V_{i}$
+\end_inset
+
+ sei 
+\begin_inset Formula $\widetilde{e}\left(v\right)$
+\end_inset
+
+ die Kante aus 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+ mit 
+\begin_inset Formula $t\left(\widetilde{e}\left(v\right)\right)=v$
+\end_inset
+
+, d.h.
+ die Kreiskante mit Endknoten 
+\begin_inset Formula $v$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\begin{aligned}\overline{A}= & \left\{ e\in A|\text{für kein }i\text{ gilt }s\left(e\right)\in V_{i}\text{ und }t\left(e\right)\in V_{i}\right\} \\
+= & A\setminus\bigcup_{i=1}^{k}A\left(V\left(C_{i}\right)\right)\text{,}\\
+\overline{V}= & \widetilde{V}\cup\left\{ w_{1},w_{2},\ldots,w_{k}\right\} \text{, wobei die \ensuremath{w_{i}} neue Symbole sind,}\\
+\overline{s}\left(e\right)= & \begin{cases}
+s\left(e\right)\text{,} & \text{falls \ensuremath{s\left(e\right)\in\widetilde{V}},}\\
+w_{i} & \text{falls \ensuremath{s\left(e\right)\in V_{i}},}
+\end{cases}\\
+\overline{t}\left(e\right)= & \begin{cases}
+t\left(e\right)\text{,} & \text{falls \ensuremath{t\left(e\right)\in\widetilde{V}},}\\
+w_{i} & \text{falls \ensuremath{t\left(e\right)\in V_{i}},}
+\end{cases}\\
+\overline{c}\left(e\right)= & \begin{cases}
+c\left(e\right)\text{,} & \text{falls \ensuremath{t\left(e\right)\in\widetilde{V}},}\\
+c\left(e\right)-c\left(\widetilde{e}\left(t\left(e\right)\right)\right)+c\left(a_{i}\right) & \text{falls \ensuremath{t\left(e\right)\in V_{i}}.}
+\end{cases}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Es entsteht ein neues Problem 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ im Digraphen 
+\begin_inset Formula $\overline{D}=\left(\overline{V},\overline{A}\right)$
+\end_inset
+
+ mit den neuen Inzidenzfunktionen 
+\begin_inset Formula $\overline{s}$
+\end_inset
+
+, 
+\begin_inset Formula $\overline{t}$
+\end_inset
+
+ und Gewichtsfunktion 
+\begin_inset Formula $\overline{c}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Es gibt eine bijektive Abbildung zwischen 
+\begin_inset Formula $\mathcal{B}$
+\end_inset
+
+ (der Menge der Branchings im Originalproblem) und der Menge der Branchings
+ im Problem 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+.
+ Es korrespondiert das Branching 
+\begin_inset Formula $B\in\mathcal{B}$
+\end_inset
+
+ mit dem Branching 
+\begin_inset Formula $\overline{B}=B\cap\overline{A}$
+\end_inset
+
+ in 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ und es gilt:
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula 
+\[
+c\left(B\right)-\overline{c}\left(\overline{B}\right)=\sum_{i=1}^{k}c\left(C_{i}\right)-\sum_{i=1}^{k}c\left(a_{i}\right)\text{.}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Branching
+\series default
+
+\begin_inset Formula $\left(D,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Bestimme einen kritischen Graphen 
+\begin_inset Formula $H$
+\end_inset
+
+ für 
+\begin_inset Formula $D$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Ist 
+\begin_inset Formula $H$
+\end_inset
+
+ azyklisch, dann 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $H$
+\end_inset
+
+ ist optimales Branching für 
+\begin_inset Formula $D$
+\end_inset
+
+
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Schrumpfe die Kreise von 
+\begin_inset Formula $H$
+\end_inset
+
+, um 
+\begin_inset Formula $\overline{D}$
+\end_inset
+
+ und 
+\begin_inset Formula $\overline{c}$
+\end_inset
+
+ zu erhalten.
+\end_layout
+
+\begin_layout Enumerate
+Berechne durch den rekursiven Aufruf 
+\emph on
+Branching
+\emph default
+
+\begin_inset Formula $\left(\overline{D},\overline{c}\right)$
+\end_inset
+
+ ein optimales Branching 
+\begin_inset Formula $\overline{B}$
+\end_inset
+
+ für 
+\begin_inset Formula $\overline{D}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Expandiere das Branching 
+\begin_inset Formula $\overline{B}$
+\end_inset
+
+ zu einem optimalen Branching 
+\begin_inset Formula $B$
+\end_inset
+
+ für 
+\begin_inset Formula $D$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(A\log V\right)$
+\end_inset
+
+ oder 
+\begin_inset Formula $\mathcal{O}\left(V^{2}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Arboreszenzen und das asymmetrische TSP
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+analog zum symmetrischen Fall
+\end_layout
+
+\begin_layout Section
+Kürzeste Wege
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Kürstester-
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg-Problem
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben sind ein Digraph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Kantengewichten 
+\begin_inset Formula $c_{e}$
+\end_inset
+
+ für 
+\begin_inset Formula $e\in A$
+\end_inset
+
+, und zwei Knoten 
+\begin_inset Formula $s,t\in V$
+\end_inset
+
+.
+ Zu bestimmen ist ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg in 
+\begin_inset Formula $D$
+\end_inset
+
+, dessen Gesamtlänge möglichst klein ist.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+Im folgenden ist 
+\begin_inset Formula $s\in V$
+\end_inset
+
+ der Startknoten, dessen kürzeste Wege berechnet werden sollen.
+ 
+\begin_inset Formula $\delta\left(u,v\right)$
+\end_inset
+
+ ist die Länge des kürzesten 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Weges, bzw.
+ 
+\begin_inset Formula $+\infty$
+\end_inset
+
+ (oder 
+\begin_inset Formula $-\infty$
+\end_inset
+
+) wenn keiner existiert.
+ 
+\begin_inset Formula $\pi\left[v\right]$
+\end_inset
+
+ ist der Vorgängerknoten von 
+\begin_inset Formula $v$
+\end_inset
+
+ auf dem kürstesten 
+\begin_inset Formula $\left(s,v\right)$
+\end_inset
+
+-Weg.
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $p=\left(v_{1}v_{2},v_{2}v_{3},\ldots,v_{k-1}v_{k},\right)$
+\end_inset
+
+ ein kürzester Weg von 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ nach 
+\begin_inset Formula $v_{k}$
+\end_inset
+
+.
+ Dann ist für 
+\begin_inset Formula $1\leq i\leq j\leq k$
+\end_inset
+
+ der Teilweg 
+\begin_inset Formula $\left(v_{i}v_{i+1},\ldots,v_{j-1}v_{j},\right)$
+\end_inset
+
+ ein kürzester Weg von 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ nach 
+\begin_inset Formula $v_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Für jede Kante 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ gilt 
+\begin_inset Formula $\delta\left(s,v\right)\leq\delta\left(s,u\right)+c_{uv}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die 
+\series bold
+Standardinitialisierung
+\series default
+ für 
+\begin_inset Formula $d$
+\end_inset
+
+ ist 
+\begin_inset Formula $d\left[s\right]=0$
+\end_inset
+
+ und 
+\begin_inset Formula $d\left[v\right]=\infty,v\in V\setminus\left\{ s\right\} $
+\end_inset
+
+ und 
+\begin_inset Formula $\pi\left[v\right]=\bot,v\in V$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Correct
+\series default
+
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Plain Layout
+Falls 
+\begin_inset Formula $d\left[v\right]>d\left[u\right]+c_{uv}$
+\end_inset
+
+, dann setze 
+\begin_inset Formula $d\left[v\right]=d\left[u\right]+c_{uv}$
+\end_inset
+
+ und 
+\begin_inset Formula $\pi\left[v\right]=u$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
