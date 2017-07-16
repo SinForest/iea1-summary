@@ -40,6 +40,8 @@
   \newtheorem{prop}[thm]{\protect\propositionname}
   \theoremstyle{plain}
   \newtheorem{cor}[thm]{\protect\corollaryname}
+  \theoremstyle{plain}
+  \newtheorem*{prop*}{\protect\propositionname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \usepackage{pstricks}
@@ -630,7 +632,7 @@ Es folgt eine einfach Implementierung. $T$ ist der angehende Baum:
 \textbf{Prim1}$\left(G,c,s\right)$:
 \begin{enumerate}
 \item Setze $V_{T}=\left\{ s\right\} $, $T=\emptyset$ und $i=0$.
-\item Falls $i=n-1$, \emph{Stop}(,,T ist MST``).
+\item Falls $i=n-1$, \emph{Stop}(\glqq T ist MST``).
 \item Bestimme $u\in V_{T}$ und $v\in V\setminus T_{T}$ mit $c_{uv}=\min\left\{ c_{xy}|x\in V_{T},y\in V\setminus V_{T}\right\} $.
 \item Setze $V_{T}=V_{T}\cup\left\{ v\right\} $ und $T=T\cup\left\{ uv\right\} $
 und $i=i+1$. Gehe zu (2).
@@ -650,7 +652,7 @@ den nächsten Baumknoten, $d\left[v\right]$ die zugehörige Distanz.
 $d\left[v\right]=c_{sv}$ und $t\left[v\right]=s$, falls $sv\in E$,
 setze $d\left[v\right]=\infty$ und $t\left[v\right]=\bot$, falls
 $sv\notin E$.
-\item Falls $i=n-1$, \emph{Stop}(,,T ist MST``).
+\item Falls $i=n-1$, \emph{Stop}(\glqq T ist MST``).
 \item Bestimme $v\in V\setminus T_{T}$ mit $d\left[v\right]=\min\left\{ d\left[u\right]|u\in V\setminus V_{T}\right\} $.
 \item Setze $V_{T}=V_{T}\cup\left\{ v\right\} $ und $T=T\cup\left\{ t\left[v\right]v\right\} $.
 \item Für alle $w$ adjazent zu $v$:
@@ -826,7 +828,7 @@ c\left(B\right)-\overline{c}\left(\overline{B}\right)=\sum_{i=1}^{k}c\left(C_{i}
 \textbf{Branching}$\left(D,c\right)$:
 \begin{enumerate}
 \item Bestimme einen kritischen Graphen $H$ für $D$.
-\item Ist $H$ azyklisch, dann \emph{Stop}(,,$H$ ist optimales Branching
+\item Ist $H$ azyklisch, dann \emph{Stop}(\glqq $H$ ist optimales Branching
 für $D$``).
 \item Schrumpfe die Kreise von $H$, um $\overline{D}$ und $\overline{c}$
 zu erhalten.
@@ -854,6 +856,8 @@ $c_{e}$ für $e\in A$, und zwei Knoten $s,t\in V$. Zu bestimmen
 ist ein $\left(s,t\right)$-Weg in $D$, dessen Gesamtlänge möglichst
 klein ist.%
 \end{minipage}}
+
+\subsection{Eigenschaften kürzester Wege}
 \begin{defn*}
 Im folgenden ist $s\in V$ der Startknoten, dessen kürzeste Wege berechnet
 werden sollen. $\delta\left(u,v\right)$ ist die Länge des kürzesten
@@ -882,4 +886,636 @@ $\pi\left[v\right]=\bot,v\in V$.
 Falls $d\left[v\right]>d\left[u\right]+c_{uv}$, dann setze $d\left[v\right]=d\left[u\right]+c_{uv}$
 und $\pi\left[v\right]=u$.%
 \end{minipage}}
+\begin{lem}
+Nach Initialisierung gilt $d\left[v\right]\geq\delta\left(s,v\right)$,
+für alle $v\in V$. Dies gilt auch nach Ausführung einer beliebigen
+Folge von Correct()-Aufrufen. Falls einmal $d\left[v\right]=\delta\left(s,v\right)$
+gilt, so kann $d\left[v\right]$nicht mehr verändert werden.
+\end{lem}
+
+\begin{lem}
+$D$ enthalte keine von $s$ aus erreichbaren negativen Kreise und
+die Standardinitialisierung sei ausgeführt. Für jede Folge von Korrekturoperationen
+bildet der durch $\pi$ bestimmte Digraph $D_{\pi}$ eine Arboreszenz
+mit Wurzel $s$.
+\end{lem}
+
+
+\subsection{Der Algorithmus von Dijkstra}
+
+Der Algorithmus berechnet alle kürzesten Wege von $s$, wenn $c_{uv}\geq0$,
+für alle $\left(u,v\right)\in A$.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Dijkstra}$\left(D,c,s\right)$:
+\begin{enumerate}
+\item Setze $d\left[v\right]=\infty$, für alle $v\in V\setminus\left\{ s\right\} $,
+$d\left[s\right]=0$ und $\pi\left[v\right]=\bot$ für alle $v\in V$.
+\item $S=\emptyset,Q=V$.
+\item Solange $Q\neq\emptyset$:
+\begin{enumerate}
+\item Bestimme $u$ mit $d\left[u\right]=\min_{v}\left\{ d\left[v\right]|v\in Q\right\} $.
+\item $S=S\cup\left\{ u\right\} ,Q=Q\setminus\left\{ u\right\} $
+\item Für jede Kante $\left(u,v\right)\in A$ mit $v\in Q$ führe \emph{Correct}$\left(u,v\right)$
+aus.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+\begin{tabular}{ll}
+Laufzeit (naiv): & $\mathcal{O}\left(V^{2}\right)$\tabularnewline
+Laufzeit (Heap): & $\mathcal{O}\left(A\log V\right)$ (besser für dünnbesetzte Graphen)\tabularnewline
+Laufzeit (Fib-Heap): & $\mathcal{O}\left(A+V\log V\right)$\tabularnewline
+\end{tabular}
+\begin{prop}
+Nach Ausführung des Algorithmus von Dijkstra gilt $d\left[v\right]=\delta\left(s,v\right)$
+für alle $v\in V$.
+\end{prop}
+
+
+\subsection{Der Algorithmus von Bellman und Ford}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{BellmanFord}$\left(D,c,s\right)$:
+\begin{enumerate}
+\item Initialisiere $d\left[v\right]=\infty$, für alle $v\in V\setminus s$,
+$d\left[s\right]=0,\pi\left[v\right]=\bot$ für alle $v\in V$.
+\item Führe die folgende Schleife $\left(\left|V\right|-1\right)$-mal aus:
+\begin{enumerate}
+\item Für alle $\left(u,v\right)\in A$ führe \emph{Correct}$\left(u,v\right)$
+aus.
+\end{enumerate}
+\item Für alle $\left(u,v\right)\in A$:
+\begin{enumerate}
+\item Falls $d\left[v\right]>d\left[u\right]+c_{uv}$ dann \emph{Stop}(\glqq Graph
+enthält negativen Kreis``).
+\end{enumerate}
+\item \emph{Stop}(\glqq Der Kürzeste-Wege-Baum wurde berechnet``).
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(VA\right)$
+\begin{lem}
+$D$ enthalte keinen von $s$ aus erreichbaren negativen Kreis. Dann
+gilt bei Terminierung des Bellman-Ford-Algorithmus $d\left[v\right]=\delta\left(s,v\right)$
+für alle Knoten in $v$, die von $s$ aus erreichbar sind.
+\end{lem}
+
+\begin{cor}
+Es gibt einen Weg von $s$ nach $v$ genau dann, wenn der Bellman-Ford-Algorithmus
+mit $d\left[v\right]<\infty$ terminiert.
+\end{cor}
+
+\begin{prop}
+Der Bellman-Ford-Algorithmus arbeitet korrekt, das heißt entweder
+er stellt fest, dass $D$ einen negativen Kreis enthält, oder er berechnet
+die Arboreszenz der kürzesten Wege von $s$ zu allen erreichbaren
+Knoten.
+\end{prop}
+
+
+\paragraph{Yen-Variante}
+
+Ersetze (2.1) durch:
+\begin{lyxlist}{00.00.0000}
+\item [{(2.1)}] Für $i=1,\ldots,n$: \emph{Correct}$\left(v_{i},v_{k}\right)$
+für alle $\left(v_{i},v_{k}\right)\in A$ mit $i<k$.
+\item [{(2.2)}] Für $i=n,n-1,\ldots,1$: \emph{Correct}$\left(v_{i},v_{j}\right)$
+für alle $\left(v_{i},v_{j}\right)\in A$ mit $i>j$.
+\end{lyxlist}
+
+\paragraph{Variante von d\textquoteright Esopo und Pape}
+
+Bevorzugt Knoten, die sich verbessert haben. Exponentielle Worst-Case-Laufzeit,
+aber oft effizienter für dünne Graphen.
+
+Modifikation der Correct-Operation:
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Correct}$\left(u,v\right)$:
+
+Falls $d\left[v\right]>d\left[u\right]+c_{uv}$, dann:
+\begin{enumerate}
+\item Setze $d\left[v\right]=d\left[u\right]+c_{uv}$ und $\pi\left[v\right]=u$.
+\item Falls $v$ noch nicht in $Q$ war, setze $v$ an das Ende von $Q$.
+\item Falls $v$ schon in $Q$ war, aber gegenwärtig nicht $Q$ ist, dann
+setze $v$ an den Anfang von $Q$.
+\end{enumerate}
+%
+\end{minipage}}
+
+Terminiert, wenn $Q$ leer.
+
+\paragraph{Verfahren von Nicholson}
+
+Sucht kürzesten $\left(s,t\right)$-Weg gleichzeitig von $s$ und
+$t$.
+
+\paragraph{$A^{\ast}$-Verfahren}
+
+Verwendet Schätzwerte $s\left(v,t\right)$ für die Entfernung zum
+Zielknoten, priorisiert Knoten mit niedrigem $d\left[v\right]+s\left(v,t\right)$.
+Terminiert, wenn $d\left[t\right]$ und $s\left(s,t\right)$ nag genug
+beieinander.
+
+\subsection{Kürzeste Wege in azyklischen Digraphen}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{DAGShortestPath}$\left(D,c,s\right)$:
+\begin{enumerate}
+\item Sei $t\left[1\right],\ldots,t\left[n\right]$ eine topologische Sortierung
+der Knoten von $D$.
+\item Setze $d\left[v\right]=\infty$, für alle $v\in V\setminus\left\{ s\right\} $,
+$\pi\left[v\right]=\bot$, für alle $v\in V$, und $d\left[s\right]=0$.
+\item Für $i=1,2,\ldots,n$:
+\begin{enumerate}
+\item Setze $u=t\left[i\right]$.
+\item Für alle $v\in V$ mit $\left(u,v\right)\in A$ führe \emph{Correct$\left(u,v\right)$
+aus.}
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(V+A\right)$
+
+\subsubsection{Berechnung optimaler Lösungen des Knapsack-Problems}
+
+
+\subsubsection{Eine Anwendung in der Tourenplanung}
+
+
+\subsubsection{Längste Wege}
+
+Dies ist nur in azyklischen Digraphen möglich, oder wenn alle Kantengewichte
+negativ oder 0 sind.
+
+Entweder man komplementiert alle Gewichte oder ändert die Initialisierung
+von $d$ in $-\infty$ und dreht den Vergleich in der \emph{Correct}-Operation
+um.
+
+\subsection{Kürzeste Wege zwischen allen Knotenpaaren}
+
+Eine Möglichkeit wäre das $\left|V\right|$-malige Anwenden von Dijkstra
+oder Bellman-Ford, was in der $\left|V\right|$-fachen Komplexität
+resultiert.
+
+\subsubsection{Der Algorithmus von Floyd und Warshall}
+
+$D$ habe ganzzahlige Gewichte und keine negativen Kreise.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{AllPairsShortestPaths}$\left(D,c\right)$:
+\begin{enumerate}
+\item Setze $d\left[i,j\right]=+\infty$, für alle $i,j\in V$, und $d\left[i,i\right]=0$,
+für alle $i\in V$.
+\item Für alle $\left(i,j\right)\in A$, setze $d\left[i,j\right]=c_{ij}$.
+\item Solange es Knoten $i,j,k\in V$ gibt, mit $d\left[i,j\right]>d\left[i,k\right]+d\left[k,j\right]$
+setze $d\left[i,j\right]=d\left[i,k\right]+d\left[k,j\right]$.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(\left|V\right|^{2}\left(2\left|V\right|C\right)\right)$
+mit $C$ = $\max\left\{ \left|c_{ij}\right||\left(i,j\right)\in A\right\} $
+-> nicht poly!
+
+Eine Verbesserung ergibt sich wie folgt:
+
+Wenn alle kürzesten Wege bekannt sind, die nur die ersten $k-1$ Knoten
+als Zwischenknoten verwenden, lässt sich ein kürzester Weg, der den
+$k$-ten Knoten (und möglicherweise seine Vorgänger) als Zwischenknoten
+nutzt durch $d\left(i,k\right)+d\left(k,j\right)$ bestimmen.
+
+Sei $D^{\left(k\right)}$ eine Matrix mit $d_{ij}^{\left(k\right)}$
+als kürzester Weg zwischen $i$ und $j$, der nur die ersten $k$
+Knoten als Zwischenknoten nutzt:
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{FloydWarshall}$\left(C\right)$:
+\begin{enumerate}
+\item Initialisiere $D^{\left(0\right)}=C$, mit $c_{ij}=+\infty$ wenn
+keine Kante $\left(i,j\right)$ existiert.
+\item Für $k=1,2,\ldots,\left|V\right|$:
+\begin{enumerate}
+\item Für $i=1,2,\ldots,\left|V\right|$:
+\begin{enumerate}
+\item Für $j=1,2,\ldots,\left|V\right|$:\\
+$d_{ij}^{\left(k\right)}=\min\left\{ d_{ij}^{\left(k-1\right)},d_{ik}^{\left(k-1\right)}+d_{kj}^{\left(k-1\right)}\right\} $
+\end{enumerate}
+\end{enumerate}
+\item $D^{\left(\left|V\right|\right)}$ enthält die Längen der kürzesten
+Wege.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(V^{3}\right)$
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Johnson}$\left(D,c\right)$:
+\begin{enumerate}
+\item Bilde $D^{\prime}=\left(V^{\prime},A^{\prime}\right)$ mit $V^{\prime}=V\cup\left\{ s\right\} $,
+$A^{\prime}=A\cup\left\{ \left(s,v\right)|v\in V\right\} $ und setze
+$c_{sv}=0$, für alle $v\in V$.
+\item Führe \emph{Bellman-Ford}$\left(D^{\prime},c,s\right)$ aus.
+\item Enthält $D^{\prime}$ negative Kreise, \emph{Stop}(,,Algorithmus
+nicht anwendbar``)
+\item Setze für jeden Knoten $v\in V:h\left[v\right]=\delta\left(s,v\right)$.
+\item Setze für jede Kante $\left(u,v\right)\in A:\overline{c}_{uv}=c_{uv}+h\left[u\right]-h\left[v\right]$.
+\item Für jeden Knoten $u\in V$:
+\begin{enumerate}
+\item Führe Dijkstra$\left(D,\overline{c},u\right)$ aus. Sei $\overline{\delta}\left(u,v\right)$
+die Kürzeste-Wege-Distanz von $u$ nach $v\in V\setminus\left\{ u\right\} $
+(bzgl. $\overline{c}$).
+\item Für jedes $v\in V\setminus\left\{ u\right\} $ ist die Länge des kürzesten
+$\left(u,v\right)$-Weges $\overline{\delta}\left(u,v\right)+h\left[v\right]-h\left[u\right]$.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(VA\log V\right)$ oder $\mathcal{O}\left(VA+V^{2}\log V\right)$
+je nach Dijkstra-Implementierung
+
+\subsection{Varianten kürzester Wege}
+
+\subsubsection{Bottleneck-Probleme}
+
+In einem Graphen wird ein $\left(s,t\right)$-Weg gesucht, dessen
+kürzeste Kante größtmögliche Länge hat.
+
+\paragraph{Initialisierung}
+
+$d\left[v\right]=-\infty$, für alle $v\in V\setminus\left\{ s\right\} $,
+$d\left[s\right]=+\infty,\pi\left[v\right]=\bot$, für alle $v\in V$.
+
+\paragraph{Korrektur}
+
+Falls $d\left[v\right]<\min\left\{ d\left[u\right],c_{uv}\right\} $,
+dann setze $d\left[v\right]=\min\left\{ d\left[u\right],c_{uv}\right\} $
+und $\pi\left[v\right]=u$.
+
+\subsubsection{Netzwerke mit Gewinnen und Verlusten}
+
+Das \textbf{Arbitrage-Problem} funktioniert wie ein Kürzeste-Wege-Problem,
+nur dass Kanten auf einem Weg multipliziert werden. Entweder Initialisierung
+und Correct werden angepasst, oder alle Kantengewichte logarithmiert.
+
+\subsection{Kreise mit bestem Kosten-Zeit-Verhältnis}
+
+Gesucht ist $\mu^{\ast}=\min_{B\text{ Kreis in }D}\mu\left(B\right)$
+mit $\mu\left(B\right)=\frac{\sum_{\left(i,j\right)\in B}c_{ij}}{\sum_{\left(i,j\right)\in B}\tau_{ij}}$.
+
+$\mu$ ist ein Schätzwert für $\mu^{\ast}\in\left[-\left|V\right|C,+\left|V\right|C\right]$,
+welcher per Intervallschachtelung verbessert wird. $\left(C=\max c_{ij}\right)$
+
+Es wird ein Digraph $\overline{D}$ erstellt mit $l_{ij}=c_{ij}-\mu\tau_{ij}$
+für alle $\left(i,j\right)\in A$.
+\begin{itemize}
+\item Enthält $\overline{D}$ einen negativen Kreis, ist $\mu$ zu groß.
+\item Enthält $\overline{D}$ nur positive Kreise, ist $\mu$ zu klein.
+\item Enthält $\overline{D}$ einen Kreis der Länge $0$, minimiert dieser
+die Zielfunktion.
+\end{itemize}
+Das Verfahren kann auch abgebrochen werden, wenn die Intervallgrenzen
+weniger als $\frac{1}{n^{2}T^{2}}$ auseinander liegen. $\left(T=\max\tau_{ij}\right)$
+
+Laufzeit: $\mathcal{O}\left(VA\log\left(CVT\right)\right)$
+
+\section{Das Zuordnungsproblem}
+
+\subsection{Anwendungen und Grundlagen}
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+Perfektes-Matching-Problem in bipartiten Graphen
+
+Sei $K_{n,n}$ der vollständige bipartite Graph mit jeweils $n$ Knoten
+in den zwei Teilmengen $V_{1}$ und $V_{2}$ mit $V_{1}\cup V_{2}=V$
+und Kantengewichten $c_{ij}$ für $i\in V_{1}$ und $j\in V_{2}$.
+Gesucht ist ein perfektes Matching $\left(\forall v\in V:\left|\delta\left(v\right)\right|=1\right)$
+in $K_{n,n}$ mit minimalem Gesamtgewicht.%
+\end{minipage}}
+
+\medskip{}
+
+Das Problem wird mit Hilfe linearer Programmierung gelöst werden.
+Es lässt sich wie folgt als lineares Programm darstellen:
+
+\[
+\begin{aligned}\text{(AP)} & \begin{aligned} & \min & \sum_{i=1}^{n} & \sum_{j=1}^{n}c_{ij}x_{ij}\\
+ &  & \sum_{j=1}^{n} & x_{ij}=1\text{, für }i=1,2,\ldots,n\\
+ &  & \sum_{i=1}^{n} & x_{ij}=1\text{, für }j=1,2,\ldots,n\\
+ &  &  & x_{ij}\in\left\{ 0,1\right\} \text{, für }i=1,2,\ldots,n\text{, }j=1,2,\ldots,n
+\end{aligned}
+\end{aligned}
+\]
+
+Das duale Programm dazu ist:
+
+\[
+\begin{aligned}\text{(AP}_{D}\text{)} & \begin{alignedat}{1}\max & \sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}\\
+ & u_{i}+v_{j}\leq c_{ij}\text{, für }1,2,\ldots,n\text{, }j=1,2,\ldots n.
+\end{alignedat}
+\end{aligned}
+\]
+\begin{prop*}
+Schwacher Dualitätssatz (am Beispiel)
+
+Wenn $x$ zulässig für (AP) ist und $\left(u,v\right)$ zulässig für
+(AP$_{D}$) sind, gilt: 
+
+\[
+\sum_{i=1}^{n}\sum_{j=1}^{n}c_{ij}x_{ij}\geq\sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}
+\]
+\end{prop*}
+%
+\begin{prop*}
+Satz vom komplenetären Schlupf (am Bsp.)
+
+Ein Paar von zulässigen Lösungen $x$ für (AP) und $\left(u,v\right)$
+für (AP$_{D}$) sind genau dann optimal, wenn gilt
+
+\[
+u_{i}+v_{j}<c_{ij}\Rightarrow x_{ij}=0
+\]
+
+bzw.
+
+\[
+x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
+\]
+\end{prop*}
+
+\subsection{Die Ungarische Methode}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{HungarianMethod}$\left(n,C\right)$:
+\begin{enumerate}
+\item Bestimme eine dual zulässige Startlösung $\left(u^{0},v^{0}\right)$,
+setze $i=0$.
+\item Konstruiere zu $\left(u^{i},v^{i}\right)$ einen 0/1-Vektor $x^{i}$,
+so dass die Bedingungen vom komplementären Schlupf erfüllt sind.
+\item Beschreibt $x^{i}$ eine Zuordnung, \emph{Stop}(,,Zuordnung optimal``)
+\item Berechne eine neue dual zulässige Lösung $\left(u^{i+1},v^{i+1}\right)$,
+setze $i=i+1$, gehe zu (2).
+\end{enumerate}
+%
+\end{minipage}}
+
+(Dies ist die grobe Idee des Algorithmus)
+\begin{defn}
+Folgende Definitionen werden für die Methode benötigt:
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] Für eine dual zulässige Lösung $\left(u,v\right)$ heißt die
+Matrix $\overline{C}=\left(\overline{c}_{ij}\right)$ mit $\overline{c}_{ij}=c_{ij}-u_{i}-v_{j}$
+die \textbf{reduzierte Matrix}.
+\item [{b)}] Sei $\overline{C}$ eine reduzierte Matrix. eine Menge $N\subseteq\left\{ 1,\ldots,n\right\} \times\left\{ 1,\ldots,n\right\} $
+heißt Menge von \textbf{unabhängigen Nullen}, falls
+\begin{enumerate}
+\item $\overline{c}_{ij}=0$, für alle $\left(i,j\right)\in N$,
+\item $\left|\left\{ j|\left(i,j\right)\in N\right\} \right|\leq1$, für
+alle $i=1,\ldots,n$,
+\item $\left|\left\{ i|\left(i,j\right)\in N\right\} \right|\leq1$, für
+alle $j=1,\ldots,n$.
+\end{enumerate}
+\item [{c)}] Eine \textbf{Überdeckung }einer reduzierten Matrix ist eine
+Menge von Zeilen- und Spaltenindizes, so dass die zugehörigen Zeilen
+und Spalten sämtliche Nullelemente von $\overline{C}$ enthalten.
+\end{lyxlist}
+\end{defn}
+
+\begin{prop}
+Sei $\overline{C}$ eine reduzierte Matrix. Die maximale Kardinalität
+einer Menge von unabhängigen Nullen ist gleich der minimalen Kardinalität
+einer Überdeckung.
+
+(In einem bipartiten Graphen ist die maximale Kardinalität eines Matchings
+gleich der minimalen Kardinalität einer Kantenüberdeckung mit Knoten.)
+\end{prop}
+
+
+\subsubsection{Bestimmung einer Startlösung}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Start}$\left(n,C\right)$:
+\begin{enumerate}
+\item Berechne Zeilenminima $u_{i}=\min\left\{ c_{ij}|j=1,\ldots,n\right\} $,
+für alle $i=1,\ldots,n$.
+\item Setze $\overline{c}_{ij}=c_{ij}-u_{i}$, für alle $i=1,\ldots,n$,
+$j=1,\ldots,n$.
+\item Berechne Spaltenminima $v_{j}=\min\left\{ c_{ij}|i=1,\ldots,n\right\} $,
+für alle $j=1,\ldots,n$.
+\item Setze $\overline{c}_{ij}=\overline{c}_{ij}-v_{j}$, für alle $i=1,\ldots,n$,
+$j=1,\ldots,n$.
+\end{enumerate}
+%
+\end{minipage}}
+
+Wir gehen nun spaltenweise vor und zeichnen die Null mit dem niedrigsten
+Zeilenindex als unabhängige Null aus.
+
+\subsubsection{Bestimmung einer minimalen Überdeckung}
+
+\textbf{}%
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{MinimusCover}$\left(n,\overline{C}\right)$:
+\begin{enumerate}
+\item Alle Zeilen und Spalten von $\overline{C}$ seien unmarkiert und nicht
+überprüft. Sind $n$ unabhängige Nullen vorhanden gehe zu (5).
+\item Alle Zeilen ohne unabhängige Null erhalten die Markierung ,,($-$)``.
+\item Gibt es keine markierte, noch nicht überprüfte Zeile, so gehe zu (4).\\
+Andernfalls sei $i$ eine solche Zeile.
+\begin{enumerate}
+\item Erkläre $i$ für überprüft.
+\item Existiert keine unmarkierte Spalte, die in Zeile $i$ eine Null enthält,
+gehe zu (3).\\
+Andernfalls sei $j$ eine solche Spalte.
+\item Markiere $j$ mit ,,(i)``.
+\item Besitzt $j$ schon eine unabhängige Null gehe zu (3.2).\\
+Andernfalls kann durch Verfolgen der Markierungen ausgehend von $j$
+eine alternierende Kette von abhängigen und unabhänigen Nullen konstruiert
+werden. Ändere die Klassifizierung dieser Nullen und gehe zu (1).
+\end{enumerate}
+\item Gibt es keine markierte, noch nicht überprüfte Spalte, so gehe zu
+(5).\\
+Andernfalls sei $j$ eine solche Spalte.
+\begin{enumerate}
+\item Erkläre $j$ für überprüft.
+\item Markiere die Zeile, in der die unabhängige Null von Spalte $j$ steht,
+mit ,,(j)``.
+\item Gehe zu (3).
+\end{enumerate}
+\item Die Maximalzahl unabhängiger Nullen ist berechnet. Die zugehörige
+minimale Überdeckung ergibt sich durch Zeilen, die nicht markiert
+sind und Spalten, die markiert sind.
+\end{enumerate}
+%
+\end{minipage}}
+
+\subsubsection{Korrektur der Duallösung}
+
+$I$ bezeichnet die Indizes der Zeilen der minimalen Überdeckung,
+$J$ die der Spalten.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{DualUpdate}$\left(n,\overline{C},I,J\right)$:
+\begin{enumerate}
+\item Setze $\delta=\min\left\{ \overline{c}_{ij}|i\notin I\wedge j\notin J\right\} $.
+\item Setze $\begin{aligned}u_{i}=\begin{cases}
+u_{i}+\delta\text{,} & \text{für }i\notin I\text{,}\\
+u_{i} & \text{sonst,}
+\end{cases} & \;\;\;\; & v_{j}=\begin{cases}
+v_{j}-\delta\text{,} & \text{für }j\notin J\text{,}\\
+v_{j} & \text{sonst.}
+\end{cases}\end{aligned}
+$
+\item Setze $\overline{c}_{ij}=\begin{cases}
+\overline{c}_{ij}-\delta\text{,} & \text{für }i\notin I,j\notin J\text{,}\\
+\overline{c}_{ij}+\delta\text{,} & \text{für }i\in I,j\in J\text{,}\\
+\overline{c}_{ij}, & \text{sonst.}
+\end{cases}$
+\end{enumerate}
+%
+\end{minipage}}
+\begin{prop}
+Die Ungarische Methode löst Zuordnungsprobleme in der Zeit $\mathcal{O}\left(n^{3}\right)$.
+\end{prop}
+
+
+\subsection{Ein dualer Algorithmus}
+
+Im Folgenden werden diese Notationen genutzt:
+\begin{itemize}
+\item $w_{ij}=c_{ij}-u_{i}-v_{j}$
+\item $I=\left\{ 1,2,\ldots,n\right\} $ ist die Menge der Zeilenknoten
+\item $J=\left\{ 1,2,\ldots,n\right\} $ ist die Menge der Spaltenknoten
+\item $G\left(I,J\right)$ ist der vollständige, bipartite Graph mit Kantenmenge
+$\left\{ \left(i,j\right)|i\in I,j\in J\right\} $.
+\end{itemize}
+\begin{defn}
+Sei $F$ ein Subgraph von $G\left(I,J\right)$.
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] $F$ heißt dual zulässig, falls es einen dual zulässigen Vektor
+$\left(u,v\right)$ gibt, so dass $w_{ij}=0$, für alle $\left(i,j\right)\in F$.
+\item [{b)}] $F$ heißt primal zulässig, falls es einen primal zulässigen
+Vektor $x$ gibt, so dass $x_{ij}=0$, für alle $\left(i,j\right)\in F$.
+\end{lyxlist}
+\end{defn}
+
+\begin{lem}
+Ist $F$ ein primal und dual zulässiger Subgraph von $G\left(I,J\right)$,
+dann sind die zugehörigen Vektoren $\left(u,v\right)$ und $x$ optimal
+für (AP) bzw. (AP$_{D}$).
+\end{lem}
+
+\begin{defn*}
+Sei $F$ ein Subgraph von $G\left(I,J\right)$. Ein Knoten hat \textbf{Valenz}
+$d$ (bzgl. F), falls sein Knotengrad in F gleich $d$ ist.
+\end{defn*}
+\begin{defn}
+Ein Subgraph $F$ von $G\left(I,J\right)$ heißt \textbf{Superwald}
+mit einer Menge von Wurzeln aus $J$, falls gilt:
+\end{defn}
+
+\begin{itemize}
+\item $F$ ist ein aufspannender Wald
+\item Jede Komponente von $F$ enthält genau eine Wurzel
+\item Jeder Knoten aus J, der keine Wurzel ist, hat Valenz 2.
+\end{itemize}
+\begin{defn*}
+Ein Superwald $F$ lässt sich in den \textbf{Überschuss-Wald} $F^{S}$
+und den \textbf{Defizit-Wald} $F^{D}$ partitionieren, mit
+
+$F^{S}=\text{Vereinigung der Komponenten von \ensuremath{F}, deren Wurzeln Valenz \ensuremath{\geq2} haben,}$
+
+$F^{D}=\text{Vereinigung der Komponenten von \ensuremath{F}, deren Wurzeln Valenz \ensuremath{0} oder \ensuremath{1} haben.}$
+\end{defn*}
+\begin{lem}
+Ist $F$ dual zulässiger Superwald mit $F^{S}=\emptyset$, dann ist
+der zugehörige Vektor $\left(u,v\right)$ eine Optimallösung von (AP$_{D}$)
+und $F$ enthält eine optimale Zuordnung.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{\textit{AKP}}\textit{$\left(C\right)$:}
+\begin{enumerate}
+\item Bestimme einen dual zulässigen Superwald $F_{0}$ mit Dualvariablen
+$\left(u^{0},v^{0}\right)$ und setze $i=0$.
+\item Falls $F_{i}$ dual zulässig und $F_{i}^{S}$ leer ist, \emph{Stop}(,,$F_{i}$
+enthält eine optimale Zuordnung``).
+\item Iteration $i$:
+\begin{enumerate}
+\item Bestimme eine geeignete Kante $\left(g,h\right)$.
+\item Konstruiere mit Hilfe von $\left(g,h\right)$ einen neuen Superwald
+$F_{i+1}$.
+\item Berechne neue Dualvariablen $\left(u^{i+1},v^{i+1}\right)$.
+\item Setze $i=i+1$ und gehe zu (2).
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+\end{lem}
+
+
+\subsubsection{Bestimmung einer Startlösung}
+
+Bestimme $u_{i}$ und $v_{j}$ als Zeilen- und Spaltenminima. Erstelle
+Subgraph $F=\left\{ \left(i,j\right)|w_{ij}=0\right\} $. Entferne
+Kanten und zeichne Knoten aus $J$ als Wurzeln aus, bis $F$ ein Subgraph
+ist.
+
+\subsubsection{Korrektur des Superwaldes}
+
+Wähle die Kante $\left(g,h\right)$ mit kleinstem $w_{ij}$, die einen
+$I$-Knoten im Überschuss-Wald und einen $J$-Knoten im Defizit-Wald
+verbindet und füge sie dem Superwald hinzu:
+
+\[
+\delta=w_{gh}=\min\left\{ w_{ij}|i\in I\cap F_{m}^{S},j\in J\cap F_{m}^{D}\right\} 
+\]
+
+Die Superwald-Eigenschaft muss wiederhergestellt werden. Es können
+4 Fälle auftreten:
+
+
+\subsubsection{Korrektur der Dualvariablen}
+
+$F_{m}^{\ast}$ ist anschaulich die Komponente, die ,,umgehängt``
+wurde.
+
+Ist Fall 1 oder 2 eingetreten, gilt:
+
+\[
+u_{i}=\begin{cases}
+u_{i}-\delta, & \text{falls }i\in F_{m}^{\ast}\\
+u_{i} & \text{sonst,}
+\end{cases}
+\]
+
+\[
+v_{j}=\begin{cases}
+v_{j}-\delta, & \text{falls }j\in F_{m}^{\ast}\\
+v_{j} & \text{sonst.}
+\end{cases}
+\]
+
+In Fall 3 und 4 sind $+$ und $-$ vertauscht.
+\begin{lem}
+Falls die Teilwälder $F_{m}^{D}$ und $F_{m}^{S}$ dual zulässig sind,
+dann gilt $\delta_{m+1}\geq\delta_{m}$ und $\delta_{m+1}\geq$-$\delta_{m}$.
+\end{lem}
+
+\begin{lem}
+Falls $F_{m}^{D}$ und $F_{m}^{S}$ dual zulässig sind, dann auch
+$F_{m+1}^{D}$ und $F_{m+1}^{S}$.
+\end{lem}
+
+\begin{prop}
+Der AKP-Algorithmus arbeitet korrekt und löst das Zuordnungsproblem
+mit Zeitkomplexität $\mathcal{O}\left(n^{3}\right)$.
+\end{prop}
+
+
 \end{document}

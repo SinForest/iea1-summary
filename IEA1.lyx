@@ -4428,6 +4428,10 @@ Gegeben sind ein Digraph
 
 \end_layout
 
+\begin_layout Subsection
+Eigenschaften kürzester Wege
+\end_layout
+
 \begin_layout Definition*
 Im folgenden ist 
 \begin_inset Formula $s\in V$
@@ -4601,6 +4605,2920 @@ Falls
 \end_inset
 
 
+\end_layout
+
+\begin_layout Lemma
+Nach Initialisierung gilt 
+\begin_inset Formula $d\left[v\right]\geq\delta\left(s,v\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+ Dies gilt auch nach Ausführung einer beliebigen Folge von Correct()-Aufrufen.
+ Falls einmal 
+\begin_inset Formula $d\left[v\right]=\delta\left(s,v\right)$
+\end_inset
+
+ gilt, so kann 
+\begin_inset Formula $d\left[v\right]$
+\end_inset
+
+nicht mehr verändert werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $D$
+\end_inset
+
+ enthalte keine von 
+\begin_inset Formula $s$
+\end_inset
+
+ aus erreichbaren negativen Kreise und die Standardinitialisierung sei ausgeführ
+t.
+ Für jede Folge von Korrekturoperationen bildet der durch 
+\begin_inset Formula $\pi$
+\end_inset
+
+ bestimmte Digraph 
+\begin_inset Formula $D_{\pi}$
+\end_inset
+
+ eine Arboreszenz mit Wurzel 
+\begin_inset Formula $s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Der Algorithmus von Dijkstra
+\end_layout
+
+\begin_layout Standard
+Der Algorithmus berechnet alle kürzesten Wege von 
+\begin_inset Formula $s$
+\end_inset
+
+, wenn 
+\begin_inset Formula $c_{uv}\geq0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Dijkstra
+\series default
+
+\begin_inset Formula $\left(D,c,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $d\left[v\right]=\infty$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V\setminus\left\{ s\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $d\left[s\right]=0$
+\end_inset
+
+ und 
+\begin_inset Formula $\pi\left[v\right]=\bot$
+\end_inset
+
+ für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S=\emptyset,Q=V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $Q\neq\emptyset$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Bestimme 
+\begin_inset Formula $u$
+\end_inset
+
+ mit 
+\begin_inset Formula $d\left[u\right]=\min_{v}\left\{ d\left[v\right]|v\in Q\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S=S\cup\left\{ u\right\} ,Q=Q\setminus\left\{ u\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Für jede Kante 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ mit 
+\begin_inset Formula $v\in Q$
+\end_inset
+
+ führe 
+\emph on
+Correct
+\emph default
+
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ aus.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Laufzeit (naiv):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{O}\left(V^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Laufzeit (Heap):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{O}\left(A\log V\right)$
+\end_inset
+
+ (besser für dünnbesetzte Graphen)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Laufzeit (Fib-Heap):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{O}\left(A+V\log V\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Nach Ausführung des Algorithmus von Dijkstra gilt 
+\begin_inset Formula $d\left[v\right]=\delta\left(s,v\right)$
+\end_inset
+
+ für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Der Algorithmus von Bellman und Ford
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+BellmanFord
+\series default
+
+\begin_inset Formula $\left(D,c,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere 
+\begin_inset Formula $d\left[v\right]=\infty$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V\setminus s$
+\end_inset
+
+, 
+\begin_inset Formula $d\left[s\right]=0,\pi\left[v\right]=\bot$
+\end_inset
+
+ für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Führe die folgende Schleife 
+\begin_inset Formula $\left(\left|V\right|-1\right)$
+\end_inset
+
+-mal aus:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ führe 
+\emph on
+Correct
+\emph default
+
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ aus.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $d\left[v\right]>d\left[u\right]+c_{uv}$
+\end_inset
+
+ dann 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+Graph enthält negativen Kreis
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+Der Kürzeste-Wege-Baum wurde berechnet
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(VA\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $D$
+\end_inset
+
+ enthalte keinen von 
+\begin_inset Formula $s$
+\end_inset
+
+ aus erreichbaren negativen Kreis.
+ Dann gilt bei Terminierung des Bellman-Ford-Algorithmus 
+\begin_inset Formula $d\left[v\right]=\delta\left(s,v\right)$
+\end_inset
+
+ für alle Knoten in 
+\begin_inset Formula $v$
+\end_inset
+
+, die von 
+\begin_inset Formula $s$
+\end_inset
+
+ aus erreichbar sind.
+\end_layout
+
+\begin_layout Corollary
+Es gibt einen Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $v$
+\end_inset
+
+ genau dann, wenn der Bellman-Ford-Algorithmus mit 
+\begin_inset Formula $d\left[v\right]<\infty$
+\end_inset
+
+ terminiert.
+\end_layout
+
+\begin_layout Proposition
+Der Bellman-Ford-Algorithmus arbeitet korrekt, das heißt entweder er stellt
+ fest, dass 
+\begin_inset Formula $D$
+\end_inset
+
+ einen negativen Kreis enthält, oder er berechnet die Arboreszenz der kürzesten
+ Wege von 
+\begin_inset Formula $s$
+\end_inset
+
+ zu allen erreichbaren Knoten.
+\end_layout
+
+\begin_layout Paragraph
+Yen-Variante
+\end_layout
+
+\begin_layout Standard
+Ersetze (2.1) durch:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(2.1) Für 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+: 
+\emph on
+Correct
+\emph default
+
+\begin_inset Formula $\left(v_{i},v_{k}\right)$
+\end_inset
+
+ für alle 
+\begin_inset Formula $\left(v_{i},v_{k}\right)\in A$
+\end_inset
+
+ mit 
+\begin_inset Formula $i<k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(2.2) Für 
+\begin_inset Formula $i=n,n-1,\ldots,1$
+\end_inset
+
+: 
+\emph on
+Correct
+\emph default
+
+\begin_inset Formula $\left(v_{i},v_{j}\right)$
+\end_inset
+
+ für alle 
+\begin_inset Formula $\left(v_{i},v_{j}\right)\in A$
+\end_inset
+
+ mit 
+\begin_inset Formula $i>j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Variante von d’Esopo und Pape
+\end_layout
+
+\begin_layout Standard
+Bevorzugt Knoten, die sich verbessert haben.
+ Exponentielle Worst-Case-Laufzeit, aber oft effizienter für dünne Graphen.
+\end_layout
+
+\begin_layout Standard
+Modifikation der Correct-Operation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Correct
+\series default
+
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Plain Layout
+Falls 
+\begin_inset Formula $d\left[v\right]>d\left[u\right]+c_{uv}$
+\end_inset
+
+, dann:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $d\left[v\right]=d\left[u\right]+c_{uv}$
+\end_inset
+
+ und 
+\begin_inset Formula $\pi\left[v\right]=u$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $v$
+\end_inset
+
+ noch nicht in 
+\begin_inset Formula $Q$
+\end_inset
+
+ war, setze 
+\begin_inset Formula $v$
+\end_inset
+
+ an das Ende von 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $v$
+\end_inset
+
+ schon in 
+\begin_inset Formula $Q$
+\end_inset
+
+ war, aber gegenwärtig nicht 
+\begin_inset Formula $Q$
+\end_inset
+
+ ist, dann setze 
+\begin_inset Formula $v$
+\end_inset
+
+ an den Anfang von 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Terminiert, wenn 
+\begin_inset Formula $Q$
+\end_inset
+
+ leer.
+\end_layout
+
+\begin_layout Paragraph
+Verfahren von Nicholson
+\end_layout
+
+\begin_layout Standard
+Sucht kürzesten 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg gleichzeitig von 
+\begin_inset Formula $s$
+\end_inset
+
+ und 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset Formula $A^{\ast}$
+\end_inset
+
+-Verfahren
+\end_layout
+
+\begin_layout Standard
+Verwendet Schätzwerte 
+\begin_inset Formula $s\left(v,t\right)$
+\end_inset
+
+ für die Entfernung zum Zielknoten, priorisiert Knoten mit niedrigem 
+\begin_inset Formula $d\left[v\right]+s\left(v,t\right)$
+\end_inset
+
+.
+ Terminiert, wenn 
+\begin_inset Formula $d\left[t\right]$
+\end_inset
+
+ und 
+\begin_inset Formula $s\left(s,t\right)$
+\end_inset
+
+ nag genug beieinander.
+\end_layout
+
+\begin_layout Subsection
+Kürzeste Wege in azyklischen Digraphen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+DAGShortestPath
+\series default
+
+\begin_inset Formula $\left(D,c,s\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Sei 
+\begin_inset Formula $t\left[1\right],\ldots,t\left[n\right]$
+\end_inset
+
+ eine topologische Sortierung der Knoten von 
+\begin_inset Formula $D$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $d\left[v\right]=\infty$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V\setminus\left\{ s\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\pi\left[v\right]=\bot$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+, und 
+\begin_inset Formula $d\left[s\right]=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für 
+\begin_inset Formula $i=1,2,\ldots,n$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $u=t\left[i\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ mit 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ führe 
+\emph on
+Correct
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ aus.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(V+A\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Berechnung optimaler Lösungen des Knapsack-Problems
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ToDO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Eine Anwendung in der Tourenplanung
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ToDo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Längste Wege
+\end_layout
+
+\begin_layout Standard
+Dies ist nur in azyklischen Digraphen möglich, oder wenn alle Kantengewichte
+ negativ oder 0 sind.
+\end_layout
+
+\begin_layout Standard
+Entweder man komplementiert alle Gewichte oder ändert die Initialisierung
+ von 
+\begin_inset Formula $d$
+\end_inset
+
+ in 
+\begin_inset Formula $-\infty$
+\end_inset
+
+ und dreht den Vergleich in der 
+\emph on
+Correct
+\emph default
+-Operation um.
+\end_layout
+
+\begin_layout Subsection
+Kürzeste Wege zwischen allen Knotenpaaren
+\end_layout
+
+\begin_layout Standard
+Eine Möglichkeit wäre das 
+\begin_inset Formula $\left|V\right|$
+\end_inset
+
+-malige Anwenden von Dijkstra oder Bellman-Ford, was in der 
+\begin_inset Formula $\left|V\right|$
+\end_inset
+
+-fachen Komplexität resultiert.
+\end_layout
+
+\begin_layout Subsubsection
+Der Algorithmus von Floyd und Warshall
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D$
+\end_inset
+
+ habe ganzzahlige Gewichte und keine negativen Kreise.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+AllPairsShortestPaths
+\series default
+
+\begin_inset Formula $\left(D,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $d\left[i,j\right]=+\infty$
+\end_inset
+
+, für alle 
+\begin_inset Formula $i,j\in V$
+\end_inset
+
+, und 
+\begin_inset Formula $d\left[i,i\right]=0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $i\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $\left(i,j\right)\in A$
+\end_inset
+
+, setze 
+\begin_inset Formula $d\left[i,j\right]=c_{ij}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange es Knoten 
+\begin_inset Formula $i,j,k\in V$
+\end_inset
+
+ gibt, mit 
+\begin_inset Formula $d\left[i,j\right]>d\left[i,k\right]+d\left[k,j\right]$
+\end_inset
+
+ setze 
+\begin_inset Formula $d\left[i,j\right]=d\left[i,k\right]+d\left[k,j\right]$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(\left|V\right|^{2}\left(2\left|V\right|C\right)\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $C$
+\end_inset
+
+ = 
+\begin_inset Formula $\max\left\{ \left|c_{ij}\right||\left(i,j\right)\in A\right\} $
+\end_inset
+
+ -> nicht poly!
+\end_layout
+
+\begin_layout Standard
+Eine Verbesserung ergibt sich wie folgt:
+\end_layout
+
+\begin_layout Standard
+Wenn alle kürzesten Wege bekannt sind, die nur die ersten 
+\begin_inset Formula $k-1$
+\end_inset
+
+ Knoten als Zwischenknoten verwenden, lässt sich ein kürzester Weg, der
+ den 
+\begin_inset Formula $k$
+\end_inset
+
+-ten Knoten (und möglicherweise seine Vorgänger) als Zwischenknoten nutzt
+ durch 
+\begin_inset Formula $d\left(i,k\right)+d\left(k,j\right)$
+\end_inset
+
+ bestimmen.
+\end_layout
+
+\begin_layout Standard
+Sei 
+\begin_inset Formula $D^{\left(k\right)}$
+\end_inset
+
+ eine Matrix mit 
+\begin_inset Formula $d_{ij}^{\left(k\right)}$
+\end_inset
+
+ als kürzester Weg zwischen 
+\begin_inset Formula $i$
+\end_inset
+
+ und 
+\begin_inset Formula $j$
+\end_inset
+
+, der nur die ersten 
+\begin_inset Formula $k$
+\end_inset
+
+ Knoten als Zwischenknoten nutzt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+FloydWarshall
+\series default
+
+\begin_inset Formula $\left(C\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Initialisiere 
+\begin_inset Formula $D^{\left(0\right)}=C$
+\end_inset
+
+, mit 
+\begin_inset Formula $c_{ij}=+\infty$
+\end_inset
+
+ wenn keine Kante 
+\begin_inset Formula $\left(i,j\right)$
+\end_inset
+
+ existiert.
+\end_layout
+
+\begin_layout Enumerate
+Für 
+\begin_inset Formula $k=1,2,\ldots,\left|V\right|$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Für 
+\begin_inset Formula $i=1,2,\ldots,\left|V\right|$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Für 
+\begin_inset Formula $j=1,2,\ldots,\left|V\right|$
+\end_inset
+
+:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $d_{ij}^{\left(k\right)}=\min\left\{ d_{ij}^{\left(k-1\right)},d_{ik}^{\left(k-1\right)}+d_{kj}^{\left(k-1\right)}\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $D^{\left(\left|V\right|\right)}$
+\end_inset
+
+ enthält die Längen der kürzesten Wege.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(V^{3}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Johnson
+\series default
+
+\begin_inset Formula $\left(D,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Bilde 
+\begin_inset Formula $D^{\prime}=\left(V^{\prime},A^{\prime}\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $V^{\prime}=V\cup\left\{ s\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $A^{\prime}=A\cup\left\{ \left(s,v\right)|v\in V\right\} $
+\end_inset
+
+ und setze 
+\begin_inset Formula $c_{sv}=0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Führe 
+\emph on
+Bellman-Ford
+\emph default
+
+\begin_inset Formula $\left(D^{\prime},c,s\right)$
+\end_inset
+
+ aus.
+\end_layout
+
+\begin_layout Enumerate
+Enthält 
+\begin_inset Formula $D^{\prime}$
+\end_inset
+
+ negative Kreise, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+Algorithmus nicht anwendbar
+\begin_inset Quotes grd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+Setze für jeden Knoten 
+\begin_inset Formula $v\in V:h\left[v\right]=\delta\left(s,v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze für jede Kante 
+\begin_inset Formula $\left(u,v\right)\in A:\overline{c}_{uv}=c_{uv}+h\left[u\right]-h\left[v\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für jeden Knoten 
+\begin_inset Formula $u\in V$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Führe Dijkstra
+\begin_inset Formula $\left(D,\overline{c},u\right)$
+\end_inset
+
+ aus.
+ Sei 
+\begin_inset Formula $\overline{\delta}\left(u,v\right)$
+\end_inset
+
+ die Kürzeste-Wege-Distanz von 
+\begin_inset Formula $u$
+\end_inset
+
+ nach 
+\begin_inset Formula $v\in V\setminus\left\{ u\right\} $
+\end_inset
+
+ (bzgl.
+ 
+\begin_inset Formula $\overline{c}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Für jedes 
+\begin_inset Formula $v\in V\setminus\left\{ u\right\} $
+\end_inset
+
+ ist die Länge des kürzesten 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Weges 
+\begin_inset Formula $\overline{\delta}\left(u,v\right)+h\left[v\right]-h\left[u\right]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(VA\log V\right)$
+\end_inset
+
+ oder 
+\begin_inset Formula $\mathcal{O}\left(VA+V^{2}\log V\right)$
+\end_inset
+
+ je nach Dijkstra-Implementierung
+\end_layout
+
+\begin_layout Subsection
+Varianten kürzester Wege
+\end_layout
+
+\begin_layout Subsubsection
+Bottleneck-Probleme
+\end_layout
+
+\begin_layout Standard
+In einem Graphen wird ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg gesucht, dessen kürzeste Kante größtmögliche Länge hat.
+\end_layout
+
+\begin_layout Paragraph
+Initialisierung
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d\left[v\right]=-\infty$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V\setminus\left\{ s\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $d\left[s\right]=+\infty,\pi\left[v\right]=\bot$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Korrektur
+\end_layout
+
+\begin_layout Standard
+Falls 
+\begin_inset Formula $d\left[v\right]<\min\left\{ d\left[u\right],c_{uv}\right\} $
+\end_inset
+
+, dann setze 
+\begin_inset Formula $d\left[v\right]=\min\left\{ d\left[u\right],c_{uv}\right\} $
+\end_inset
+
+ und 
+\begin_inset Formula $\pi\left[v\right]=u$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Netzwerke mit Gewinnen und Verlusten
+\end_layout
+
+\begin_layout Standard
+Das 
+\series bold
+Arbitrage-Problem
+\series default
+ funktioniert wie ein Kürzeste-Wege-Problem, nur dass Kanten auf einem Weg
+ multipliziert werden.
+ Entweder Initialisierung und Correct werden angepasst, oder alle Kantengewichte
+ logarithmiert.
+\end_layout
+
+\begin_layout Subsection
+Kreise mit bestem Kosten-Zeit-Verhältnis
+\end_layout
+
+\begin_layout Standard
+Gesucht ist 
+\begin_inset Formula $\mu^{\ast}=\min_{B\text{ Kreis in }D}\mu\left(B\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $\mu\left(B\right)=\frac{\sum_{\left(i,j\right)\in B}c_{ij}}{\sum_{\left(i,j\right)\in B}\tau_{ij}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mu$
+\end_inset
+
+ ist ein Schätzwert für 
+\begin_inset Formula $\mu^{\ast}\in\left[-\left|V\right|C,+\left|V\right|C\right]$
+\end_inset
+
+, welcher per Intervallschachtelung verbessert wird.
+ 
+\begin_inset Formula $\left(C=\max c_{ij}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es wird ein Digraph 
+\begin_inset Formula $\overline{D}$
+\end_inset
+
+ erstellt mit 
+\begin_inset Formula $l_{ij}=c_{ij}-\mu\tau_{ij}$
+\end_inset
+
+ für alle 
+\begin_inset Formula $\left(i,j\right)\in A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Enthält 
+\begin_inset Formula $\overline{D}$
+\end_inset
+
+ einen negativen Kreis, ist 
+\begin_inset Formula $\mu$
+\end_inset
+
+ zu groß.
+\end_layout
+
+\begin_layout Itemize
+Enthält 
+\begin_inset Formula $\overline{D}$
+\end_inset
+
+ nur positive Kreise, ist 
+\begin_inset Formula $\mu$
+\end_inset
+
+ zu klein.
+\end_layout
+
+\begin_layout Itemize
+Enthält 
+\begin_inset Formula $\overline{D}$
+\end_inset
+
+ einen Kreis der Länge 
+\begin_inset Formula $0$
+\end_inset
+
+, minimiert dieser die Zielfunktion.
+\end_layout
+
+\begin_layout Standard
+Das Verfahren kann auch abgebrochen werden, wenn die Intervallgrenzen weniger
+ als 
+\begin_inset Formula $\frac{1}{n^{2}T^{2}}$
+\end_inset
+
+ auseinander liegen.
+ 
+\begin_inset Formula $\left(T=\max\tau_{ij}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(VA\log\left(CVT\right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Das Zuordnungsproblem
+\end_layout
+
+\begin_layout Subsection
+Anwendungen und Grundlagen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Perfektes-Matching-Problem in bipartiten Graphen
+\end_layout
+
+\begin_layout Plain Layout
+Sei 
+\begin_inset Formula $K_{n,n}$
+\end_inset
+
+ der vollständige bipartite Graph mit jeweils 
+\begin_inset Formula $n$
+\end_inset
+
+ Knoten in den zwei Teilmengen 
+\begin_inset Formula $V_{1}$
+\end_inset
+
+ und 
+\begin_inset Formula $V_{2}$
+\end_inset
+
+ mit 
+\begin_inset Formula $V_{1}\cup V_{2}=V$
+\end_inset
+
+ und Kantengewichten 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ für 
+\begin_inset Formula $i\in V_{1}$
+\end_inset
+
+ und 
+\begin_inset Formula $j\in V_{2}$
+\end_inset
+
+.
+ Gesucht ist ein perfektes Matching 
+\begin_inset Formula $\left(\forall v\in V:\left|\delta\left(v\right)\right|=1\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $K_{n,n}$
+\end_inset
+
+ mit minimalem Gesamtgewicht.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das Problem wird mit Hilfe linearer Programmierung gelöst werden.
+ Es lässt sich wie folgt als lineares Programm darstellen:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\text{(AP)} & \begin{aligned} & \min & \sum_{i=1}^{n} & \sum_{j=1}^{n}c_{ij}x_{ij}\\
+ &  & \sum_{j=1}^{n} & x_{ij}=1\text{, für }i=1,2,\ldots,n\\
+ &  & \sum_{i=1}^{n} & x_{ij}=1\text{, für }j=1,2,\ldots,n\\
+ &  &  & x_{ij}\in\left\{ 0,1\right\} \text{, für }i=1,2,\ldots,n\text{, }j=1,2,\ldots,n
+\end{aligned}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das duale Programm dazu ist:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\text{(AP}_{D}\text{)} & \begin{alignedat}{1}\max & \sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}\\
+ & u_{i}+v_{j}\leq c_{ij}\text{, für }1,2,\ldots,n\text{, }j=1,2,\ldots n.
+\end{alignedat}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+Schwacher Dualitätssatz (am Beispiel)
+\end_layout
+
+\begin_layout Proposition*
+Wenn 
+\begin_inset Formula $x$
+\end_inset
+
+ zulässig für (AP) ist und 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ zulässig für (AP
+\begin_inset Formula $_{D}$
+\end_inset
+
+) sind, gilt: 
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\sum_{j=1}^{n}c_{ij}x_{ij}\geq\sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+Satz vom komplenetären Schlupf (am Bsp.)
+\end_layout
+
+\begin_layout Proposition*
+Ein Paar von zulässigen Lösungen 
+\begin_inset Formula $x$
+\end_inset
+
+ für (AP) und 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ für (AP
+\begin_inset Formula $_{D}$
+\end_inset
+
+) sind genau dann optimal, wenn gilt
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Formula 
+\[
+u_{i}+v_{j}<c_{ij}\Rightarrow x_{ij}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+bzw.
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Formula 
+\[
+x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Die Ungarische Methode
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+HungarianMethod
+\series default
+
+\begin_inset Formula $\left(n,C\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Bestimme eine dual zulässige Startlösung 
+\begin_inset Formula $\left(u^{0},v^{0}\right)$
+\end_inset
+
+, setze 
+\begin_inset Formula $i=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Konstruiere zu 
+\begin_inset Formula $\left(u^{i},v^{i}\right)$
+\end_inset
+
+ einen 0/1-Vektor 
+\begin_inset Formula $x^{i}$
+\end_inset
+
+, so dass die Bedingungen vom komplementären Schlupf erfüllt sind.
+\end_layout
+
+\begin_layout Enumerate
+Beschreibt 
+\begin_inset Formula $x^{i}$
+\end_inset
+
+ eine Zuordnung, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+Zuordnung optimal
+\begin_inset Quotes grd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+Berechne eine neue dual zulässige Lösung 
+\begin_inset Formula $\left(u^{i+1},v^{i+1}\right)$
+\end_inset
+
+, setze 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+, gehe zu (2).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Dies ist die grobe Idee des Algorithmus)
+\end_layout
+
+\begin_layout Definition
+Folgende Definitionen werden für die Methode benötigt:
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) Für eine dual zulässige Lösung 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ heißt die Matrix 
+\begin_inset Formula $\overline{C}=\left(\overline{c}_{ij}\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $\overline{c}_{ij}=c_{ij}-u_{i}-v_{j}$
+\end_inset
+
+ die 
+\series bold
+reduzierte Matrix
+\series default
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) Sei 
+\begin_inset Formula $\overline{C}$
+\end_inset
+
+ eine reduzierte Matrix.
+ eine Menge 
+\begin_inset Formula $N\subseteq\left\{ 1,\ldots,n\right\} \times\left\{ 1,\ldots,n\right\} $
+\end_inset
+
+ heißt Menge von 
+\series bold
+unabhängigen Nullen
+\series default
+, falls
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\overline{c}_{ij}=0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $\left(i,j\right)\in N$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left|\left\{ j|\left(i,j\right)\in N\right\} \right|\leq1$
+\end_inset
+
+, für alle 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left|\left\{ i|\left(i,j\right)\in N\right\} \right|\leq1$
+\end_inset
+
+, für alle 
+\begin_inset Formula $j=1,\ldots,n$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+c) Eine 
+\series bold
+Überdeckung 
+\series default
+einer reduzierten Matrix ist eine Menge von Zeilen- und Spaltenindizes,
+ so dass die zugehörigen Zeilen und Spalten sämtliche Nullelemente von 
+\begin_inset Formula $\overline{C}$
+\end_inset
+
+ enthalten.
+\end_layout
+
+\end_deeper
+\begin_layout Proposition
+Sei 
+\begin_inset Formula $\overline{C}$
+\end_inset
+
+ eine reduzierte Matrix.
+ Die maximale Kardinalität einer Menge von unabhängigen Nullen ist gleich
+ der minimalen Kardinalität einer Überdeckung.
+\end_layout
+
+\begin_layout Proposition
+(In einem bipartiten Graphen ist die maximale Kardinalität eines Matchings
+ gleich der minimalen Kardinalität einer Kantenüberdeckung mit Knoten.)
+\end_layout
+
+\begin_layout Subsubsection
+Bestimmung einer Startlösung
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Start
+\series default
+
+\begin_inset Formula $\left(n,C\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Berechne Zeilenminima 
+\begin_inset Formula $u_{i}=\min\left\{ c_{ij}|j=1,\ldots,n\right\} $
+\end_inset
+
+, für alle 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\overline{c}_{ij}=c_{ij}-u_{i}$
+\end_inset
+
+, für alle 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+, 
+\begin_inset Formula $j=1,\ldots,n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Berechne Spaltenminima 
+\begin_inset Formula $v_{j}=\min\left\{ c_{ij}|i=1,\ldots,n\right\} $
+\end_inset
+
+, für alle 
+\begin_inset Formula $j=1,\ldots,n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\overline{c}_{ij}=\overline{c}_{ij}-v_{j}$
+\end_inset
+
+, für alle 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+, 
+\begin_inset Formula $j=1,\ldots,n$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wir gehen nun spaltenweise vor und zeichnen die Null mit dem niedrigsten
+ Zeilenindex als unabhängige Null aus.
+\end_layout
+
+\begin_layout Subsubsection
+Bestimmung einer minimalen Überdeckung
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+MinimusCover
+\series default
+
+\begin_inset Formula $\left(n,\overline{C}\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Alle Zeilen und Spalten von 
+\begin_inset Formula $\overline{C}$
+\end_inset
+
+ seien unmarkiert und nicht überprüft.
+ Sind 
+\begin_inset Formula $n$
+\end_inset
+
+ unabhängige Nullen vorhanden gehe zu (5).
+\end_layout
+
+\begin_layout Enumerate
+Alle Zeilen ohne unabhängige Null erhalten die Markierung 
+\begin_inset Quotes gld
+\end_inset
+
+(
+\begin_inset Formula $-$
+\end_inset
+
+)
+\begin_inset Quotes grd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Gibt es keine markierte, noch nicht überprüfte Zeile, so gehe zu (4).
+\begin_inset Newline newline
+\end_inset
+
+Andernfalls sei 
+\begin_inset Formula $i$
+\end_inset
+
+ eine solche Zeile.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Erkläre 
+\begin_inset Formula $i$
+\end_inset
+
+ für überprüft.
+\end_layout
+
+\begin_layout Enumerate
+Existiert keine unmarkierte Spalte, die in Zeile 
+\begin_inset Formula $i$
+\end_inset
+
+ eine Null enthält, gehe zu (3).
+\begin_inset Newline newline
+\end_inset
+
+Andernfalls sei 
+\begin_inset Formula $j$
+\end_inset
+
+ eine solche Spalte.
+\end_layout
+
+\begin_layout Enumerate
+Markiere 
+\begin_inset Formula $j$
+\end_inset
+
+ mit 
+\begin_inset Quotes gld
+\end_inset
+
+(i)
+\begin_inset Quotes grd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Besitzt 
+\begin_inset Formula $j$
+\end_inset
+
+ schon eine unabhängige Null gehe zu (3.2).
+\begin_inset Newline newline
+\end_inset
+
+Andernfalls kann durch Verfolgen der Markierungen ausgehend von 
+\begin_inset Formula $j$
+\end_inset
+
+ eine alternierende Kette von abhängigen und unabhänigen Nullen konstruiert
+ werden.
+ Ändere die Klassifizierung dieser Nullen und gehe zu (1).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Gibt es keine markierte, noch nicht überprüfte Spalte, so gehe zu (5).
+\begin_inset Newline newline
+\end_inset
+
+Andernfalls sei 
+\begin_inset Formula $j$
+\end_inset
+
+ eine solche Spalte.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Erkläre 
+\begin_inset Formula $j$
+\end_inset
+
+ für überprüft.
+\end_layout
+
+\begin_layout Enumerate
+Markiere die Zeile, in der die unabhängige Null von Spalte 
+\begin_inset Formula $j$
+\end_inset
+
+ steht, mit 
+\begin_inset Quotes gld
+\end_inset
+
+(j)
+\begin_inset Quotes grd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Gehe zu (3).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Die Maximalzahl unabhängiger Nullen ist berechnet.
+ Die zugehörige minimale Überdeckung ergibt sich durch Zeilen, die nicht
+ markiert sind und Spalten, die markiert sind.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Korrektur der Duallösung
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $I$
+\end_inset
+
+ bezeichnet die Indizes der Zeilen der minimalen Überdeckung, 
+\begin_inset Formula $J$
+\end_inset
+
+ die der Spalten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+DualUpdate
+\series default
+
+\begin_inset Formula $\left(n,\overline{C},I,J\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\delta=\min\left\{ \overline{c}_{ij}|i\notin I\wedge j\notin J\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\begin{aligned}u_{i}=\begin{cases}
+u_{i}+\delta\text{,} & \text{für }i\notin I\text{,}\\
+u_{i} & \text{sonst,}
+\end{cases} & \;\;\;\; & v_{j}=\begin{cases}
+v_{j}-\delta\text{,} & \text{für }j\notin J\text{,}\\
+v_{j} & \text{sonst.}
+\end{cases}\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\overline{c}_{ij}=\begin{cases}
+\overline{c}_{ij}-\delta\text{,} & \text{für }i\notin I,j\notin J\text{,}\\
+\overline{c}_{ij}+\delta\text{,} & \text{für }i\in I,j\in J\text{,}\\
+\overline{c}_{ij}, & \text{sonst.}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Die Ungarische Methode löst Zuordnungsprobleme in der Zeit 
+\begin_inset Formula $\mathcal{O}\left(n^{3}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Ein dualer Algorithmus
+\end_layout
+
+\begin_layout Standard
+Im Folgenden werden diese Notationen genutzt:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{ij}=c_{ij}-u_{i}-v_{j}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $I=\left\{ 1,2,\ldots,n\right\} $
+\end_inset
+
+ ist die Menge der Zeilenknoten
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $J=\left\{ 1,2,\ldots,n\right\} $
+\end_inset
+
+ ist die Menge der Spaltenknoten
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $G\left(I,J\right)$
+\end_inset
+
+ ist der vollständige, bipartite Graph mit Kantenmenge 
+\begin_inset Formula $\left\{ \left(i,j\right)|i\in I,j\in J\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Sei 
+\begin_inset Formula $F$
+\end_inset
+
+ ein Subgraph von 
+\begin_inset Formula $G\left(I,J\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) 
+\begin_inset Formula $F$
+\end_inset
+
+ heißt dual zulässig, falls es einen dual zulässigen Vektor 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ gibt, so dass 
+\begin_inset Formula $w_{ij}=0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $\left(i,j\right)\in F$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) 
+\begin_inset Formula $F$
+\end_inset
+
+ heißt primal zulässig, falls es einen primal zulässigen Vektor 
+\begin_inset Formula $x$
+\end_inset
+
+ gibt, so dass 
+\begin_inset Formula $x_{ij}=0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $\left(i,j\right)\in F$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Lemma
+Ist 
+\begin_inset Formula $F$
+\end_inset
+
+ ein primal und dual zulässiger Subgraph von 
+\begin_inset Formula $G\left(I,J\right)$
+\end_inset
+
+, dann sind die zugehörigen Vektoren 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $x$
+\end_inset
+
+ optimal für (AP) bzw.
+ (AP
+\begin_inset Formula $_{D}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Definition*
+Sei 
+\begin_inset Formula $F$
+\end_inset
+
+ ein Subgraph von 
+\begin_inset Formula $G\left(I,J\right)$
+\end_inset
+
+.
+ Ein Knoten hat 
+\series bold
+Valenz
+\series default
+ 
+\begin_inset Formula $d$
+\end_inset
+
+ (bzgl.
+ F), falls sein Knotengrad in F gleich 
+\begin_inset Formula $d$
+\end_inset
+
+ ist.
+\end_layout
+
+\begin_layout Definition
+Ein Subgraph 
+\begin_inset Formula $F$
+\end_inset
+
+ von 
+\begin_inset Formula $G\left(I,J\right)$
+\end_inset
+
+ heißt 
+\series bold
+Superwald
+\series default
+ mit einer Menge von Wurzeln aus 
+\begin_inset Formula $J$
+\end_inset
+
+, falls gilt:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F$
+\end_inset
+
+ ist ein aufspannender Wald
+\end_layout
+
+\begin_layout Itemize
+Jede Komponente von 
+\begin_inset Formula $F$
+\end_inset
+
+ enthält genau eine Wurzel
+\end_layout
+
+\begin_layout Itemize
+Jeder Knoten aus J, der keine Wurzel ist, hat Valenz 2.
+\end_layout
+
+\begin_layout Definition*
+Ein Superwald 
+\begin_inset Formula $F$
+\end_inset
+
+ lässt sich in den 
+\series bold
+Überschuss-Wald
+\series default
+ 
+\begin_inset Formula $F^{S}$
+\end_inset
+
+ und den 
+\series bold
+Defizit-Wald
+\series default
+ 
+\begin_inset Formula $F^{D}$
+\end_inset
+
+ partitionieren, mit
+\end_layout
+
+\begin_layout Definition*
+\begin_inset Formula $F^{S}=\text{Vereinigung der Komponenten von \ensuremath{F}, deren Wurzeln Valenz \ensuremath{\geq2} haben,}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+\begin_inset Formula $F^{D}=\text{Vereinigung der Komponenten von \ensuremath{F}, deren Wurzeln Valenz \ensuremath{0} oder \ensuremath{1} haben.}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Ist 
+\begin_inset Formula $F$
+\end_inset
+
+ dual zulässiger Superwald mit 
+\begin_inset Formula $F^{S}=\emptyset$
+\end_inset
+
+, dann ist der zugehörige Vektor 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ eine Optimallösung von (AP
+\begin_inset Formula $_{D}$
+\end_inset
+
+) und 
+\begin_inset Formula $F$
+\end_inset
+
+ enthält eine optimale Zuordnung.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\shape italic
+AKP
+\series default
+
+\begin_inset Formula $\left(C\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Bestimme einen dual zulässigen Superwald 
+\begin_inset Formula $F_{0}$
+\end_inset
+
+ mit Dualvariablen 
+\begin_inset Formula $\left(u^{0},v^{0}\right)$
+\end_inset
+
+ und setze 
+\begin_inset Formula $i=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $F_{i}$
+\end_inset
+
+ dual zulässig und 
+\begin_inset Formula $F_{i}^{S}$
+\end_inset
+
+ leer ist, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $F_{i}$
+\end_inset
+
+ enthält eine optimale Zuordnung
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Iteration 
+\begin_inset Formula $i$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Bestimme eine geeignete Kante 
+\begin_inset Formula $\left(g,h\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Konstruiere mit Hilfe von 
+\begin_inset Formula $\left(g,h\right)$
+\end_inset
+
+ einen neuen Superwald 
+\begin_inset Formula $F_{i+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Berechne neue Dualvariablen 
+\begin_inset Formula $\left(u^{i+1},v^{i+1}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+ und gehe zu (2).
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Bestimmung einer Startlösung
+\end_layout
+
+\begin_layout Standard
+Bestimme 
+\begin_inset Formula $u_{i}$
+\end_inset
+
+ und 
+\begin_inset Formula $v_{j}$
+\end_inset
+
+ als Zeilen- und Spaltenminima.
+ Erstelle Subgraph 
+\begin_inset Formula $F=\left\{ \left(i,j\right)|w_{ij}=0\right\} $
+\end_inset
+
+.
+ Entferne Kanten und zeichne Knoten aus 
+\begin_inset Formula $J$
+\end_inset
+
+ als Wurzeln aus, bis 
+\begin_inset Formula $F$
+\end_inset
+
+ ein Subgraph ist.
+\end_layout
+
+\begin_layout Subsubsection
+Korrektur des Superwaldes
+\end_layout
+
+\begin_layout Standard
+Wähle die Kante 
+\begin_inset Formula $\left(g,h\right)$
+\end_inset
+
+ mit kleinstem 
+\begin_inset Formula $w_{ij}$
+\end_inset
+
+, die einen 
+\begin_inset Formula $I$
+\end_inset
+
+-Knoten im Überschuss-Wald und einen 
+\begin_inset Formula $J$
+\end_inset
+
+-Knoten im Defizit-Wald verbindet und füge sie dem Superwald hinzu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\delta=w_{gh}=\min\left\{ w_{ij}|i\in I\cap F_{m}^{S},j\in J\cap F_{m}^{D}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Superwald-Eigenschaft muss wiederhergestellt werden.
+ Es können 4 Fälle auftreten:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ToDo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Korrektur der Dualvariablen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $F_{m}^{\ast}$
+\end_inset
+
+ ist anschaulich die Komponente, die 
+\begin_inset Quotes gld
+\end_inset
+
+umgehängt
+\begin_inset Quotes grd
+\end_inset
+
+ wurde.
+\end_layout
+
+\begin_layout Standard
+Ist Fall 1 oder 2 eingetreten, gilt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{i}=\begin{cases}
+u_{i}-\delta, & \text{falls }i\in F_{m}^{\ast}\\
+u_{i} & \text{sonst,}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+v_{j}=\begin{cases}
+v_{j}-\delta, & \text{falls }j\in F_{m}^{\ast}\\
+v_{j} & \text{sonst.}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Fall 3 und 4 sind 
+\begin_inset Formula $+$
+\end_inset
+
+ und 
+\begin_inset Formula $-$
+\end_inset
+
+ vertauscht.
+\end_layout
+
+\begin_layout Lemma
+Falls die Teilwälder 
+\begin_inset Formula $F_{m}^{D}$
+\end_inset
+
+ und 
+\begin_inset Formula $F_{m}^{S}$
+\end_inset
+
+ dual zulässig sind, dann gilt 
+\begin_inset Formula $\delta_{m+1}\geq\delta_{m}$
+\end_inset
+
+ und 
+\begin_inset Formula $\delta_{m+1}\geq$
+\end_inset
+
+-
+\begin_inset Formula $\delta_{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Falls 
+\begin_inset Formula $F_{m}^{D}$
+\end_inset
+
+ und 
+\begin_inset Formula $F_{m}^{S}$
+\end_inset
+
+ dual zulässig sind, dann auch 
+\begin_inset Formula $F_{m+1}^{D}$
+\end_inset
+
+ und 
+\begin_inset Formula $F_{m+1}^{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Der AKP-Algorithmus arbeitet korrekt und löst das Zuordnungsproblem mit
+ Zeitkomplexität 
+\begin_inset Formula $\mathcal{O}\left(n^{3}\right)$
+\end_inset
+
+.
 \end_layout
 
 \end_body
