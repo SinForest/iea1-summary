@@ -7375,16 +7375,266 @@ Wähle die Kante
 
 \begin_layout Standard
 Die Superwald-Eigenschaft muss wiederhergestellt werden.
- Es können 4 Fälle auftreten:
+ Es können 4 Fälle auftreten.
+\begin_inset Newline newline
+\end_inset
+
+In Fall 1 und 2 wird der Überschuss-Wald größer:
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="50text%">
+<column alignment="center" valignment="top" width="50text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
 
 \begin_layout Plain Layout
-ToDo
+
+\series bold
+Fall 1:
+\series default
+ 
+\begin_inset Formula $h$
+\end_inset
+
+ ist eine Wurzel mit Valenz 1
 \end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Fall 2:
+\series default
+ 
+\begin_inset Formula $h$
+\end_inset
+
+ ist keine Wurzel (und hat Vater 
+\begin_inset Formula $k$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagramme/akp_case1.svg
+	lyxscale 15
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagramme/akp_case2.svg
+	lyxscale 15
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}}, die \ensuremath{h} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\setminus F_{m}^{\ast}\\
+F_{m+1}^{S}= & F_{m}^{S}\cup F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} 
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}^{D}\setminus\left\{ \left(k,h\right)\right\} }, die \ensuremath{h} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\setminus\left(F_{m}^{\ast}\cup\left\{ \left(k,h\right)\right\} \right)\\
+F_{m+1}^{S}= & F_{m}^{S}\cup\left(F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} \right)
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Fall 3 und 4 wird der Überschuss-Wald kleiner:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="50text%">
+<column alignment="center" valignment="top" width="50text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Fall 3:
+\series default
+ 
+\begin_inset Formula $h$
+\end_inset
+
+ ist isolierte Wurzel und die Wurzel 
+\begin_inset Formula $j$
+\end_inset
+
+ der Komponente von 
+\begin_inset Formula $g$
+\end_inset
+
+ hat Valenz 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Fall 4:
+\series default
+ 
+\begin_inset Formula $h$
+\end_inset
+
+ ist isolierte Wurzel und die Wurzel 
+\begin_inset Formula $j$
+\end_inset
+
+ der Komponente von 
+\begin_inset Formula $g$
+\end_inset
+
+ hat Valenz >2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagramme/akp_case3.svg
+	lyxscale 15
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagramme/akp_case4.svg
+	lyxscale 15
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}^{S}}, die \ensuremath{g} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\cup F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} \\
+F_{m+1}^{S}= & F_{m}^{S}\setminus F_{m}^{\ast}
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}^{S}\setminus\left\{ \left(j,i\right)\right\} }, die \ensuremath{g} enthält,}\\
+ & \text{mit \ensuremath{i} als Sohn von \ensuremath{j} im Ast der \ensuremath{g} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\cup F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} \\
+F_{m+1}^{S}= & F_{m}^{S}\setminus\left(F_{m}^{\ast}\cup\left\{ \left(j,i\right)\right\} \right)
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
@@ -7432,7 +7682,7 @@ u_{i} & \text{sonst,}
 \begin_inset Formula 
 \[
 v_{j}=\begin{cases}
-v_{j}-\delta, & \text{falls }j\in F_{m}^{\ast}\\
+v_{j}+\delta, & \text{falls }j\in F_{m}^{\ast}\\
 v_{j} & \text{sonst.}
 \end{cases}
 \]
@@ -7516,6 +7766,1256 @@ Falls
 Der AKP-Algorithmus arbeitet korrekt und löst das Zuordnungsproblem mit
  Zeitkomplexität 
 \begin_inset Formula $\mathcal{O}\left(n^{3}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Maximale Flüsse und minimale Schnitte
+\end_layout
+
+\begin_layout Definition*
+Ein 
+\series bold
+Flussnetzwerk
+\series default
+ ist ein Digraph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Kantenkapazitäten 
+\begin_inset Formula $c\left(u,v\right)\geq0$
+\end_inset
+
+ für alle Kanten 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+, einer 
+\series bold
+Quelle
+\series default
+ 
+\begin_inset Formula $s\in V$
+\end_inset
+
+ und einer 
+\series bold
+Senke
+\series default
+ 
+\begin_inset Formula $t\in V$
+\end_inset
+
+.
+ 
+\begin_inset Formula $D$
+\end_inset
+
+ ist zusammenhängend und für jeden Knoten 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ existiert ein 
+\begin_inset Formula $\left(s,v\right)$
+\end_inset
+
+-Weg so wie ein 
+\begin_inset Formula $\left(v,t\right)$
+\end_inset
+
+-Weg.
+\end_layout
+
+\begin_layout Definition
+Ein 
+\series bold
+
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss
+\series default
+ in 
+\begin_inset Formula $D$
+\end_inset
+
+ ist eine Funktion 
+\begin_inset Formula $f:V\times V\rightarrow\mathbb{R}$
+\end_inset
+
+ mit den Eigenschaften
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $\begin{aligned}f\left(u,v\right)\leq & c\left(u,v\right)\text{, für alle }u,v\in V & \text{(Kapazitätsbeschränkung)}\\
+f\left(u,v\right)= & -f\left(u,v\right)\text{, für alle }u,v\in V & \text{(Antisymmetrie)}\\
+\sum_{v\in V}f\left(u,v\right)= & 0\text{, für alle }u\in V\setminus\left\{ s,t\right\}  & \text{(Flusserhaltung)}
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Die Zahl 
+\begin_inset Formula $f\left(u,v\right)$
+\end_inset
+
+ heißt Netto-Fluss von 
+\begin_inset Formula $u$
+\end_inset
+
+ nach 
+\begin_inset Formula $v$
+\end_inset
+
+.
+ Der 
+\series bold
+Wert
+\series default
+ von 
+\begin_inset Formula $f$
+\end_inset
+
+ ist 
+\begin_inset Formula $\left|f\right|:=\sum_{v\in V}f\left(s,v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Maximaler-
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss-Problem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben sind ein Digraph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Kantenkapazitäten und zwei Knoten 
+\begin_inset Formula $s,t\in V$
+\end_inset
+
+.
+ Zu bestimmen ist ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss maximalen Werts.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Für 
+\begin_inset Formula $\left(u,v\right)\notin A$
+\end_inset
+
+ setzen wir 
+\begin_inset Formula $c\left(u,v\right)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Der 
+\series bold
+positive Nettofluss
+\series default
+ in einen Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ ist definiert als 
+\begin_inset Formula 
+\[
+\sum_{\substack{u\in V\\
+f\left(u,v\right)>0
+}
+}f\left(u,v\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Der positive Nettofluss 
+\emph on
+aus
+\emph default
+ einem Knoten ist analog.
+\end_layout
+
+\begin_layout Definition
+Für Knotenmengen 
+\begin_inset Formula $X$
+\end_inset
+
+ und 
+\begin_inset Formula $Y$
+\end_inset
+
+ gilt die Kurzschreibweise
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+f\left(X,Y\right)=\sum_{x\in X}\sum_{y\in Y}f\left(x,y\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $D$
+\end_inset
+
+ ein Netzwerk und 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Fluss.
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) Für 
+\begin_inset Formula $X\subseteq V$
+\end_inset
+
+ gilt 
+\begin_inset Formula $f\left(X,X\right)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) Für 
+\begin_inset Formula $X,Y\subseteq V$
+\end_inset
+
+ gilt 
+\begin_inset Formula $f\left(X,Y\right)=-f\left(Y,X\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+c) Für 
+\begin_inset Formula $X,Y,Z\subseteq V$
+\end_inset
+
+ mit 
+\begin_inset Formula $X\cap Y=\emptyset$
+\end_inset
+
+ gilt 
+\begin_inset Formula $f\left(X\cup Y,Z\right)=f\left(X,Z\right)+f\left(Y,Z\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $f\left(Z,X\cup Y\right)=f\left(Z,X\right)+f\left(Z,Y\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Der Algorithmus von Ford und Fulkerson
+\end_layout
+
+\begin_layout Definition*
+Die 
+\series bold
+Restkapazität
+\series default
+ ist definiert als 
+\begin_inset Formula $c_{f}\left(u,v\right)=c\left(u,v\right)-f\left(u,v\right)$
+\end_inset
+
+.
+ Das 
+\series bold
+reduzierte Netzwerk
+\series default
+ 
+\begin_inset Formula $D_{f}=\left(V,A_{f}\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $A_{f}=\left\{ \left(u,v\right)\in V\times V|c_{f}\left(u,v\right)>0\right\} $
+\end_inset
+
+ enthält die möglichen, zusätzlichen Nettoflüsse.
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $D$
+\end_inset
+
+ ein Netzwerk mit 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ sei das zugehörige reduzierte Netzwerk und 
+\begin_inset Formula $f^{\prime}$
+\end_inset
+
+ sei ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss in 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+.
+ Dann ist 
+\begin_inset Formula $\overline{f}$
+\end_inset
+
+ definiert durch 
+\begin_inset Formula $\overline{f}\left(u,v\right)=f\left(u,v\right)+f^{\prime}\left(u,v\right)$
+\end_inset
+
+ ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss in 
+\begin_inset Formula $D$
+\end_inset
+
+ mit Wert 
+\begin_inset Formula $\left|f\right|+\left|f^{\prime}\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+Ein einfacher 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg in 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ heißt 
+\series bold
+augmentierender Weg
+\series default
+ 
+\begin_inset Formula $P$
+\end_inset
+
+ mit 
+\series bold
+Restkapazität
+\series default
+ 
+\begin_inset Formula $c_{f}\left(P\right)=\min\left\{ c_{f}\left(u,v\right)|\left(u,v\right)\in P\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+Ein 
+\series bold
+
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Schnitt
+\series default
+ 
+\begin_inset Formula $\left(S:T\right)$
+\end_inset
+
+ ist eine Partition von 
+\begin_inset Formula $V$
+\end_inset
+
+ in 
+\begin_inset Formula $S$
+\end_inset
+
+ und 
+\begin_inset Formula $T=V\setminus S$
+\end_inset
+
+, wobei 
+\begin_inset Formula $s\in S$
+\end_inset
+
+ und 
+\begin_inset Formula $t\in T.$
+\end_inset
+
+ Der 
+\series bold
+Nettofluss über dem Schnitt
+\series default
+ 
+\begin_inset Formula $\left(S:T\right)$
+\end_inset
+
+ ist definiert als 
+\begin_inset Formula $f\left(S,T\right)$
+\end_inset
+
+.
+ Seine Kapazität ist 
+\begin_inset Formula $c\left(S:T\right)={\displaystyle \sum_{u\in S}\sum_{v\in T}c\left(u,v\right)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Minimaler-
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Schnitt-Problem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben sind ein Digraph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Kantenkapazitäten und zwei Knoten 
+\begin_inset Formula $s,t\in V$
+\end_inset
+
+.
+ Zu bestimmen ist ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Schnitt minimaler Kapazität.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Seien 
+\begin_inset Formula $f$
+\end_inset
+
+ ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss 
+\begin_inset Formula $D$
+\end_inset
+
+ und 
+\begin_inset Formula $\left(S:T\right)$
+\end_inset
+
+ ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Schnitt.
+ Dann gelten:
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) 
+\begin_inset Formula $f\left(S,T\right)=\left|f\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) 
+\begin_inset Formula $\left|f\right|\leq c\left(S:T\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proposition
+
+\series bold
+(Max-Flow-Min-Cut-Theorem)
+\end_layout
+
+\begin_layout Proposition
+Sei 
+\begin_inset Formula $f$
+\end_inset
+
+ ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss in 
+\begin_inset Formula $D$
+\end_inset
+
+.
+ Die folgenden Aussagen sind äquivalent:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f$
+\end_inset
+
+ ist maximaler Fluss.
+\end_layout
+
+\begin_layout Itemize
+Das reduzierte Netzwerk enthält keinen augmentierenden Weg.
+\end_layout
+
+\begin_layout Itemize
+Es gibt einen Schnitt 
+\begin_inset Formula $\left(S:T\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $c\left(S:T\right)=\left|f\right|$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+FordFulkerson
+\series default
+
+\begin_inset Formula $\left(D,c,s,t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ setze 
+\begin_inset Formula $f\left[u,v\right]=f\left[v,u\right]=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Konstruiere das reduzierte Netzwerk 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls kein augmentierender 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg existiert, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $f$
+\end_inset
+
+ ist maximal
+\begin_inset Quotes grd
+\end_inset
+
+), andernfalls sei 
+\begin_inset Formula $P$
+\end_inset
+
+ ein solcher Weg mit Restkapazität 
+\begin_inset Formula $c_{f}\left(P\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für jede Kante 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ des Weges 
+\begin_inset Formula $P$
+\end_inset
+
+ setze 
+\begin_inset Formula $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $f\left[v,u\right]=-f\left[u,v\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Gehe zu (2).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(A\left|f^{\ast}\right|\right)$
+\end_inset
+
+ -> nicht poly!
+\end_layout
+
+\begin_layout Standard
+Ein minimaler Schnitt wird gleich mitgeliefert.
+ Eine Seite sind alle Knoten, zu denen kein augmentierender Weg mehr gefunden
+ werden kann.
+\end_layout
+
+\begin_layout Corollary
+Wenn alle Kapazitäten ganzzahlig sind, dann existiert ein ganzzahliger maximaler
+ Fluss.
+\end_layout
+
+\begin_layout Proposition
+Sei 
+\begin_inset Formula $f$
+\end_inset
+
+ ein 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss in 
+\begin_inset Formula $D$
+\end_inset
+
+.
+ Dann gibt es eine Familie von 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Wegen 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ und (gerichteten) Kreisen 
+\begin_inset Formula $\mathcal{C}$
+\end_inset
+
+ in 
+\begin_inset Formula $D$
+\end_inset
+
+ mit Gewichten 
+\begin_inset Formula $w_{P},P\in\mathcal{P}$
+\end_inset
+
+, und 
+\begin_inset Formula $w_{C},C\in\mathcal{C}$
+\end_inset
+
+, so dass
+\begin_inset Formula 
+\[
+f\left(u,v\right)=\sum_{P\in\mathcal{P}}\sum_{\left(u,v\right)\in P}w_{P}+\sum_{C\in\mathcal{C}}\sum_{\left(u,v\right)\in C}w_{C}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Der Satz von Menger
+\end_layout
+
+\begin_layout Standard
+(Dieses Kapitel zeigt, wie toll man einige Dinge mit Flüssen beweisen kann
+ und 
+\emph on
+ergibt
+\emph default
+ ohne die Beweise leider nicht viel Sinn.)
+\end_layout
+
+\begin_layout Proposition
+Seien 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ ein gerichteter Graph und 
+\begin_inset Formula $s,t$
+\end_inset
+
+ zwei Knoten in 
+\begin_inset Formula $V$
+\end_inset
+
+.
+ Für 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+ gibt es 
+\begin_inset Formula $k$
+\end_inset
+
+ kantendisjunkte 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Wege genau dann, wenn es auch nach Entfernen von 
+\begin_inset Formula $k-1$
+\end_inset
+
+ beliebigen Kanten noch einen Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $t$
+\end_inset
+
+ gibt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Seien 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ ein Digraph und 
+\begin_inset Formula $s,t$
+\end_inset
+
+ zwei nicht benachbarte Knoten in 
+\begin_inset Formula $V$
+\end_inset
+
+.
+ Für 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+ gibt es 
+\begin_inset Formula $k$
+\end_inset
+
+ intern knotendisjunkte 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Wege genau dann, wenn es auch nach Entfernen von 
+\begin_inset Formula $k-1$
+\end_inset
+
+ beliebigen Knoten noch einen Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $t$
+\end_inset
+
+ gibt.
+\end_layout
+
+\begin_layout Subsection
+Der Algorithmus von Edmonds und Karp
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+EdmondsKarp
+\series default
+
+\begin_inset Formula $\left(D,c,s,t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ setze 
+\begin_inset Formula $f\left[u,v\right]=f\left[v,u\right]=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Konstruiere das reduzierte Netzwerk 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls kein augmentierender 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg existiert, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $f$
+\end_inset
+
+ ist maximal
+\begin_inset Quotes grd
+\end_inset
+
+), andernfalls sei 
+\begin_inset Formula $P$
+\end_inset
+
+ ein solcher Weg 
+\emph on
+mit möglichst wenigen Kanten
+\emph default
+ und Restkapazität 
+\begin_inset Formula $c_{f}\left(P\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für jede Kante 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ des Weges 
+\begin_inset Formula $P$
+\end_inset
+
+ setze 
+\begin_inset Formula $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $f\left[v,u\right]=-f\left[u,v\right]$
+\end_inset
+
+.
+ Gehe zu (2).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(VA\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{f}\left(u,v\right)$
+\end_inset
+
+ ist die Kürzeste-Wege-Distanz von 
+\begin_inset Formula $u$
+\end_inset
+
+ nach 
+\begin_inset Formula $v$
+\end_inset
+
+ im reduzierten Netzwerk, gemessen in Anzahl der Kanten.
+\end_layout
+
+\begin_layout Lemma
+Die Edmonds-Karp-Variante werde auf das Netzwerk
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Quelle 
+\begin_inset Formula $s$
+\end_inset
+
+ und Senke 
+\begin_inset Formula $t$
+\end_inset
+
+ angewendet.
+\end_layout
+
+\begin_layout Lemma
+Dann nehmen für jeden Knoten 
+\begin_inset Formula $v\in V\setminus\left\{ s,t\right\} $
+\end_inset
+
+ die Distanzen 
+\begin_inset Formula $\delta_{f}\left(s,v\right)$
+\end_inset
+
+ bei jeder Augmentierung nicht ab.
+\end_layout
+
+\begin_layout Proposition
+Die Edmonds-Karp-Variante führt 
+\begin_inset Formula $\mathcal{O}\left(VA\right)$
+\end_inset
+
+ Augmentierungen durch.
+\end_layout
+
+\begin_layout Subsection
+Die Skalierungsvariante von Ahuja und Orlin
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+ScalingMaxFlow
+\series default
+
+\begin_inset Formula $\left(D,c,s,t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $C=\max\left\{ c\left(u,v\right)|\left(u,v\right)\in A\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Beginne mit dem 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss 
+\begin_inset Formula $f\equiv0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $K=2^{\left\lfloor \log_{2}C\right\rfloor }$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $K\geq1$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+So lange es einen augmentierenden Weg mit Restkapazität 
+\begin_inset Formula $\geq k$
+\end_inset
+
+ gibt, augmentiere 
+\begin_inset Formula $f$
+\end_inset
+
+ mit Hilfe dieses Weges.
+\end_layout
+
+\begin_layout Enumerate
+Setzte
+\begin_inset Formula $K=K/2$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Der Fluss 
+\begin_inset Formula $f$
+\end_inset
+
+ ist ein maximaler Fluss.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(A^{2}\log C\right)$
+\end_inset
+
+, kann zu 
+\begin_inset Formula $\mathcal{O}\left(VA\log C\right)$
+\end_inset
+
+ verbessert werden.
+\end_layout
+
+\begin_layout Lemma
+Vor der Ausführung von Schritt (4.1) ist die Kapazität eines minimalen Schnitts
+ im reduzierten Netzwerk höchstens 
+\begin_inset Formula $2\cdot K\cdot\left|A\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Für festes 
+\begin_inset Formula $K$
+\end_inset
+
+ erfolgen 
+\begin_inset Formula $\mathcal{O}\left(A\right)$
+\end_inset
+
+ Augmentierungen in Schritt (4.1).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Der Algorithmus ScalingMaxFlow hat die Zeitkomplexität 
+\begin_inset Formula $\mathcal{O}\left(A^{2}\log C\right)$
 \end_inset
 
 .

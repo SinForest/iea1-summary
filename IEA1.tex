@@ -1477,8 +1477,51 @@ verbindet und füge sie dem Superwald hinzu:
 \]
 
 Die Superwald-Eigenschaft muss wiederhergestellt werden. Es können
-4 Fälle auftreten:
+4 Fälle auftreten.\\
+In Fall 1 und 2 wird der Überschuss-Wald größer:
 
+\begin{tabular}{|>{\centering}p{0.5\textwidth}|>{\centering}p{0.5\textwidth}|}
+\hline 
+\textbf{Fall 1:} $h$ ist eine Wurzel mit Valenz 1 & \textbf{Fall 2:} $h$ ist keine Wurzel (und hat Vater $k$)\tabularnewline
+\hline 
+\hline 
+\includegraphics[scale=0.17]{diagramme/akp_case1} & \includegraphics[scale=0.17]{diagramme/akp_case2}\tabularnewline
+\hline 
+$\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}}, die \ensuremath{h} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\setminus F_{m}^{\ast}\\
+F_{m+1}^{S}= & F_{m}^{S}\cup F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} 
+\end{aligned}
+$ & $\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}^{D}\setminus\left\{ \left(k,h\right)\right\} }, die \ensuremath{h} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\setminus\left(F_{m}^{\ast}\cup\left\{ \left(k,h\right)\right\} \right)\\
+F_{m+1}^{S}= & F_{m}^{S}\cup\left(F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} \right)
+\end{aligned}
+$\tabularnewline
+\hline 
+\end{tabular}
+
+In Fall 3 und 4 wird der Überschuss-Wald kleiner:
+
+\begin{tabular}{|>{\centering}p{0.5\textwidth}|>{\centering}p{0.5\textwidth}|}
+\hline 
+\textbf{Fall 3:} $h$ ist isolierte Wurzel und die Wurzel $j$ der
+Komponente von $g$ hat Valenz 2 & \textbf{Fall 4:} $h$ ist isolierte Wurzel und die Wurzel $j$ der
+Komponente von $g$ hat Valenz >2\tabularnewline
+\hline 
+\hline 
+\includegraphics[scale=0.17]{diagramme/akp_case3} & \includegraphics[scale=0.17]{diagramme/akp_case4}\tabularnewline
+\hline 
+$\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}^{S}}, die \ensuremath{g} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\cup F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} \\
+F_{m+1}^{S}= & F_{m}^{S}\setminus F_{m}^{\ast}
+\end{aligned}
+$ & $\begin{aligned}F_{m}^{\ast}= & \text{ Komponente von \ensuremath{F_{m}^{S}\setminus\left\{ \left(j,i\right)\right\} }, die \ensuremath{g} enthält,}\\
+ & \text{mit \ensuremath{i} als Sohn von \ensuremath{j} im Ast der \ensuremath{g} enthält}\\
+F_{m+1}^{D}= & F_{m}^{D}\cup F_{m}^{\ast}\cup\left\{ \left(g,h\right)\right\} \\
+F_{m+1}^{S}= & F_{m}^{S}\setminus\left(F_{m}^{\ast}\cup\left\{ \left(j,i\right)\right\} \right)
+\end{aligned}
+$\tabularnewline
+\hline 
+\end{tabular}
 
 \subsubsection{Korrektur der Dualvariablen}
 
@@ -1496,7 +1539,7 @@ u_{i} & \text{sonst,}
 
 \[
 v_{j}=\begin{cases}
-v_{j}-\delta, & \text{falls }j\in F_{m}^{\ast}\\
+v_{j}+\delta, & \text{falls }j\in F_{m}^{\ast}\\
 v_{j} & \text{sonst.}
 \end{cases}
 \]
@@ -1515,6 +1558,249 @@ $F_{m+1}^{D}$ und $F_{m+1}^{S}$.
 \begin{prop}
 Der AKP-Algorithmus arbeitet korrekt und löst das Zuordnungsproblem
 mit Zeitkomplexität $\mathcal{O}\left(n^{3}\right)$.
+\end{prop}
+
+
+\section{Maximale Flüsse und minimale Schnitte}
+\begin{defn*}
+Ein \textbf{Flussnetzwerk} ist ein Digraph $D=\left(V,A\right)$ mit
+Kantenkapazitäten $c\left(u,v\right)\geq0$ für alle Kanten $\left(u,v\right)$,
+einer \textbf{Quelle} $s\in V$ und einer \textbf{Senke} $t\in V$.
+$D$ ist zusammenhängend und für jeden Knoten $v\in V$ existiert
+ein $\left(s,v\right)$-Weg so wie ein $\left(v,t\right)$-Weg.
+\end{defn*}
+\begin{defn}
+Ein \textbf{$\left(s,t\right)$-Fluss} in $D$ ist eine Funktion $f:V\times V\rightarrow\mathbb{R}$
+mit den Eigenschaften
+
+$\begin{aligned}f\left(u,v\right)\leq & c\left(u,v\right)\text{, für alle }u,v\in V & \text{(Kapazitätsbeschränkung)}\\
+f\left(u,v\right)= & -f\left(u,v\right)\text{, für alle }u,v\in V & \text{(Antisymmetrie)}\\
+\sum_{v\in V}f\left(u,v\right)= & 0\text{, für alle }u\in V\setminus\left\{ s,t\right\}  & \text{(Flusserhaltung)}
+\end{aligned}
+$
+
+Die Zahl $f\left(u,v\right)$ heißt Netto-Fluss von $u$ nach $v$.
+Der \textbf{Wert} von $f$ ist $\left|f\right|:=\sum_{v\in V}f\left(s,v\right)$.
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Maximaler-$\left(s,t\right)$-Fluss-Problem}
+
+\smallskip{}
+
+Gegeben sind ein Digraph $D=\left(V,A\right)$ mit Kantenkapazitäten
+und zwei Knoten $s,t\in V$. Zu bestimmen ist ein $\left(s,t\right)$-Fluss
+maximalen Werts.%
+\end{minipage}}
+
+Für $\left(u,v\right)\notin A$ setzen wir $c\left(u,v\right)=0$.
+
+Der \textbf{positive Nettofluss} in einen Knoten $v$ ist definiert
+als 
+\[
+\sum_{\substack{u\in V\\
+f\left(u,v\right)>0
+}
+}f\left(u,v\right)
+\]
+
+Der positive Nettofluss \emph{aus} einem Knoten ist analog.
+
+Für Knotenmengen $X$ und $Y$ gilt die Kurzschreibweise
+
+\[
+f\left(X,Y\right)=\sum_{x\in X}\sum_{y\in Y}f\left(x,y\right)
+\]
+\end{defn}
+
+\begin{lem}
+Sei $D$ ein Netzwerk und $f$ ein Fluss.
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] Für $X\subseteq V$ gilt $f\left(X,X\right)=0$.
+\item [{b)}] Für $X,Y\subseteq V$ gilt $f\left(X,Y\right)=-f\left(Y,X\right)$.
+\item [{c)}] Für $X,Y,Z\subseteq V$ mit $X\cap Y=\emptyset$ gilt $f\left(X\cup Y,Z\right)=f\left(X,Z\right)+f\left(Y,Z\right)$
+und $f\left(Z,X\cup Y\right)=f\left(Z,X\right)+f\left(Z,Y\right)$.
+\end{lyxlist}
+\end{lem}
+
+
+\subsection{Der Algorithmus von Ford und Fulkerson}
+\begin{defn*}
+Die \textbf{Restkapazität} ist definiert als $c_{f}\left(u,v\right)=c\left(u,v\right)-f\left(u,v\right)$.
+Das \textbf{reduzierte Netzwerk} $D_{f}=\left(V,A_{f}\right)$ mit
+$A_{f}=\left\{ \left(u,v\right)\in V\times V|c_{f}\left(u,v\right)>0\right\} $
+enthält die möglichen, zusätzlichen Nettoflüsse.
+\end{defn*}
+\begin{lem}
+Sei $D$ ein Netzwerk mit $\left(s,t\right)$-Fluss $f$. $D_{f}$
+sei das zugehörige reduzierte Netzwerk und $f^{\prime}$ sei ein $\left(s,t\right)$-Fluss
+in $D_{f}$. Dann ist $\overline{f}$ definiert durch $\overline{f}\left(u,v\right)=f\left(u,v\right)+f^{\prime}\left(u,v\right)$
+ein $\left(s,t\right)$-Fluss in $D$ mit Wert $\left|f\right|+\left|f^{\prime}\right|$.
+\end{lem}
+
+\begin{defn*}
+Ein einfacher $\left(s,t\right)$-Weg in $D_{f}$ heißt \textbf{augmentierender
+Weg} $P$ mit \textbf{Restkapazität} $c_{f}\left(P\right)=\min\left\{ c_{f}\left(u,v\right)|\left(u,v\right)\in P\right\} $.
+\end{defn*}
+%
+\begin{defn*}
+Ein \textbf{$\left(s,t\right)$-Schnitt} $\left(S:T\right)$ ist eine
+Partition von $V$ in $S$ und $T=V\setminus S$, wobei $s\in S$
+und $t\in T.$ Der \textbf{Nettofluss über dem Schnitt} $\left(S:T\right)$
+ist definiert als $f\left(S,T\right)$. Seine Kapazität ist $c\left(S:T\right)={\displaystyle \sum_{u\in S}\sum_{v\in T}c\left(u,v\right)}$.
+\end{defn*}
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Minimaler-$\left(s,t\right)$-Schnitt-Problem}
+
+\smallskip{}
+
+Gegeben sind ein Digraph $D=\left(V,A\right)$ mit Kantenkapazitäten
+und zwei Knoten $s,t\in V$. Zu bestimmen ist ein $\left(s,t\right)$-Schnitt
+minimaler Kapazität.%
+\end{minipage}}
+\begin{lem}
+Seien $f$ ein $\left(s,t\right)$-Fluss $D$ und $\left(S:T\right)$
+ein $\left(s,t\right)$-Schnitt. Dann gelten:
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] $f\left(S,T\right)=\left|f\right|$.
+\item [{b)}] $\left|f\right|\leq c\left(S:T\right)$.
+\end{lyxlist}
+\end{lem}
+
+\begin{prop}
+\textbf{(Max-Flow-Min-Cut-Theorem)}
+
+Sei $f$ ein $\left(s,t\right)$-Fluss in $D$. Die folgenden Aussagen
+sind äquivalent:
+\begin{itemize}
+\item $f$ ist maximaler Fluss.
+\item Das reduzierte Netzwerk enthält keinen augmentierenden Weg.
+\item Es gibt einen Schnitt $\left(S:T\right)$ mit $c\left(S:T\right)=\left|f\right|$.
+\end{itemize}
+\end{prop}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{FordFulkerson}$\left(D,c,s,t\right)$:
+\begin{enumerate}
+\item Für alle $\left(u,v\right)\in A$ setze $f\left[u,v\right]=f\left[v,u\right]=0$.
+\item Konstruiere das reduzierte Netzwerk $D_{f}$.
+\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(,,$f$
+ist maximal``), andernfalls sei $P$ ein solcher Weg mit Restkapazität
+$c_{f}\left(P\right)$.
+\item Für jede Kante $\left(u,v\right)$ des Weges $P$ setze $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
+und $f\left[v,u\right]=-f\left[u,v\right]$.
+\item Gehe zu (2).
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(A\left|f^{\ast}\right|\right)$ -> nicht
+poly!
+
+Ein minimaler Schnitt wird gleich mitgeliefert. Eine Seite sind alle
+Knoten, zu denen kein augmentierender Weg mehr gefunden werden kann.
+\begin{cor}
+Wenn alle Kapazitäten ganzzahlig sind, dann existiert ein ganzzahliger
+maximaler Fluss.
+\end{cor}
+
+\begin{prop}
+Sei $f$ ein $\left(s,t\right)$-Fluss in $D$. Dann gibt es eine
+Familie von $\left(s,t\right)$-Wegen $\mathcal{P}$ und (gerichteten)
+Kreisen $\mathcal{C}$ in $D$ mit Gewichten $w_{P},P\in\mathcal{P}$,
+und $w_{C},C\in\mathcal{C}$, so dass
+\[
+f\left(u,v\right)=\sum_{P\in\mathcal{P}}\sum_{\left(u,v\right)\in P}w_{P}+\sum_{C\in\mathcal{C}}\sum_{\left(u,v\right)\in C}w_{C}
+\]
+\end{prop}
+
+
+\subsection{Der Satz von Menger}
+
+(Dieses Kapitel zeigt, wie toll man einige Dinge mit Flüssen beweisen
+kann und \emph{ergibt} ohne die Beweise leider nicht viel Sinn.)
+\begin{prop}
+Seien $D=\left(V,A\right)$ ein gerichteter Graph und $s,t$ zwei
+Knoten in $V$. Für $k\geq1$ gibt es $k$ kantendisjunkte $\left(s,t\right)$-Wege
+genau dann, wenn es auch nach Entfernen von $k-1$ beliebigen Kanten
+noch einen Weg von $s$ nach $t$ gibt.
+\end{prop}
+
+\begin{prop}
+Seien $D=\left(V,A\right)$ ein Digraph und $s,t$ zwei nicht benachbarte
+Knoten in $V$. Für $k\geq1$ gibt es $k$ intern knotendisjunkte
+$\left(s,t\right)$-Wege genau dann, wenn es auch nach Entfernen von
+$k-1$ beliebigen Knoten noch einen Weg von $s$ nach $t$ gibt.
+\end{prop}
+
+
+\subsection{Der Algorithmus von Edmonds und Karp}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{EdmondsKarp}$\left(D,c,s,t\right)$:
+\begin{enumerate}
+\item Für alle $\left(u,v\right)\in A$ setze $f\left[u,v\right]=f\left[v,u\right]=0$.
+\item Konstruiere das reduzierte Netzwerk $D_{f}$.
+\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(,,$f$
+ist maximal``), andernfalls sei $P$ ein solcher Weg \emph{mit möglichst
+wenigen Kanten} und Restkapazität $c_{f}\left(P\right)$.
+\item Für jede Kante $\left(u,v\right)$ des Weges $P$ setze $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
+und $f\left[v,u\right]=-f\left[u,v\right]$. Gehe zu (2).
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(VA\right)$
+
+$\delta_{f}\left(u,v\right)$ ist die Kürzeste-Wege-Distanz von $u$
+nach $v$ im reduzierten Netzwerk, gemessen in Anzahl der Kanten.
+\begin{lem}
+Die Edmonds-Karp-Variante werde auf das Netzwerk$D=\left(V,A\right)$
+mit Quelle $s$ und Senke $t$ angewendet.
+
+Dann nehmen für jeden Knoten $v\in V\setminus\left\{ s,t\right\} $
+die Distanzen $\delta_{f}\left(s,v\right)$ bei jeder Augmentierung
+nicht ab.
+\end{lem}
+
+\begin{prop}
+Die Edmonds-Karp-Variante führt $\mathcal{O}\left(VA\right)$ Augmentierungen
+durch.
+\end{prop}
+
+
+\subsection{Die Skalierungsvariante von Ahuja und Orlin}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{ScalingMaxFlow}$\left(D,c,s,t\right)$:
+\begin{enumerate}
+\item Setze $C=\max\left\{ c\left(u,v\right)|\left(u,v\right)\in A\right\} $.
+\item Beginne mit dem $\left(s,t\right)$-Fluss $f\equiv0$.
+\item Setze $K=2^{\left\lfloor \log_{2}C\right\rfloor }$.
+\item Solange $K\geq1$:
+\begin{enumerate}
+\item So lange es einen augmentierenden Weg mit Restkapazität $\geq k$
+gibt, augmentiere $f$ mit Hilfe dieses Weges.
+\item Setzte$K=K/2$.
+\end{enumerate}
+\item Der Fluss $f$ ist ein maximaler Fluss.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(A^{2}\log C\right)$, kann zu $\mathcal{O}\left(VA\log C\right)$
+verbessert werden.
+\begin{lem}
+Vor der Ausführung von Schritt (4.1) ist die Kapazität eines minimalen
+Schnitts im reduzierten Netzwerk höchstens $2\cdot K\cdot\left|A\right|$.
+\end{lem}
+
+\begin{lem}
+Für festes $K$ erfolgen $\mathcal{O}\left(A\right)$ Augmentierungen
+in Schritt (4.1).
+\end{lem}
+
+\begin{prop}
+Der Algorithmus ScalingMaxFlow hat die Zeitkomplexität $\mathcal{O}\left(A^{2}\log C\right)$.
 \end{prop}
 
 
