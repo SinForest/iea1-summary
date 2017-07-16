@@ -1749,7 +1749,7 @@ und $f\left[v,u\right]=-f\left[u,v\right]$. Gehe zu (2).
 %
 \end{minipage}}
 
-Laufzeit: $\mathcal{O}\left(VA\right)$
+Laufzeit: $\mathcal{O}\left(VA^{2}\right)$
 
 $\delta_{f}\left(u,v\right)$ ist die Kürzeste-Wege-Distanz von $u$
 nach $v$ im reduzierten Netzwerk, gemessen in Anzahl der Kanten.
@@ -1804,4 +1804,175 @@ Der Algorithmus ScalingMaxFlow hat die Zeitkomplexität $\mathcal{O}\left(A^{2}\l
 \end{prop}
 
 
+\subsection{Der Preflow-Push-Algorithmus}
+\begin{defn}
+Ein Präfluss in einem Netzwerk $D$ ist eine Funktion $f:V\times V\rightarrow\mathbb{R}$
+mit den Eigenschaften
+\begin{itemize}
+\item $f\left(u,v\right)\leq c\left(u,v\right)$, für alle $u,v\in V$,
+\item $f\left(u,v\right)=-f\left(u,v\right)$, für alle $u,v\in V$,
+\item $f\left(V,u\right)\geq0$, für alle $u\in V\setminus\left\{ s\right\} $.
+\end{itemize}
+Der \textbf{Überschuss} von Knoten $u$ ist $e\left(u\right)=f\left(V,u\right)$.
+
+Ein Knoten $u\in V\setminus\left\{ s,t\right\} $ heißt \textbf{aktiv},
+falls $e\left(u\right)>0$.
+\end{defn}
+
+(Ein Präfluss ist also ein Fluss, der statt der Flusserhaltung ,,$\text{Flow-In}=\text{Flow-Out}$``
+nur die Bedingung ,,$\text{Flow-In}\geq\text{Flow-Out}$`` erfüllen
+muss.)
+\begin{defn}
+Sei $D$ ein Netzwerk und $f$ ein Präfluss. Eine Funktion $h:V\rightarrow\mathbb{N}_{0}$
+heißt \textbf{Höhenfunktion}, falls
+\begin{itemize}
+\item $h\left(s\right)=\left|V\right|$,
+\item $h\left(t\right)=0$,
+\item $h\left(u\right)\leq h\left(v\right)+1$ für jeder Kante $\left(u,v\right),u\neq s$,
+aus dem reduzierten Netzwerk $D_{f}$.
+\end{itemize}
+\end{defn}
+
+\begin{lem}
+Sei $D$ ein Netzwerk, $f$ ein Präfluss und $h$ eine Höhenfunktion.
+Falls für zwei Knoten $u,v\in V$ $h\left(u\right)>h\left(v\right)$
+gilt, dann ist$\left(u,v\right)$ keine Kante des reduzierten Netzwerks.
+\end{lem}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Push}$\left(u,v\right)$:
+\begin{enumerate}
+\item Falls $u$ aktiv ist, $h\left[u\right]=h\left[v\right]+1$und $c_{f}\left(u,v\right)>0$,
+dann:
+\begin{enumerate}
+\item $\Delta=\min\left\{ e\left[u\right],c_{f}\left(u,v\right)\right\} $.
+\item $f\left[u,v\right]=f\left[u,v\right]+\Delta$, $f\left[v,u\right]=-f\left[u,v\right]$,
+$e\left[u\right]=e\left[u\right]-\Delta$, $e\left[v\right]=e\left[v\right]+\Delta$.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Eine Push-Operation ist \textbf{saturierend}, wenn danach $c_{f}\left(u,v\right)=0$
+gilt, sonst \textbf{nicht saturierend}.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Lift}$\left(u\right)$:
+\begin{enumerate}
+\item Falls $u$ aktiv und es keine Kante $\left(u,v\right)\in A_{f}$ gibt
+mit $h\left[u\right]>h\left[v\right]$, dann:
+\begin{enumerate}
+\item $h\left[u\right]=1+\min\left\{ h\left[v\right]|\left(u,v\right)\in A_{f}\right\} $
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+\medskip{}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{PreflowPush}$\left(D,c,s,t\right)$:
+\begin{enumerate}
+\item Für alle $v\in V$ setze $h\left[v\right]=0$ und $e\left[v\right]=0$.
+\item Für jede Kante $\left(u,v\right)\in A$ setze $f\left[u,v\right]=0$
+und $f\left[v,u\right]=0$.
+\item Setze $h\left[s\right]=\left|V\right|$.
+\item Für jeden Knoten $v$ mit $\left(s,v\right)\in A$ setze $f\left[s,v\right]=c\left(s,v\right)$,
+$f\left[v,s\right]=-c\left(s,v\right)$ und $e\left[v\right]=c\left(s,v\right)$.
+\item Solange eine anwendbare Push- oder Lift-Operation existiert, führe
+eine solche aus.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(V^{2}A\right)$
+\begin{lem}
+Sei $D=\left(V,A\right)$ ein Netzwerk mit Quelle $s$ und Senke $t$,
+$f$ ein Präfluss und $h$ eine Höhenfunktion. Wenn $u$ ein aktiver
+Knoten ist, dann ist Lift$\left(u\right)$ oder Push$\left(u,v\right)$
+für ein $v\in V$ anwendbar.
+\end{lem}
+
+\begin{lem}
+Während der Ausführung von Preflow-Push nehmen die Höhen der Knoten
+nicht ab. Ist für einen Knoten $u$ Lift$\left(u\right)$ anwendbar,
+dann steigt die Höhe von $u$ um mindestens 1.
+\end{lem}
+
+\begin{lem}
+Die Funktion $h$ behält während der Ausführung der Algorithmus die
+Eigenschaften einer Höhenfunktion.
+\end{lem}
+
+\begin{lem}
+Es gibt keinen Weg von $s$ nach $t$ im reduzierten Netzwerk.
+\end{lem}
+
+\begin{prop}
+Nach Terminierung des Algorithmus ist ein maximaler $\left(s,t\right)$-Fluss
+bestimmt.
+\end{prop}
+
+\begin{lem}
+Sei $f$ ein Präfluss in $D=\left(V,A\right)$. Es gilt: Für jeden
+aktiven Knoten $u$ gibt es einen (einfachen) Weg von $u$ nach $s$
+im reduzierten Netzwerk $D_{f}$.
+\end{lem}
+
+\begin{lem}
+Im Verlauf des Algorithmus gilt immer $h\left(u\right)\leq2\cdot\left|V\right|-1$,
+für alle $u\in V$.
+\end{lem}
+
+\begin{cor}
+Für jeden Knoten wird höchstens $\left(2\cdot\left|V\right|-1\right)$-mal
+eine Lift-Operation durchgeführt. Die Gesamtzahl aller Lift-Operationen
+ist höchstens $\left(2\cdot\left|V\right|-1\right)\left(\left|V\right|-2\right)<2\cdot\left|V\right|^{2}$.
+\end{cor}
+
+\begin{lem}
+Die Zahl der saturierenden Push-Operationen ist höchstens $2\cdot\left|V\right|\cdot\left|A\right|$.
+\end{lem}
+
+\begin{lem}
+Die Zahl der nichtsaturierenden Push-Operationen ist höchstens $4\left|V\right|^{2}\cdot\left(\left|V\right|+\left|A\right|\right)$.
+\end{lem}
+
+\begin{prop}
+Die Zahl der Basis-Operationen bei der Ausführung des Preflow-Push-Algorithmus
+beträgt$\mathcal{O}\left(V^{2}A\right)$.
+\end{prop}
+
+\begin{cor}
+Der Preflow-Push-Algorithmus hat die Zeitkomplexität $\mathcal{O}\left(V^{2}A\right)$.
+\end{cor}
+
+
+\paragraph{FIFO-Preflow-Push}
+
+Hier werden Knoten in einer Queue abgearbeitet, die mit den Nachbarn
+von L initialisiert werden. Das abarbeiten funktioniert mit der \emph{Examine}$\left(u\right)$-Operation:
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{Examine}$\left(u\right)$:
+\begin{enumerate}
+\item Falls $u$ aktiv ist, dann:
+\begin{enumerate}
+\item Solange möglich, führe Operationen \emph{Push}$\left(u,v\right)$
+aus. Wird $v$ dadurch zu einem Überschussknoten, füge $v$ am Ende
+von $L$ ein.
+\item Ist \emph{Lift}$\left(u\right)$ anwendbar, führe die Operation aus
+und setze $u$ ans Ende von $L$, andernfalls entferne $u$ aus $L$.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(V^{3}\right)$ 
+
+\paragraph{Highest-Label-Preflow-Push}
+
+Bevorzuge Knoten mit dem höchsten $h$-Wert. $\text{Laufzeit: }\mathcal{O}\left(V^{2}\sqrt{A}\right)$
+
+\subsection{Untere Schranken und Knotenkapazitäten}
 \end{document}

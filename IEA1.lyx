@@ -8803,7 +8803,7 @@ Für jede Kante
 
 \begin_layout Standard
 Laufzeit: 
-\begin_inset Formula $\mathcal{O}\left(VA\right)$
+\begin_inset Formula $\mathcal{O}\left(VA^{2}\right)$
 \end_inset
 
 
@@ -9019,6 +9019,873 @@ Der Algorithmus ScalingMaxFlow hat die Zeitkomplexität
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Subsection
+Der Preflow-Push-Algorithmus
+\end_layout
+
+\begin_layout Definition
+Ein Präfluss in einem Netzwerk 
+\begin_inset Formula $D$
+\end_inset
+
+ ist eine Funktion 
+\begin_inset Formula $f:V\times V\rightarrow\mathbb{R}$
+\end_inset
+
+ mit den Eigenschaften
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f\left(u,v\right)\leq c\left(u,v\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u,v\in V$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f\left(u,v\right)=-f\left(u,v\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u,v\in V$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f\left(V,u\right)\geq0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u\in V\setminus\left\{ s\right\} $
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Definition
+Der 
+\series bold
+Überschuss
+\series default
+ von Knoten 
+\begin_inset Formula $u$
+\end_inset
+
+ ist 
+\begin_inset Formula $e\left(u\right)=f\left(V,u\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Ein Knoten 
+\begin_inset Formula $u\in V\setminus\left\{ s,t\right\} $
+\end_inset
+
+ heißt 
+\series bold
+aktiv
+\series default
+, falls 
+\begin_inset Formula $e\left(u\right)>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+(Ein Präfluss ist also ein Fluss, der statt der Flusserhaltung 
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $\text{Flow-In}=\text{Flow-Out}$
+\end_inset
+
+
+\begin_inset Quotes grd
+\end_inset
+
+ nur die Bedingung 
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $\text{Flow-In}\geq\text{Flow-Out}$
+\end_inset
+
+
+\begin_inset Quotes grd
+\end_inset
+
+ erfüllen muss.)
+\end_layout
+
+\begin_layout Definition
+Sei 
+\begin_inset Formula $D$
+\end_inset
+
+ ein Netzwerk und 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Präfluss.
+ Eine Funktion 
+\begin_inset Formula $h:V\rightarrow\mathbb{N}_{0}$
+\end_inset
+
+ heißt 
+\series bold
+Höhenfunktion
+\series default
+, falls
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $h\left(s\right)=\left|V\right|$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $h\left(t\right)=0$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $h\left(u\right)\leq h\left(v\right)+1$
+\end_inset
+
+ für jeder Kante 
+\begin_inset Formula $\left(u,v\right),u\neq s$
+\end_inset
+
+, aus dem reduzierten Netzwerk 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $D$
+\end_inset
+
+ ein Netzwerk, 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Präfluss und 
+\begin_inset Formula $h$
+\end_inset
+
+ eine Höhenfunktion.
+ Falls für zwei Knoten 
+\begin_inset Formula $u,v\in V$
+\end_inset
+
+ 
+\begin_inset Formula $h\left(u\right)>h\left(v\right)$
+\end_inset
+
+ gilt, dann ist
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ keine Kante des reduzierten Netzwerks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Push
+\series default
+
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $u$
+\end_inset
+
+ aktiv ist, 
+\begin_inset Formula $h\left[u\right]=h\left[v\right]+1$
+\end_inset
+
+und 
+\begin_inset Formula $c_{f}\left(u,v\right)>0$
+\end_inset
+
+, dann:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\Delta=\min\left\{ e\left[u\right],c_{f}\left(u,v\right)\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f\left[u,v\right]=f\left[u,v\right]+\Delta$
+\end_inset
+
+, 
+\begin_inset Formula $f\left[v,u\right]=-f\left[u,v\right]$
+\end_inset
+
+, 
+\begin_inset Formula $e\left[u\right]=e\left[u\right]-\Delta$
+\end_inset
+
+, 
+\begin_inset Formula $e\left[v\right]=e\left[v\right]+\Delta$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eine Push-Operation ist 
+\series bold
+saturierend
+\series default
+, wenn danach 
+\begin_inset Formula $c_{f}\left(u,v\right)=0$
+\end_inset
+
+ gilt, sonst 
+\series bold
+nicht saturierend
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Lift
+\series default
+
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $u$
+\end_inset
+
+ aktiv und es keine Kante 
+\begin_inset Formula $\left(u,v\right)\in A_{f}$
+\end_inset
+
+ gibt mit 
+\begin_inset Formula $h\left[u\right]>h\left[v\right]$
+\end_inset
+
+, dann:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $h\left[u\right]=1+\min\left\{ h\left[v\right]|\left(u,v\right)\in A_{f}\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+PreflowPush
+\series default
+
+\begin_inset Formula $\left(D,c,s,t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ setze 
+\begin_inset Formula $h\left[v\right]=0$
+\end_inset
+
+ und 
+\begin_inset Formula $e\left[v\right]=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für jede Kante 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ setze 
+\begin_inset Formula $f\left[u,v\right]=0$
+\end_inset
+
+ und 
+\begin_inset Formula $f\left[v,u\right]=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $h\left[s\right]=\left|V\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Für jeden Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ mit 
+\begin_inset Formula $\left(s,v\right)\in A$
+\end_inset
+
+ setze 
+\begin_inset Formula $f\left[s,v\right]=c\left(s,v\right)$
+\end_inset
+
+, 
+\begin_inset Formula $f\left[v,s\right]=-c\left(s,v\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $e\left[v\right]=c\left(s,v\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange eine anwendbare Push- oder Lift-Operation existiert, führe eine
+ solche aus.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(V^{2}A\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ ein Netzwerk mit Quelle 
+\begin_inset Formula $s$
+\end_inset
+
+ und Senke 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Präfluss und 
+\begin_inset Formula $h$
+\end_inset
+
+ eine Höhenfunktion.
+ Wenn 
+\begin_inset Formula $u$
+\end_inset
+
+ ein aktiver Knoten ist, dann ist Lift
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+ oder Push
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ für ein 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ anwendbar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Während der Ausführung von Preflow-Push nehmen die Höhen der Knoten nicht
+ ab.
+ Ist für einen Knoten 
+\begin_inset Formula $u$
+\end_inset
+
+ Lift
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+ anwendbar, dann steigt die Höhe von 
+\begin_inset Formula $u$
+\end_inset
+
+ um mindestens 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Die Funktion 
+\begin_inset Formula $h$
+\end_inset
+
+ behält während der Ausführung der Algorithmus die Eigenschaften einer Höhenfunk
+tion.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Es gibt keinen Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $t$
+\end_inset
+
+ im reduzierten Netzwerk.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Nach Terminierung des Algorithmus ist ein maximaler 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Fluss bestimmt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Präfluss in 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+.
+ Es gilt: Für jeden aktiven Knoten 
+\begin_inset Formula $u$
+\end_inset
+
+ gibt es einen (einfachen) Weg von 
+\begin_inset Formula $u$
+\end_inset
+
+ nach 
+\begin_inset Formula $s$
+\end_inset
+
+ im reduzierten Netzwerk 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Im Verlauf des Algorithmus gilt immer 
+\begin_inset Formula $h\left(u\right)\leq2\cdot\left|V\right|-1$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corollary
+Für jeden Knoten wird höchstens 
+\begin_inset Formula $\left(2\cdot\left|V\right|-1\right)$
+\end_inset
+
+-mal eine Lift-Operation durchgeführt.
+ Die Gesamtzahl aller Lift-Operationen ist höchstens 
+\begin_inset Formula $\left(2\cdot\left|V\right|-1\right)\left(\left|V\right|-2\right)<2\cdot\left|V\right|^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Die Zahl der saturierenden Push-Operationen ist höchstens 
+\begin_inset Formula $2\cdot\left|V\right|\cdot\left|A\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Die Zahl der nichtsaturierenden Push-Operationen ist höchstens 
+\begin_inset Formula $4\left|V\right|^{2}\cdot\left(\left|V\right|+\left|A\right|\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Die Zahl der Basis-Operationen bei der Ausführung des Preflow-Push-Algorithmus
+ beträgt
+\begin_inset Formula $\mathcal{O}\left(V^{2}A\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corollary
+Der Preflow-Push-Algorithmus hat die Zeitkomplexität 
+\begin_inset Formula $\mathcal{O}\left(V^{2}A\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+FIFO-Preflow-Push
+\end_layout
+
+\begin_layout Standard
+Hier werden Knoten in einer Queue abgearbeitet, die mit den Nachbarn von
+ L initialisiert werden.
+ Das abarbeiten funktioniert mit der 
+\emph on
+Examine
+\emph default
+
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+-Operation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Examine
+\series default
+
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $u$
+\end_inset
+
+ aktiv ist, dann:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Solange möglich, führe Operationen 
+\emph on
+Push
+\emph default
+
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ aus.
+ Wird 
+\begin_inset Formula $v$
+\end_inset
+
+ dadurch zu einem Überschussknoten, füge 
+\begin_inset Formula $v$
+\end_inset
+
+ am Ende von 
+\begin_inset Formula $L$
+\end_inset
+
+ ein.
+\end_layout
+
+\begin_layout Enumerate
+Ist 
+\emph on
+Lift
+\emph default
+
+\begin_inset Formula $\left(u\right)$
+\end_inset
+
+ anwendbar, führe die Operation aus und setze 
+\begin_inset Formula $u$
+\end_inset
+
+ ans Ende von 
+\begin_inset Formula $L$
+\end_inset
+
+, andernfalls entferne 
+\begin_inset Formula $u$
+\end_inset
+
+ aus 
+\begin_inset Formula $L$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(V^{3}\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+Highest-Label-Preflow-Push
+\end_layout
+
+\begin_layout Standard
+Bevorzuge Knoten mit dem höchsten 
+\begin_inset Formula $h$
+\end_inset
+
+-Wert.
+ 
+\begin_inset Formula $\text{Laufzeit: }\mathcal{O}\left(V^{2}\sqrt{A}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Untere Schranken und Knotenkapazitäten
 \end_layout
 
 \end_body
