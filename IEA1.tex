@@ -765,7 +765,7 @@ gilt $\left|C\setminus B\right|=1$.
 \end{lem}
 
 \begin{prop}
-Sei $H$ ein kritischer Graph. Dann existiert ein Branching$B$ mit
+Sei $H$ ein kritischer Graph. Dann existiert ein Branching $B$ mit
 maximalem Gewicht, so dass für jeden Kreis $C\subseteq H$ gilt $\left|C\setminus B\right|=1$.
 \end{prop}
 
@@ -1975,4 +1975,382 @@ Laufzeit: $\mathcal{O}\left(V^{3}\right)$
 Bevorzuge Knoten mit dem höchsten $h$-Wert. $\text{Laufzeit: }\mathcal{O}\left(V^{2}\sqrt{A}\right)$
 
 \subsection{Untere Schranken und Knotenkapazitäten}
+
+\subsubsection{Untere Schranken}
+
+Wenn ein \textbf{Mindestfluss} gesucht ist, könnte es die Bedingung
+$l\left(u,v\right)\leq f\left(u,v\right)\leq c\left(u,v\right)$ geben.
+Dazu transformieren wir das Problem in $D=\left(V,A\right)$ wie folgt:
+
+\[
+\begin{aligned}D^{\ast}= & \left(V^{\ast},A^{\ast}\right)\\
+V^{\ast}= & \,V\cup\left\{ s^{\ast},t^{\ast}\right\} \\
+A^{\ast}= & \,A\cup\left\{ \left(s^{\ast},v\right)|v\in V\right\} \cup\left\{ \left(v,t^{\ast}\right)|v\in V\right\} \cup\left\{ \left(t,s\right)\right\} \\
+c^{\ast}\left(t,s\right)= & \,\infty\\
+c^{\ast}\left(u,v\right)= & \,c\left(u,v\right)-l\left(u,v\right)\text{, für }\left(u,v\right)\in A\\
+c^{\ast}\left(s^{\ast},u\right)= & \,\sum_{\left(v,u\right)\in A}l\left(v,u\right)\text{, für }u\in V\\
+c^{\ast}\left(u,t^{\ast}\right)= & \,\sum_{\left(u,v\right)\in A}l\left(u,v\right)\text{, für }u\in V
+\end{aligned}
+\]
+
+In $D$ existiert ein zulässiger Fluss genau dann, wenn der maximale
+$\left(s^{\ast},t^{\ast}\right)$-Fluss in $D^{\ast}$ den Wert $f^{\ast}=\sum_{\left(u,v\right)\in A}l\left(u,v\right)$
+hat. Es gilt $f\left(u,v\right)=f^{\ast}\left(u,v\right)+l\left(u,v\right)$
+ist ein zulässiger Fluss. Er kann als Startfluss für die oben genannten
+Max-Flow-Algorithmen genutzt werden.
+
+\subsubsection{Knotenkapazitäten}
+
+Alle Knoten werden in zwei Knoten geteilt, die mit einer Kante verbunden
+werden, die die Knotenkapatzität als Kapazität hat.
+
+\subsection{Anwendungen des Max-Flow-Min-Cut-Theorems}
+
+Hier könnten einige Anwendungen stehen, tun sie aber nicht.
+\begin{prop}
+Es gilt das \textbf{Min-Flow-Max-Cut-Theorem}
+
+\[
+\min_{\left(s,t\right)\text{-Fluss }f}\left|f\right|=\max_{\left(s,t\right)\text{-Schnitt }\left(S:T\right)}\sum_{u\in S,v\in T}l\left(u,v\right)-\sum_{u\in S,v\in T}c\left(v,u\right).
+\]
+\end{prop}
+
+
+\section{Schnitte in ungerichteten Graphen}
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Minimaler-Schnitt-Problem}
+
+\smallskip{}
+
+Gegeben ist ein zusammenhängender ungerichteter Graph $G=\left(V,E\right)$
+mit positiven Kantengewichten $c_{e},e\in E$. Zu bestimmen ist eine
+Knotenmenge $W\subseteq V,\emptyset\neq W\neq V$, so dass $c\left(\delta\left(W\right)\right)$
+minimal ist.%
+\end{minipage}}
+
+\subsection{Der Algorithmus von Nagamochi und Ibaraki}
+\begin{defn*}
+Der Graph $G_{vw}$ entsteht durch \textbf{Identifikation} der beiden
+Knoten $v$ und $w$, was bedeutet, dass sie durch einen neuen Knoten
+$x$ ersetzt werden.
+\end{defn*}
+\begin{lem}
+Die Schnitte in $G_{vw}$ korrespondieren zu den Schnitten von $G$,
+die $v$ und $w$ nicht trennen.
+\end{lem}
+
+\begin{lem}
+Seien $p,q,r\in V$. Es gilt $f\left(G:p,q\right)\geq\min\left\{ f\left(G:p,r\right),f\left(G:q,r\right)\right\} $.
+\end{lem}
+
+\begin{defn*}
+Sei $v_{1},v_{2},\ldots,v_{n}$ eine Anordnung der Knoten von $G$
+und sei $V_{i}=\left\{ v_{1},\ldots,v_{i}\right\} ,1\leq i\leq n$.
+Die Anordnung heißt \textbf{legal}, falls $c\left(\delta\left(V_{i-1}\right)\cap\delta\left(v_{i}\right)\right)\geq c\left(\delta\left(V_{i-1}\right)\cap\delta\left(v_{j}\right)\right)$,
+für alle $2\leq i\leq j\leq n$.
+
+Man startet also mit irgendeinem Knoten und wählt als nächsten Knoten
+einen aus, dessen Summe der Kapazitäten der Kanten zu bereits gewählten
+Knoten maximal ist.
+\end{defn*}
+\begin{prop}
+Wenn $v_{1},v_{2},\ldots,v_{n}$ eine legale Ordnung für $G$ ist,
+dann ist $\delta\left(v_{n}\right)$ ein minimaler $\left(v_{n},v_{n-1}\right)$-Schnitt
+in $G$.
+\end{prop}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{\textit{NagamochiIbaraki}}\textit{$\left(G,c\right)$:}
+\begin{enumerate}
+\item Setze $U=+\infty$, $C$ undefiniert, $k=n=\left|V\right|$, $G^{k}=G$.
+\item Solange $k\geq2$:
+\begin{enumerate}
+\item Bestimme eine legale Ordnung $v_{1},\ldots,v_{k}$ von $G^{k}$.
+\item Falls $c\left(\delta\left(v_{k}\right)\right)<U$, setze $U=c\left(\delta\left(v_{k}\right)\right)$
+und $C=\delta\left(v_{k}\right)$.
+\item Identifiziere die Knoten $v_{k-1}$ und $v_{k}$.
+\item Setze $G^{k-1}=G_{v_{k-1}v_{k}}^{k}$ und $k=k-1$.
+\end{enumerate}
+\item $U$ ist Kapazität eines minimalen Schnitts in $G$ und ein zugehöriger
+Schnitt lässt sich aus $C$ konstruieren.
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(V^{3}\right)$ oder $\mathcal{O}\left(V^{2}+VE\log V\right)$
+
+\subsection{Der Algorithmus von Karger}
+
+Dies ist ein \textbf{randomisierter} Algorithmus, er liefert also
+mit einer gewissen Chance ein falsches Ergebnis.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{\textit{Karger}}\textit{$\left(G,c\right)$:}
+\begin{enumerate}
+\item Solange $G$ mehr als zwei Knoten enthält:
+\begin{enumerate}
+\item Wähle eine Kante $f$ von $G$ mit Wahrscheinlichkeit $c_{f}/{\displaystyle \sum_{e\in E}}c_{e}$.
+\item Ersetze $G$ durch $G_{vw}$, wobei $f=vw$.
+\end{enumerate}
+\item Gib den eindeutigen Schnitt von $G$ aus.
+\end{enumerate}
+%
+\end{minipage}}
+\begin{prop}
+Sei $B\subseteq E$ ein minimaler Schnitt von $G$. Dann liefert der
+Algorithmus von Karger das Ergebnis $B$ mit einer Wahrscheinlichkeit
+von mindestens $\frac{2}{n\left(n-1\right)}$.
+\end{prop}
+
+\begin{cor}
+Sei $B$ minimaler Schnitt von $G$ und $k$ eine positive ganze Zahl.
+Die Wahrscheinlichkeit, dass der Algorithmus von Karger bei $k\cdot n^{2}$
+Aufrufen nicht mindestens einmal $B$ als Ausgabe liefert, ist höchstens
+$e^{-2k}$.
+\end{cor}
+
+
+\subsection{Minimale Schnitte zwischen allen Knotenpaaren}
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Alle-minimaler-Schnitte-Problem}
+
+\smallskip{}
+
+Gegeben ist ein Graph $G=\left(V,E\right)$ mit positiven Kantengewichten
+und eine Knotenmenge $K\subseteq V$ (\textbf{Terminalknoten}). Zu
+bestimmen sind alle minimalen $\left(u,v\right)$-Schnitte für $u,v\in K$.%
+\end{minipage}}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+Hier könnte ihr Algorithmus stehen!%
+\end{minipage}}
+
+\section{Flüsse mit minimalen Kosten}
+
+Betrachtet wird hier der Digraph $D=\left(V,A\right)$ mit \textbf{Kapazitäten}
+$c_{uv}$, \textbf{Kosten} $w_{uv}$, und einer Zahl $b_{u}$.
+
+Knoten $u$ mit $b_{u}>0$ nennen wir \textbf{Quelle} mit \textbf{Vorrat}/\textbf{Angebot}
+$b_{u}$, bei $b_{u}<0$ nennen wir sie \textbf{Senke} mit \textbf{Nachfrage}
+$b_{u}$, bei $b_{u}=0$ heißen sie \textbf{Durchflussknoten} und
+müssen die Flusserhaltung erfüllen. 
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{Minimale-Kosten-Fluss-Problem}
+
+\smallskip{}
+
+Gegeben sind ein gerichteter Graph $D=\left(V,A\right)$ mit Kantenkapazitäten
+und -kosten sowie vorgegebenen Knotenbilanzen. Es ist ein Fluss gesucht,
+der alle Kapazitäten erfüllt, an den Knoten die Flussbilanzen realisiert
+und unter allen diesen Flussen minimale Kosten hat.%
+\end{minipage}}
+
+Als lineares Programm formuliert:
+
+\begin{align*}
+\min\sum_{\left(u,v\right)\in A}w_{uv}f_{uv}\\
+\sum_{v:\left(u,v\right)\in A}f_{uv}-\sum_{v:\left(v,u\right)\in A}f_{vu}=b_{u} & \text{, für alle }u\in V\\
+0\leq f_{uv}\leq c_{uv} & \text{, für alle }\left(u,v\right)\in A
+\end{align*}
+
+Annahmen:\\
+Alle Daten sind ganzzahlig, es gibt so viel Angebot wie Nachfrage,
+es existiert ein zulässiger Fluss, alle Kosten und Kapazitäten sind
+nicht-negativ, es gibt keine antiparallelen Kanten (nur aus Notationsgründen).
+
+\medskip{}
+
+Ein zulässiger Fluss lässt sich durch zusätzliche Knoten $s^{\ast}$
+und $t^{\ast}$ und Kanten mit Kapazität von Angebot bzw. Nachfrage
+nachweisen.
+
+\subsection{Das klassische Transportproblem}
+
+\noindent\shadowbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule - \shadowsize}%
+\textbf{(Unkapazitiertes) Transportproblem}
+
+\smallskip{}
+
+Ein Produkt wird in $m$ Anbieterorten produziert und in $n$ Nachfrageorten
+benötigt. Am Anbieterort $i$ liegt ein Lagervorrat $a_{i}$ vor,
+am Nachfrageort $j$ besteht der Bedarf $b_{j}$ . (Es gelte $\sum a_{i}$
+= $\sum b_{j}$ .) Der Transport einer Einheit des Produkts vom Ort
+$i$ zum Ort $j$ kostet $w_{ij}$ . Zu bestimmen ist ein Transportplan,
+der alle Nachfragen erfüllt und minimale Kosten hat.%
+\end{minipage}}
+
+Als lineares Programm formuliert:
+
+\begin{align*}
+\min\sum_{i=1}^{m}\sum_{j=1}^{n}w_{ij}x_{ij}\\
+\sum_{j=1}^{n}x_{ij}=a_{i} & i=1,\ldots,m\\
+\sum_{i=1}^{m}x_{ij}=b_{i} & j=1,\ldots,n\\
+x_{ij}\geq0 & i=1,\ldots,m,j=1,\ldots,n
+\end{align*}
+
+\subsubsection{Die Nordwestecken-Regel}
+
+...liefert eine Startlösung.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{NW}$\left(a,b\right)$:
+\begin{enumerate}
+\item Setze $i=j=1$ und $x_{11}=\min\left\{ a_{1},b_{1}\right\} $.
+\item Solange $i<m$ oder $j<n$:
+\begin{enumerate}
+\item Setze $a_{i}=a_{i}-x_{ij}$ und $b_{j}=b_{j}-x_{ij}$.
+\item Falls $a_{i}=0$, dann $i=i+1$, sonst $j=j+1$.
+\item Setze $x_{ij}=\min\left\{ a_{i},b_{j}\right\} $.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+\subsubsection{Die Stepping-Stone-Methode}
+\begin{prop}
+Eine Teilmenge $E$ der Spalten von $T$ ist genau dann linear unabhängig,
+wenn die zugehörige Kantenmenge in $K_{mn}$ keinen Kreis enthält.
+\end{prop}
+
+\begin{prop}
+$E$ ist eine Teilmenge von $m+n-1$ linear unabhängigen Spalten von
+$T$ genau dann, wenn der zugehörige Teilgraph von $K_{mn}$ ein aufspannender
+Baum ist.
+\end{prop}
+
+\noindent\ovalbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 0.8pt}%
+Der Algorithmus sollte einfach auswendig gelernt werden. Probieren,
+studieren und so...%
+\end{minipage}}
+
+\subsubsection{Das kapazitierte Transportproblem}
+
+Es existieren nun Kantenkapazitäten $0\leq x_{ij}\leq c_{ij}$. Man
+fügt die Extraknoten $m+1$ und $n+1$ ein. Es gilt:
+
+\begin{align*}
+a_{m+1}=b_{n+1}= & \sum_{i=1}^{m}a_{i}\\
+w_{i,n+1}=w_{m+1,j}= & M,\;i=1,\ldots,m,\;j=1,\ldots,n\\
+w_{m+1,n+1}= & 0\\
+c_{i,n+1}= & a_{i},\;i=1,\ldots,m\\
+c_{m+1,j}= & b_{j},\;j=1,\ldots,n\\
+c_{m+1,n+1}= & \sum_{i=1}^{m}a_{i}
+\end{align*}
+
+Triviale Startlösung: Alle liefern an $n+1$, alle kriegen von $m+1$.\\
+Das Originaleproblem hat eine Lösung, wenn das transformierte Problem
+eine Lösung hat, die die neuen Knoten nicht mit alten Knoten verbindet.
+
+\subsubsection{Varianten und Erweiterungen}
+
+<keine>
+
+\subsection{Optimalitätsbedingungen}
+\begin{defn*}
+Auch hier gibt es ein \textbf{reduziertes Netzwerk} $D_{f}=\left(V,A_{f}\right)$
+mit Restkapazitäten $r_{uv}$ zum Fluss $f$. Für eine Kante $\left(u,v\right)\in A$
+gilt:
+
+\begin{align*}
+f_{uv}<c_{uv}\Rightarrow & \left(u,v\right)\in A_{f}\text{, mit Kosten \ensuremath{+w_{uv}} und }r_{uv}=c_{uv}-f_{uv}\\
+f_{uv}=0\Rightarrow & \left(v,u\right)\in A_{f}\text{, mit Kosten \ensuremath{-w_{uv}} und }r_{uv}=f_{uv}
+\end{align*}
+\end{defn*}
+\begin{prop}
+\textbf{(Negativer-Kreis-Bedingung)} Ein zulässiger Fluss $f^{\ast}$
+ist genau dann optimal, wenn das reduzierte Netzwerk $D_{f^{\ast}}$
+keinen Kreis enthält, so dass die Summe der Kosten seiner Kanten negativ
+ist.
+\end{prop}
+
+\begin{prop}
+\textbf{(Reduzierte-Kosten-Bedingung)} Ein zulässiger Fluss $f^{\ast}$ist
+genau dann optimal, wenn es einen Vektor $\pi$ gibt, so dass $w_{uv}^{\pi}\geq0$,
+für alle $\left(u,v\right)\in A_{f^{\ast}}$.
+\end{prop}
+
+
+\subsection{Negaive-Kreise-Verfahren}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{CycleCanceling}$\left(D,c,w,b\right)$:
+\begin{enumerate}
+\item Bestimme einen zulässigen Fluss $f$.
+\item Generiere das reduzierte Netzwerk $D_{f}$.
+\item Enthält $D_{f}$ keinen negativen Kreis, dann \emph{Stop}(,,$f$
+is kostenminimal``). Andernfalls sein $C$ ein negativer Kreis.
+\item Bestimme die Restkapazität $\Delta$ von $C$ und setze $f_{uv}=f_{uv}+\Delta$
+für alle $\left(u,v\right)\in C$. Gehe zu (2).
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(V^{2}AUW\right)$ mit $U$ und $W$ 
+\begin{prop}
+Sind alle Daten $c_{uv}$, $\left(u,v\right)\in A$, und $b_{u}$,
+$u\in V$, ganzzahlig, dann existiert ein kostenminimaler Fluss mit
+ganzzahligen Werten.
+\end{prop}
+
+
+\subsection{Kürzerste-Wege-Verfahren}
+\begin{defn*}
+Für einen \textbf{Pseudofluss} $f$ gilt $0\leq f_{uv}\leq c_{uv}$
+für alle $\left(u,v\right)\in A$. $f=0$ \textbf{ist} ein Pseudofluss.
+
+Für $v\in V$ ist die Knotenbilanz $e\left(v\right)=b_{v}\sum_{\left(u,v\right)\in A}f_{uv}-\sum_{\left(v,u\right)\in A}f_{vu}$.
+
+Wir nennen Knoten mit $e\left(v\right)>0$ \textbf{Überschussknoten},
+mit $e\left(v\right)<0$ \textbf{Defizitknoten}, mit $e\left(v\right)=0$
+\textbf{balanciert}.
+\end{defn*}
+\begin{lem}
+Seien $f$ ein Pseudofluss und $\pi$ ein Vektor von Knotenpotentialen,
+so dass die Optimalitätsbedingungen $w_{uv}^{\pi}=\overline{w}_{uv}-\pi_{u}+\pi_{v}\geq0$,
+für alle $\left(u,v\right)\in A$, erfüllt sind. Für jeden Knoten
+$v\in V$ sei $\delta\left(s,v\right)$ die Länge eines kürzesten
+Weges in $D_{f}$ (bezüglich der Kantenlänge $w^{\pi}$) von einem
+ausgezeichneten Knoten $s$ zu $v$.
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] Der Pseudofluss $f$ erfüllt auch die Optimaitätsbedingungen
+mit den Knotenpotentialen $\pi^{\prime}$ definiert durch $\pi_{v}^{\prime}=\pi_{v}-\delta\left(s,v\right)$,
+für alle $v\in V$.
+\item [{b)}] Die reduzierten Kosten $w_{uv}^{\pi^{\prime}}$ sind Null
+für alle Kanten $\left(u,v\right)$, die auf einem kürzesten Weg von
+$s$ zu einem anderen Knoten liegen.
+\end{lyxlist}
+\end{lem}
+
+\begin{lem}
+Sei $f$ ein Pseudofluss, der die Reduzierte-Kosten-Bedingung erfüllt.
+Der Pseudofluss $f^{\prime}$ werde durch Augmentierung entlang eines
+kürzesten Weges (von $s$ nach $l$ in $D_{f}$ bezpglich der Kantenlängen
+$w^{\pi}$) erhalten. Dann erfüllt $f^{\prime}$ die Reduzierte-Kosten-Bedingung
+bzgl. $\pi^{\prime}$.
+\end{lem}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{SuccessiveShortestPaths$\left(D,c,w,b\right)$}:
+\begin{enumerate}
+\item Setze $f=0$, $\pi=0$, und $e\left(u\right)=b_{u}$, für alle $u\in V$.
+\item Solange noch Überschussknoten existieren:
+\begin{enumerate}
+\item Wähle einen Überschussknoten $s$ und einen Defizitknoten $t$.
+\item Bestimme die Kürzeste-Wege-Distanzen $\delta\left(s,i\right)$ von
+$s$ zu allen anderen Knoten $i$ in $D_{f}$ bezüglich der Kantenlängen
+$w^{\pi}$. Sei $P$ der kürzeste Weg von $s$ nach $t$.
+\item Setze $\pi_{u}=\pi_{u}-\delta\left(s,u\right)$, für alle $u\in V$.
+\item Augmentiere $f$ entlang $P$ um den Betrag $\min\left\{ c_{f}\left(P\right),e\left(s\right)-e\left(t\right)\right\} $,
+wobei $c_{f}\left(P\right)$ die Restkapazität des Weges $P$ ist.
+\item Bestimme die neuen reduzierten Kosten und das neue reduzierte Netzwerk.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(BV^{2}\right)$ oder $\mathcal{O}\left(BA\log V\right)$
+mit $B$ als Summe über alle Angebote.
 \end{document}

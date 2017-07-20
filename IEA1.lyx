@@ -3963,7 +3963,7 @@ Sei
 \end_inset
 
  ein kritischer Graph.
- Dann existiert ein Branching
+ Dann existiert ein Branching 
 \begin_inset Formula $B$
 \end_inset
 
@@ -9886,6 +9886,1849 @@ Bevorzuge Knoten mit dem höchsten
 
 \begin_layout Subsection
 Untere Schranken und Knotenkapazitäten
+\end_layout
+
+\begin_layout Subsubsection
+Untere Schranken
+\end_layout
+
+\begin_layout Standard
+Wenn ein 
+\series bold
+Mindestfluss
+\series default
+ gesucht ist, könnte es die Bedingung 
+\begin_inset Formula $l\left(u,v\right)\leq f\left(u,v\right)\leq c\left(u,v\right)$
+\end_inset
+
+ geben.
+ Dazu transformieren wir das Problem in 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ wie folgt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}D^{\ast}= & \left(V^{\ast},A^{\ast}\right)\\
+V^{\ast}= & \,V\cup\left\{ s^{\ast},t^{\ast}\right\} \\
+A^{\ast}= & \,A\cup\left\{ \left(s^{\ast},v\right)|v\in V\right\} \cup\left\{ \left(v,t^{\ast}\right)|v\in V\right\} \cup\left\{ \left(t,s\right)\right\} \\
+c^{\ast}\left(t,s\right)= & \,\infty\\
+c^{\ast}\left(u,v\right)= & \,c\left(u,v\right)-l\left(u,v\right)\text{, für }\left(u,v\right)\in A\\
+c^{\ast}\left(s^{\ast},u\right)= & \,\sum_{\left(v,u\right)\in A}l\left(v,u\right)\text{, für }u\in V\\
+c^{\ast}\left(u,t^{\ast}\right)= & \,\sum_{\left(u,v\right)\in A}l\left(u,v\right)\text{, für }u\in V
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset Formula $D$
+\end_inset
+
+ existiert ein zulässiger Fluss genau dann, wenn der maximale 
+\begin_inset Formula $\left(s^{\ast},t^{\ast}\right)$
+\end_inset
+
+-Fluss in 
+\begin_inset Formula $D^{\ast}$
+\end_inset
+
+ den Wert 
+\begin_inset Formula $f^{\ast}=\sum_{\left(u,v\right)\in A}l\left(u,v\right)$
+\end_inset
+
+ hat.
+ Es gilt 
+\begin_inset Formula $f\left(u,v\right)=f^{\ast}\left(u,v\right)+l\left(u,v\right)$
+\end_inset
+
+ ist ein zulässiger Fluss.
+ Er kann als Startfluss für die oben genannten Max-Flow-Algorithmen genutzt
+ werden.
+\end_layout
+
+\begin_layout Subsubsection
+Knotenkapazitäten
+\end_layout
+
+\begin_layout Standard
+Alle Knoten werden in zwei Knoten geteilt, die mit einer Kante verbunden
+ werden, die die Knotenkapatzität als Kapazität hat.
+\end_layout
+
+\begin_layout Subsection
+Anwendungen des Max-Flow-Min-Cut-Theorems
+\end_layout
+
+\begin_layout Standard
+Hier könnten einige Anwendungen stehen, tun sie aber nicht.
+\end_layout
+
+\begin_layout Proposition
+Es gilt das 
+\series bold
+Min-Flow-Max-Cut-Theorem
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula 
+\[
+\min_{\left(s,t\right)\text{-Fluss }f}\left|f\right|=\max_{\left(s,t\right)\text{-Schnitt }\left(S:T\right)}\sum_{u\in S,v\in T}l\left(u,v\right)-\sum_{u\in S,v\in T}c\left(v,u\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Schnitte in ungerichteten Graphen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Minimaler-Schnitt-Problem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben ist ein zusammenhängender ungerichteter Graph 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ mit positiven Kantengewichten 
+\begin_inset Formula $c_{e},e\in E$
+\end_inset
+
+.
+ Zu bestimmen ist eine Knotenmenge 
+\begin_inset Formula $W\subseteq V,\emptyset\neq W\neq V$
+\end_inset
+
+, so dass 
+\begin_inset Formula $c\left(\delta\left(W\right)\right)$
+\end_inset
+
+ minimal ist.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Der Algorithmus von Nagamochi und Ibaraki
+\end_layout
+
+\begin_layout Definition*
+Der Graph 
+\begin_inset Formula $G_{vw}$
+\end_inset
+
+ entsteht durch 
+\series bold
+Identifikation
+\series default
+ der beiden Knoten 
+\begin_inset Formula $v$
+\end_inset
+
+ und 
+\begin_inset Formula $w$
+\end_inset
+
+, was bedeutet, dass sie durch einen neuen Knoten 
+\begin_inset Formula $x$
+\end_inset
+
+ ersetzt werden.
+\end_layout
+
+\begin_layout Lemma
+Die Schnitte in 
+\begin_inset Formula $G_{vw}$
+\end_inset
+
+ korrespondieren zu den Schnitten von 
+\begin_inset Formula $G$
+\end_inset
+
+, die 
+\begin_inset Formula $v$
+\end_inset
+
+ und 
+\begin_inset Formula $w$
+\end_inset
+
+ nicht trennen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Seien 
+\begin_inset Formula $p,q,r\in V$
+\end_inset
+
+.
+ Es gilt 
+\begin_inset Formula $f\left(G:p,q\right)\geq\min\left\{ f\left(G:p,r\right),f\left(G:q,r\right)\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+Sei 
+\begin_inset Formula $v_{1},v_{2},\ldots,v_{n}$
+\end_inset
+
+ eine Anordnung der Knoten von 
+\begin_inset Formula $G$
+\end_inset
+
+ und sei 
+\begin_inset Formula $V_{i}=\left\{ v_{1},\ldots,v_{i}\right\} ,1\leq i\leq n$
+\end_inset
+
+.
+ Die Anordnung heißt 
+\series bold
+legal
+\series default
+, falls 
+\begin_inset Formula $c\left(\delta\left(V_{i-1}\right)\cap\delta\left(v_{i}\right)\right)\geq c\left(\delta\left(V_{i-1}\right)\cap\delta\left(v_{j}\right)\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $2\leq i\leq j\leq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+Man startet also mit irgendeinem Knoten und wählt als nächsten Knoten einen
+ aus, dessen Summe der Kapazitäten der Kanten zu bereits gewählten Knoten
+ maximal ist.
+\end_layout
+
+\begin_layout Proposition
+Wenn 
+\begin_inset Formula $v_{1},v_{2},\ldots,v_{n}$
+\end_inset
+
+ eine legale Ordnung für 
+\begin_inset Formula $G$
+\end_inset
+
+ ist, dann ist 
+\begin_inset Formula $\delta\left(v_{n}\right)$
+\end_inset
+
+ ein minimaler 
+\begin_inset Formula $\left(v_{n},v_{n-1}\right)$
+\end_inset
+
+-Schnitt in 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\shape italic
+NagamochiIbaraki
+\series default
+
+\begin_inset Formula $\left(G,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $U=+\infty$
+\end_inset
+
+, 
+\begin_inset Formula $C$
+\end_inset
+
+ undefiniert, 
+\begin_inset Formula $k=n=\left|V\right|$
+\end_inset
+
+, 
+\begin_inset Formula $G^{k}=G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $k\geq2$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Bestimme eine legale Ordnung 
+\begin_inset Formula $v_{1},\ldots,v_{k}$
+\end_inset
+
+ von 
+\begin_inset Formula $G^{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $c\left(\delta\left(v_{k}\right)\right)<U$
+\end_inset
+
+, setze 
+\begin_inset Formula $U=c\left(\delta\left(v_{k}\right)\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $C=\delta\left(v_{k}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Identifiziere die Knoten 
+\begin_inset Formula $v_{k-1}$
+\end_inset
+
+ und 
+\begin_inset Formula $v_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $G^{k-1}=G_{v_{k-1}v_{k}}^{k}$
+\end_inset
+
+ und 
+\begin_inset Formula $k=k-1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $U$
+\end_inset
+
+ ist Kapazität eines minimalen Schnitts in 
+\begin_inset Formula $G$
+\end_inset
+
+ und ein zugehöriger Schnitt lässt sich aus 
+\begin_inset Formula $C$
+\end_inset
+
+ konstruieren.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(V^{3}\right)$
+\end_inset
+
+ oder 
+\begin_inset Formula $\mathcal{O}\left(V^{2}+VE\log V\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Der Algorithmus von Karger
+\end_layout
+
+\begin_layout Standard
+Dies ist ein 
+\series bold
+randomisierter
+\series default
+ Algorithmus, er liefert also mit einer gewissen Chance ein falsches Ergebnis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\shape italic
+Karger
+\series default
+
+\begin_inset Formula $\left(G,c\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $G$
+\end_inset
+
+ mehr als zwei Knoten enthält:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Wähle eine Kante 
+\begin_inset Formula $f$
+\end_inset
+
+ von 
+\begin_inset Formula $G$
+\end_inset
+
+ mit Wahrscheinlichkeit 
+\begin_inset Formula $c_{f}/{\displaystyle \sum_{e\in E}}c_{e}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Ersetze 
+\begin_inset Formula $G$
+\end_inset
+
+ durch 
+\begin_inset Formula $G_{vw}$
+\end_inset
+
+, wobei 
+\begin_inset Formula $f=vw$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Gib den eindeutigen Schnitt von 
+\begin_inset Formula $G$
+\end_inset
+
+ aus.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+Sei 
+\begin_inset Formula $B\subseteq E$
+\end_inset
+
+ ein minimaler Schnitt von 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Dann liefert der Algorithmus von Karger das Ergebnis 
+\begin_inset Formula $B$
+\end_inset
+
+ mit einer Wahrscheinlichkeit von mindestens 
+\begin_inset Formula $\frac{2}{n\left(n-1\right)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Corollary
+Sei 
+\begin_inset Formula $B$
+\end_inset
+
+ minimaler Schnitt von 
+\begin_inset Formula $G$
+\end_inset
+
+ und 
+\begin_inset Formula $k$
+\end_inset
+
+ eine positive ganze Zahl.
+ Die Wahrscheinlichkeit, dass der Algorithmus von Karger bei 
+\begin_inset Formula $k\cdot n^{2}$
+\end_inset
+
+ Aufrufen nicht mindestens einmal 
+\begin_inset Formula $B$
+\end_inset
+
+ als Ausgabe liefert, ist höchstens 
+\begin_inset Formula $e^{-2k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Minimale Schnitte zwischen allen Knotenpaaren
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Alle-minimaler-Schnitte-Problem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben ist ein Graph 
+\begin_inset Formula $G=\left(V,E\right)$
+\end_inset
+
+ mit positiven Kantengewichten und eine Knotenmenge 
+\begin_inset Formula $K\subseteq V$
+\end_inset
+
+ (
+\series bold
+Terminalknoten
+\series default
+).
+ Zu bestimmen sind alle minimalen 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+-Schnitte für 
+\begin_inset Formula $u,v\in K$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ToDo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Hier könnte ihr Algorithmus stehen!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Flüsse mit minimalen Kosten
+\end_layout
+
+\begin_layout Standard
+Betrachtet wird hier der Digraph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit 
+\series bold
+Kapazitäten
+\series default
+ 
+\begin_inset Formula $c_{uv}$
+\end_inset
+
+, 
+\series bold
+Kosten
+\series default
+ 
+\begin_inset Formula $w_{uv}$
+\end_inset
+
+, und einer Zahl 
+\begin_inset Formula $b_{u}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Knoten 
+\begin_inset Formula $u$
+\end_inset
+
+ mit 
+\begin_inset Formula $b_{u}>0$
+\end_inset
+
+ nennen wir 
+\series bold
+Quelle
+\series default
+ mit 
+\series bold
+Vorrat
+\series default
+/
+\series bold
+Angebot
+\series default
+ 
+\begin_inset Formula $b_{u}$
+\end_inset
+
+, bei 
+\begin_inset Formula $b_{u}<0$
+\end_inset
+
+ nennen wir sie 
+\series bold
+Senke
+\series default
+ mit 
+\series bold
+Nachfrage
+\series default
+ 
+\begin_inset Formula $b_{u}$
+\end_inset
+
+, bei 
+\begin_inset Formula $b_{u}=0$
+\end_inset
+
+ heißen sie 
+\series bold
+Durchflussknoten
+\series default
+ und müssen die Flusserhaltung erfüllen.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Minimale-Kosten-Fluss-Problem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Gegeben sind ein gerichteter Graph 
+\begin_inset Formula $D=\left(V,A\right)$
+\end_inset
+
+ mit Kantenkapazitäten und -kosten sowie vorgegebenen Knotenbilanzen.
+ Es ist ein Fluss gesucht, der alle Kapazitäten erfüllt, an den Knoten die
+ Flussbilanzen realisiert und unter allen diesen Flussen minimale Kosten
+ hat.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Als lineares Programm formuliert:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\min\sum_{\left(u,v\right)\in A}w_{uv}f_{uv}\\
+\sum_{v:\left(u,v\right)\in A}f_{uv}-\sum_{v:\left(v,u\right)\in A}f_{vu}=b_{u} & \text{, für alle }u\in V\\
+0\leq f_{uv}\leq c_{uv} & \text{, für alle }\left(u,v\right)\in A
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Annahmen:
+\begin_inset Newline newline
+\end_inset
+
+Alle Daten sind ganzzahlig, es gibt so viel Angebot wie Nachfrage, es existiert
+ ein zulässiger Fluss, alle Kosten und Kapazitäten sind nicht-negativ, es
+ gibt keine antiparallelen Kanten (nur aus Notationsgründen).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein zulässiger Fluss lässt sich durch zusätzliche Knoten 
+\begin_inset Formula $s^{\ast}$
+\end_inset
+
+ und 
+\begin_inset Formula $t^{\ast}$
+\end_inset
+
+ und Kanten mit Kapazität von Angebot bzw.
+ Nachfrage nachweisen.
+\end_layout
+
+\begin_layout Subsection
+Das klassische Transportproblem
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+(Unkapazitiertes) Transportproblem
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Ein Produkt wird in 
+\begin_inset Formula $m$
+\end_inset
+
+ Anbieterorten produziert und in 
+\begin_inset Formula $n$
+\end_inset
+
+ Nachfrageorten benötigt.
+ Am Anbieterort 
+\begin_inset Formula $i$
+\end_inset
+
+ liegt ein Lagervorrat 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ vor, am Nachfrageort 
+\begin_inset Formula $j$
+\end_inset
+
+ besteht der Bedarf 
+\begin_inset Formula $b_{j}$
+\end_inset
+
+ .
+ (Es gelte 
+\begin_inset Formula $\sum a_{i}$
+\end_inset
+
+ = 
+\begin_inset Formula $\sum b_{j}$
+\end_inset
+
+ .) Der Transport einer Einheit des Produkts vom Ort 
+\begin_inset Formula $i$
+\end_inset
+
+ zum Ort 
+\begin_inset Formula $j$
+\end_inset
+
+ kostet 
+\begin_inset Formula $w_{ij}$
+\end_inset
+
+ .
+ Zu bestimmen ist ein Transportplan, der alle Nachfragen erfüllt und minimale
+ Kosten hat.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Als lineares Programm formuliert:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\min\sum_{i=1}^{m}\sum_{j=1}^{n}w_{ij}x_{ij}\\
+\sum_{j=1}^{n}x_{ij}=a_{i} & i=1,\ldots,m\\
+\sum_{i=1}^{m}x_{ij}=b_{i} & j=1,\ldots,n\\
+x_{ij}\geq0 & i=1,\ldots,m,j=1,\ldots,n
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Die Nordwestecken-Regel
+\end_layout
+
+\begin_layout Standard
+...liefert eine Startlösung.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+NW
+\series default
+
+\begin_inset Formula $\left(a,b\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $i=j=1$
+\end_inset
+
+ und 
+\begin_inset Formula $x_{11}=\min\left\{ a_{1},b_{1}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $i<m$
+\end_inset
+
+ oder 
+\begin_inset Formula $j<n$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $a_{i}=a_{i}-x_{ij}$
+\end_inset
+
+ und 
+\begin_inset Formula $b_{j}=b_{j}-x_{ij}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Falls 
+\begin_inset Formula $a_{i}=0$
+\end_inset
+
+, dann 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+, sonst 
+\begin_inset Formula $j=j+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $x_{ij}=\min\left\{ a_{i},b_{j}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Die Stepping-Stone-Methode
+\end_layout
+
+\begin_layout Proposition
+Eine Teilmenge 
+\begin_inset Formula $E$
+\end_inset
+
+ der Spalten von 
+\begin_inset Formula $T$
+\end_inset
+
+ ist genau dann linear unabhängig, wenn die zugehörige Kantenmenge in 
+\begin_inset Formula $K_{mn}$
+\end_inset
+
+ keinen Kreis enthält.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula $E$
+\end_inset
+
+ ist eine Teilmenge von 
+\begin_inset Formula $m+n-1$
+\end_inset
+
+ linear unabhängigen Spalten von 
+\begin_inset Formula $T$
+\end_inset
+
+ genau dann, wenn der zugehörige Teilgraph von 
+\begin_inset Formula $K_{mn}$
+\end_inset
+
+ ein aufspannender Baum ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box ovalbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Der Algorithmus sollte einfach auswendig gelernt werden.
+ Probieren, studieren und so...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Das kapazitierte Transportproblem
+\end_layout
+
+\begin_layout Standard
+Es existieren nun Kantenkapazitäten 
+\begin_inset Formula $0\leq x_{ij}\leq c_{ij}$
+\end_inset
+
+.
+ Man fügt die Extraknoten 
+\begin_inset Formula $m+1$
+\end_inset
+
+ und 
+\begin_inset Formula $n+1$
+\end_inset
+
+ ein.
+ Es gilt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+a_{m+1}=b_{n+1}= & \sum_{i=1}^{m}a_{i}\\
+w_{i,n+1}=w_{m+1,j}= & M,\;i=1,\ldots,m,\;j=1,\ldots,n\\
+w_{m+1,n+1}= & 0\\
+c_{i,n+1}= & a_{i},\;i=1,\ldots,m\\
+c_{m+1,j}= & b_{j},\;j=1,\ldots,n\\
+c_{m+1,n+1}= & \sum_{i=1}^{m}a_{i}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Triviale Startlösung: Alle liefern an 
+\begin_inset Formula $n+1$
+\end_inset
+
+, alle kriegen von 
+\begin_inset Formula $m+1$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Das Originaleproblem hat eine Lösung, wenn das transformierte Problem eine
+ Lösung hat, die die neuen Knoten nicht mit alten Knoten verbindet.
+\end_layout
+
+\begin_layout Subsubsection
+Varianten und Erweiterungen
+\end_layout
+
+\begin_layout Standard
+<keine>
+\end_layout
+
+\begin_layout Subsection
+Optimalitätsbedingungen
+\end_layout
+
+\begin_layout Definition*
+Auch hier gibt es ein 
+\series bold
+reduziertes Netzwerk
+\series default
+ 
+\begin_inset Formula $D_{f}=\left(V,A_{f}\right)$
+\end_inset
+
+ mit Restkapazitäten 
+\begin_inset Formula $r_{uv}$
+\end_inset
+
+ zum Fluss 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Für eine Kante 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+ gilt:
+\end_layout
+
+\begin_layout Definition*
+\begin_inset Formula 
+\begin{align*}
+f_{uv}<c_{uv}\Rightarrow & \left(u,v\right)\in A_{f}\text{, mit Kosten \ensuremath{+w_{uv}} und }r_{uv}=c_{uv}-f_{uv}\\
+f_{uv}=0\Rightarrow & \left(v,u\right)\in A_{f}\text{, mit Kosten \ensuremath{-w_{uv}} und }r_{uv}=f_{uv}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+
+\series bold
+(Negativer-Kreis-Bedingung)
+\series default
+ Ein zulässiger Fluss 
+\begin_inset Formula $f^{\ast}$
+\end_inset
+
+ ist genau dann optimal, wenn das reduzierte Netzwerk 
+\begin_inset Formula $D_{f^{\ast}}$
+\end_inset
+
+ keinen Kreis enthält, so dass die Summe der Kosten seiner Kanten negativ
+ ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+
+\series bold
+(Reduzierte-Kosten-Bedingung)
+\series default
+ Ein zulässiger Fluss 
+\begin_inset Formula $f^{\ast}$
+\end_inset
+
+ist genau dann optimal, wenn es einen Vektor 
+\begin_inset Formula $\pi$
+\end_inset
+
+ gibt, so dass 
+\begin_inset Formula $w_{uv}^{\pi}\geq0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $\left(u,v\right)\in A_{f^{\ast}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Negaive-Kreise-Verfahren
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+CycleCanceling
+\series default
+
+\begin_inset Formula $\left(D,c,w,b\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Bestimme einen zulässigen Fluss 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Generiere das reduzierte Netzwerk 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Enthält 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ keinen negativen Kreis, dann 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+
+\begin_inset Formula $f$
+\end_inset
+
+ is kostenminimal
+\begin_inset Quotes grd
+\end_inset
+
+).
+ Andernfalls sein 
+\begin_inset Formula $C$
+\end_inset
+
+ ein negativer Kreis.
+\end_layout
+
+\begin_layout Enumerate
+Bestimme die Restkapazität 
+\begin_inset Formula $\Delta$
+\end_inset
+
+ von 
+\begin_inset Formula $C$
+\end_inset
+
+ und setze 
+\begin_inset Formula $f_{uv}=f_{uv}+\Delta$
+\end_inset
+
+ für alle 
+\begin_inset Formula $\left(u,v\right)\in C$
+\end_inset
+
+.
+ Gehe zu (2).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(V^{2}AUW\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $U$
+\end_inset
+
+ und 
+\begin_inset Formula $W$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Proposition
+Sind alle Daten 
+\begin_inset Formula $c_{uv}$
+\end_inset
+
+, 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+, und 
+\begin_inset Formula $b_{u}$
+\end_inset
+
+, 
+\begin_inset Formula $u\in V$
+\end_inset
+
+, ganzzahlig, dann existiert ein kostenminimaler Fluss mit ganzzahligen
+ Werten.
+\end_layout
+
+\begin_layout Subsection
+Kürzerste-Wege-Verfahren
+\end_layout
+
+\begin_layout Definition*
+Für einen 
+\series bold
+Pseudofluss
+\series default
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ gilt 
+\begin_inset Formula $0\leq f_{uv}\leq c_{uv}$
+\end_inset
+
+ für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f=0$
+\end_inset
+
+ 
+\series bold
+ist
+\series default
+ ein Pseudofluss.
+\end_layout
+
+\begin_layout Definition*
+Für 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ ist die Knotenbilanz 
+\begin_inset Formula $e\left(v\right)=b_{v}\sum_{\left(u,v\right)\in A}f_{uv}-\sum_{\left(v,u\right)\in A}f_{vu}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+Wir nennen Knoten mit 
+\begin_inset Formula $e\left(v\right)>0$
+\end_inset
+
+ 
+\series bold
+Überschussknoten
+\series default
+, mit 
+\begin_inset Formula $e\left(v\right)<0$
+\end_inset
+
+ 
+\series bold
+Defizitknoten
+\series default
+, mit 
+\begin_inset Formula $e\left(v\right)=0$
+\end_inset
+
+ 
+\series bold
+balanciert
+\series default
+.
+\end_layout
+
+\begin_layout Lemma
+Seien 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Pseudofluss und 
+\begin_inset Formula $\pi$
+\end_inset
+
+ ein Vektor von Knotenpotentialen, so dass die Optimalitätsbedingungen 
+\begin_inset Formula $w_{uv}^{\pi}=\overline{w}_{uv}-\pi_{u}+\pi_{v}\geq0$
+\end_inset
+
+, für alle 
+\begin_inset Formula $\left(u,v\right)\in A$
+\end_inset
+
+, erfüllt sind.
+ Für jeden Knoten 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ sei 
+\begin_inset Formula $\delta\left(s,v\right)$
+\end_inset
+
+ die Länge eines kürzesten Weges in 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ (bezüglich der Kantenlänge 
+\begin_inset Formula $w^{\pi}$
+\end_inset
+
+) von einem ausgezeichneten Knoten 
+\begin_inset Formula $s$
+\end_inset
+
+ zu 
+\begin_inset Formula $v$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+a) Der Pseudofluss 
+\begin_inset Formula $f$
+\end_inset
+
+ erfüllt auch die Optimaitätsbedingungen mit den Knotenpotentialen 
+\begin_inset Formula $\pi^{\prime}$
+\end_inset
+
+ definiert durch 
+\begin_inset Formula $\pi_{v}^{\prime}=\pi_{v}-\delta\left(s,v\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+b) Die reduzierten Kosten 
+\begin_inset Formula $w_{uv}^{\pi^{\prime}}$
+\end_inset
+
+ sind Null für alle Kanten 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+, die auf einem kürzesten Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ zu einem anderen Knoten liegen.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Sei 
+\begin_inset Formula $f$
+\end_inset
+
+ ein Pseudofluss, der die Reduzierte-Kosten-Bedingung erfüllt.
+ Der Pseudofluss 
+\begin_inset Formula $f^{\prime}$
+\end_inset
+
+ werde durch Augmentierung entlang eines kürzesten Weges (von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $l$
+\end_inset
+
+ in 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ bezpglich der Kantenlängen 
+\begin_inset Formula $w^{\pi}$
+\end_inset
+
+) erhalten.
+ Dann erfüllt 
+\begin_inset Formula $f^{\prime}$
+\end_inset
+
+ die Reduzierte-Kosten-Bedingung bzgl.
+ 
+\begin_inset Formula $\pi^{\prime}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+SuccessiveShortestPaths
+\begin_inset Formula $\left(D,c,w,b\right)$
+\end_inset
+
+
+\series default
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $f=0$
+\end_inset
+
+, 
+\begin_inset Formula $\pi=0$
+\end_inset
+
+, und 
+\begin_inset Formula $e\left(u\right)=b_{u}$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange noch Überschussknoten existieren:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Wähle einen Überschussknoten 
+\begin_inset Formula $s$
+\end_inset
+
+ und einen Defizitknoten 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Bestimme die Kürzeste-Wege-Distanzen 
+\begin_inset Formula $\delta\left(s,i\right)$
+\end_inset
+
+ von 
+\begin_inset Formula $s$
+\end_inset
+
+ zu allen anderen Knoten 
+\begin_inset Formula $i$
+\end_inset
+
+ in 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ bezüglich der Kantenlängen 
+\begin_inset Formula $w^{\pi}$
+\end_inset
+
+.
+ Sei 
+\begin_inset Formula $P$
+\end_inset
+
+ der kürzeste Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\pi_{u}=\pi_{u}-\delta\left(s,u\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Augmentiere 
+\begin_inset Formula $f$
+\end_inset
+
+ entlang 
+\begin_inset Formula $P$
+\end_inset
+
+ um den Betrag 
+\begin_inset Formula $\min\left\{ c_{f}\left(P\right),e\left(s\right)-e\left(t\right)\right\} $
+\end_inset
+
+, wobei 
+\begin_inset Formula $c_{f}\left(P\right)$
+\end_inset
+
+ die Restkapazität des Weges 
+\begin_inset Formula $P$
+\end_inset
+
+ ist.
+\end_layout
+
+\begin_layout Enumerate
+Bestimme die neuen reduzierten Kosten und das neue reduzierte Netzwerk.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(BV^{2}\right)$
+\end_inset
+
+ oder 
+\begin_inset Formula $\mathcal{O}\left(BA\log V\right)$
+\end_inset
+
+ mit 
+\begin_inset Formula $B$
+\end_inset
+
+ als Summe über alle Angebote.
 \end_layout
 
 \end_body
