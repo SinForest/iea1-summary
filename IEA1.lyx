@@ -3057,7 +3057,7 @@ Der Algorithmus von Prim
 \end_layout
 
 \begin_layout Standard
-Der Algorithmus verwendet nur Regel R und benötigt einen Startknoten 
+Der Algorithmus verwendet nur Regel B und benötigt einen Startknoten 
 \begin_inset Formula $s$
 \end_inset
 
@@ -11729,6 +11729,442 @@ Laufzeit:
 \end_inset
 
  als Summe über alle Angebote.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+SuccessiveShortestPaths2
+\begin_inset Formula $\left(D,c,w,b\right)$
+\end_inset
+
+
+\series default
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $f=0$
+\end_inset
+
+, 
+\begin_inset Formula $\pi=0$
+\end_inset
+
+, und 
+\begin_inset Formula $e\left(u\right)=b_{u}$
+\end_inset
+
+, für alle 
+\begin_inset Formula $u\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange ein Überschussknoten existiert:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Wähle einen Überschussknoten 
+\begin_inset Formula $s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Führe den Dijkstra-Algorithmus mit Startknoten 
+\begin_inset Formula $s$
+\end_inset
+
+ aus und stoppe ihn, sobald ein Defizitknoten permanent markiert wird.
+ Wird kein Defizitknoten erreicht, 
+\emph on
+Stop
+\emph default
+(
+\begin_inset Quotes gld
+\end_inset
+
+Problem unlösbar
+\begin_inset Quotes grd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Sei 
+\begin_inset Formula $t$
+\end_inset
+
+ der erste permanent markierte Defizitknoten.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\pi_{u}=\begin{cases}
+\pi_{u}-\delta\left(s,u\right) & u\text{ ist permanent markiert worden,}\\
+\pi_{u}-\delta\left(s,t\right) & \text{sonst}.
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Augmentiere 
+\begin_inset Formula $f$
+\end_inset
+
+ auf dem Weg von 
+\begin_inset Formula $s$
+\end_inset
+
+ nach 
+\begin_inset Formula $t$
+\end_inset
+
+ um den maximal möglichen Betrag.
+\end_layout
+
+\begin_layout Enumerate
+Bestimme die neuen reduzierten Kosten und das neue reduzierte Netzwerk.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dieser Algorithmus funktioniert auch ohne die Annahme, dass alle Kürzeste-Wege-D
+istanzen existieren.
+\end_layout
+
+\begin_layout Subsection
+Der primale Simplex-Algorithmus
+\end_layout
+
+\begin_layout Standard
+Omitted
+\end_layout
+
+\begin_layout Proposition
+—
+\end_layout
+
+\begin_layout Subsection
+Skalierung der Kapazitäten
+\end_layout
+
+\begin_layout Definition*
+In einer 
+\begin_inset Formula $\Delta$
+\end_inset
+
+-Skalierungs-Phase erfolgen jeweils Augmentierungen um mindestens den Betrag
+ 
+\begin_inset Formula $\Delta$
+\end_inset
+
+.
+ Das 
+\begin_inset Formula $\Delta$
+\end_inset
+
+-reduzierte Netzwerk enthält nur Kanten mit mindestens Restkapazität 
+\begin_inset Formula $\Delta$
+\end_inset
+
+ und Quellen (Senken) mit mindestens Überschuss (Defizit) 
+\begin_inset Formula $\Delta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Es gilt 
+\begin_inset Formula $U=\max\left\{ \max\left\{ c_{uv}|\left(u,v\right)\in A\right\} ,\max\left\{ b_{u}|b_{u}>0\right\} ,\max\left\{ -b_{u}|b_{u}<0\right\} \right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+CapacityScaling
+\series default
+
+\begin_inset Formula $\left(D,c,w,b\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $f=0$
+\end_inset
+
+, 
+\begin_inset Formula $\pi=0$
+\end_inset
+
+, 
+\begin_inset Formula $\Delta=2^{\left\lfloor \log_{2}U\right\rfloor }$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $\Delta\geq1:$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Für alle Kanten 
+\begin_inset Formula $\left(u,v\right)\in A_{f}$
+\end_inset
+
+ mit 
+\begin_inset Formula $r_{uv}\geq\Delta$
+\end_inset
+
+ und 
+\begin_inset Formula $w_{uv}^{\pi}<0$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $f_{uv}=f_{uv}+r_{uv}$
+\end_inset
+
+, 
+\begin_inset Formula $e\left(u\right)=e\left(u\right)-r_{uv}$
+\end_inset
+
+ und 
+\begin_inset Formula $e\left(v\right)=e\left(v\right)+r_{uv}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $A_{f}=A_{f}\setminus\left\{ \left(u,v\right)\right\} \cup\left\{ \left(v,u\right)\right\} $
+\end_inset
+
+ mit 
+\begin_inset Formula $r_{vu}=f_{uv}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $S\left(\Delta\right)=\left\{ v|e\left(v\right)\geq\Delta\right\} $
+\end_inset
+
+ und 
+\begin_inset Formula $T\left(\Delta\right)=\left\{ v|e\left(v\right)\leq-\Delta\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Solange 
+\begin_inset Formula $S\left(\Delta\right)=\emptyset$
+\end_inset
+
+ und 
+\begin_inset Formula $T\left(\Delta\right)=\emptyset$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Wähle 
+\begin_inset Formula $s\in S\left(\Delta\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $t\in T\left(\Delta\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Berechne Kürzeste-Wege-Distanzen 
+\begin_inset Formula $\delta\left(s,v\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+ Sei 
+\begin_inset Formula $P$
+\end_inset
+
+ der kürzeste 
+\begin_inset Formula $\left(s,t\right)$
+\end_inset
+
+-Weg.
+\end_layout
+
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\pi_{v}=\pi_{v}-\delta\left(s,v\right)$
+\end_inset
+
+, für alle 
+\begin_inset Formula $v\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Augmentiere entlang 
+\begin_inset Formula $P$
+\end_inset
+
+ um 
+\begin_inset Formula $\min\left\{ c_{f}\left(P\right),e\left(s\right),-e\left(t\right)\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Ändere 
+\begin_inset Formula $S\left(\Delta\right)$
+\end_inset
+
+, 
+\begin_inset Formula $T\left(\Delta\right)$
+\end_inset
+
+ und 
+\begin_inset Formula $D_{f}$
+\end_inset
+
+ entsprechend.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Setze 
+\begin_inset Formula $\Delta=\Delta/2$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Laufzeit: 
+\begin_inset Formula $\mathcal{O}\left(AV^{2}\log U\right)$
+\end_inset
+
+ oder 
+\begin_inset Formula $\mathcal{O}\left(A^{2}\log V\log U\right)$
+\end_inset
+
+ mit Dijkstra.
+ 
+\end_layout
+
+\begin_layout Proposition
+Die Laufzeit von 
+\emph on
+CapacityScaling
+\emph default
+ ist richtig.
+\end_layout
+
+\begin_layout Subsection
+Minimale-Mittlere-Kreise-Verfahren
+\end_layout
+
+\begin_layout Standard
+........
 \end_layout
 
 \end_body

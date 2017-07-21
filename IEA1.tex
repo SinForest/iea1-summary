@@ -612,7 +612,7 @@ da abgebrochen werden kann, wenn es $n-1$ blaue Kanten gibt.
 
 \subsubsection{Der Algorithmus von Prim}
 
-Der Algorithmus verwendet nur Regel R und benötigt einen Startknoten
+Der Algorithmus verwendet nur Regel B und benötigt einen Startknoten
 $s$.
 
 \noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
@@ -1121,7 +1121,7 @@ Laufzeit: $\mathcal{O}\left(V^{3}\right)$
 $A^{\prime}=A\cup\left\{ \left(s,v\right)|v\in V\right\} $ und setze
 $c_{sv}=0$, für alle $v\in V$.
 \item Führe \emph{Bellman-Ford}$\left(D^{\prime},c,s\right)$ aus.
-\item Enthält $D^{\prime}$ negative Kreise, \emph{Stop}(,,Algorithmus
+\item Enthält $D^{\prime}$ negative Kreise, \emph{Stop}(\glqq Algorithmus
 nicht anwendbar``)
 \item Setze für jeden Knoten $v\in V:h\left[v\right]=\delta\left(s,v\right)$.
 \item Setze für jede Kante $\left(u,v\right)\in A:\overline{c}_{uv}=c_{uv}+h\left[u\right]-h\left[v\right]$.
@@ -1258,7 +1258,7 @@ x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
 setze $i=0$.
 \item Konstruiere zu $\left(u^{i},v^{i}\right)$ einen 0/1-Vektor $x^{i}$,
 so dass die Bedingungen vom komplementären Schlupf erfüllt sind.
-\item Beschreibt $x^{i}$ eine Zuordnung, \emph{Stop}(,,Zuordnung optimal``)
+\item Beschreibt $x^{i}$ eine Zuordnung, \emph{Stop}(\glqq Zuordnung optimal``)
 \item Berechne eine neue dual zulässige Lösung $\left(u^{i+1},v^{i+1}\right)$,
 setze $i=i+1$, gehe zu (2).
 \end{enumerate}
@@ -1325,7 +1325,7 @@ Zeilenindex als unabhängige Null aus.
 \begin{enumerate}
 \item Alle Zeilen und Spalten von $\overline{C}$ seien unmarkiert und nicht
 überprüft. Sind $n$ unabhängige Nullen vorhanden gehe zu (5).
-\item Alle Zeilen ohne unabhängige Null erhalten die Markierung ,,($-$)``.
+\item Alle Zeilen ohne unabhängige Null erhalten die Markierung \glqq ($-$)``.
 \item Gibt es keine markierte, noch nicht überprüfte Zeile, so gehe zu (4).\\
 Andernfalls sei $i$ eine solche Zeile.
 \begin{enumerate}
@@ -1333,7 +1333,7 @@ Andernfalls sei $i$ eine solche Zeile.
 \item Existiert keine unmarkierte Spalte, die in Zeile $i$ eine Null enthält,
 gehe zu (3).\\
 Andernfalls sei $j$ eine solche Spalte.
-\item Markiere $j$ mit ,,(i)``.
+\item Markiere $j$ mit \glqq (i)``.
 \item Besitzt $j$ schon eine unabhängige Null gehe zu (3.2).\\
 Andernfalls kann durch Verfolgen der Markierungen ausgehend von $j$
 eine alternierende Kette von abhängigen und unabhänigen Nullen konstruiert
@@ -1345,7 +1345,7 @@ Andernfalls sei $j$ eine solche Spalte.
 \begin{enumerate}
 \item Erkläre $j$ für überprüft.
 \item Markiere die Zeile, in der die unabhängige Null von Spalte $j$ steht,
-mit ,,(j)``.
+mit \glqq (j)``.
 \item Gehe zu (3).
 \end{enumerate}
 \item Die Maximalzahl unabhängiger Nullen ist berechnet. Die zugehörige
@@ -1443,7 +1443,7 @@ und $F$ enthält eine optimale Zuordnung.
 \begin{enumerate}
 \item Bestimme einen dual zulässigen Superwald $F_{0}$ mit Dualvariablen
 $\left(u^{0},v^{0}\right)$ und setze $i=0$.
-\item Falls $F_{i}$ dual zulässig und $F_{i}^{S}$ leer ist, \emph{Stop}(,,$F_{i}$
+\item Falls $F_{i}$ dual zulässig und $F_{i}^{S}$ leer ist, \emph{Stop}(\glqq $F_{i}$
 enthält eine optimale Zuordnung``).
 \item Iteration $i$:
 \begin{enumerate}
@@ -1525,7 +1525,7 @@ $\tabularnewline
 
 \subsubsection{Korrektur der Dualvariablen}
 
-$F_{m}^{\ast}$ ist anschaulich die Komponente, die ,,umgehängt``
+$F_{m}^{\ast}$ ist anschaulich die Komponente, die \glqq umgehängt``
 wurde.
 
 Ist Fall 1 oder 2 eingetreten, gilt:
@@ -1683,7 +1683,7 @@ sind äquivalent:
 \begin{enumerate}
 \item Für alle $\left(u,v\right)\in A$ setze $f\left[u,v\right]=f\left[v,u\right]=0$.
 \item Konstruiere das reduzierte Netzwerk $D_{f}$.
-\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(,,$f$
+\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(\glqq $f$
 ist maximal``), andernfalls sei $P$ ein solcher Weg mit Restkapazität
 $c_{f}\left(P\right)$.
 \item Für jede Kante $\left(u,v\right)$ des Weges $P$ setze $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
@@ -1740,7 +1740,7 @@ $k-1$ beliebigen Knoten noch einen Weg von $s$ nach $t$ gibt.
 \begin{enumerate}
 \item Für alle $\left(u,v\right)\in A$ setze $f\left[u,v\right]=f\left[v,u\right]=0$.
 \item Konstruiere das reduzierte Netzwerk $D_{f}$.
-\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(,,$f$
+\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(\glqq $f$
 ist maximal``), andernfalls sei $P$ ein solcher Weg \emph{mit möglichst
 wenigen Kanten} und Restkapazität $c_{f}\left(P\right)$.
 \item Für jede Kante $\left(u,v\right)$ des Weges $P$ setze $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
@@ -1819,8 +1819,8 @@ Ein Knoten $u\in V\setminus\left\{ s,t\right\} $ heißt \textbf{aktiv},
 falls $e\left(u\right)>0$.
 \end{defn}
 
-(Ein Präfluss ist also ein Fluss, der statt der Flusserhaltung ,,$\text{Flow-In}=\text{Flow-Out}$``
-nur die Bedingung ,,$\text{Flow-In}\geq\text{Flow-Out}$`` erfüllen
+(Ein Präfluss ist also ein Fluss, der statt der Flusserhaltung \glqq $\text{Flow-In}=\text{Flow-Out}$``
+nur die Bedingung \glqq $\text{Flow-In}\geq\text{Flow-Out}$`` erfüllen
 muss.)
 \begin{defn}
 Sei $D$ ein Netzwerk und $f$ ein Präfluss. Eine Funktion $h:V\rightarrow\mathbb{N}_{0}$
@@ -2280,7 +2280,7 @@ für alle $\left(u,v\right)\in A_{f^{\ast}}$.
 \begin{enumerate}
 \item Bestimme einen zulässigen Fluss $f$.
 \item Generiere das reduzierte Netzwerk $D_{f}$.
-\item Enthält $D_{f}$ keinen negativen Kreis, dann \emph{Stop}(,,$f$
+\item Enthält $D_{f}$ keinen negativen Kreis, dann \emph{Stop}(\glqq $f$
 is kostenminimal``). Andernfalls sein $C$ ein negativer Kreis.
 \item Bestimme die Restkapazität $\Delta$ von $C$ und setze $f_{uv}=f_{uv}+\Delta$
 für alle $\left(u,v\right)\in C$. Gehe zu (2).
@@ -2353,4 +2353,92 @@ wobei $c_{f}\left(P\right)$ die Restkapazität des Weges $P$ ist.
 
 Laufzeit: $\mathcal{O}\left(BV^{2}\right)$ oder $\mathcal{O}\left(BA\log V\right)$
 mit $B$ als Summe über alle Angebote.
+
+\medskip{}
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{SuccessiveShortestPaths2$\left(D,c,w,b\right)$}:
+\begin{enumerate}
+\item Setze $f=0$, $\pi=0$, und $e\left(u\right)=b_{u}$, für alle $u\in V$.
+\item Solange ein Überschussknoten existiert:
+\begin{enumerate}
+\item Wähle einen Überschussknoten $s$.
+\item Führe den Dijkstra-Algorithmus mit Startknoten $s$ aus und stoppe
+ihn, sobald ein Defizitknoten permanent markiert wird. Wird kein Defizitknoten
+erreicht, \emph{Stop}(\glqq Problem unlösbar``).
+\item Sei $t$ der erste permanent markierte Defizitknoten.
+\item Setze $\pi_{u}=\begin{cases}
+\pi_{u}-\delta\left(s,u\right) & u\text{ ist permanent markiert worden,}\\
+\pi_{u}-\delta\left(s,t\right) & \text{sonst}.
+\end{cases}$
+\item Augmentiere $f$ auf dem Weg von $s$ nach $t$ um den maximal möglichen
+Betrag.
+\item Bestimme die neuen reduzierten Kosten und das neue reduzierte Netzwerk.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Dieser Algorithmus funktioniert auch ohne die Annahme, dass alle Kürzeste-Wege-Distanzen
+existieren.
+
+\subsection{Der primale Simplex-Algorithmus}
+
+Omitted
+\begin{prop}
+\textemdash{}
+\end{prop}
+
+
+\subsection{Skalierung der Kapazitäten}
+\begin{defn*}
+In einer $\Delta$-Skalierungs-Phase erfolgen jeweils Augmentierungen
+um mindestens den Betrag $\Delta$. Das $\Delta$-reduzierte Netzwerk
+enthält nur Kanten mit mindestens Restkapazität $\Delta$ und Quellen
+(Senken) mit mindestens Überschuss (Defizit) $\Delta$.
+\end{defn*}
+Es gilt $U=\max\left\{ \max\left\{ c_{uv}|\left(u,v\right)\in A\right\} ,\max\left\{ b_{u}|b_{u}>0\right\} ,\max\left\{ -b_{u}|b_{u}<0\right\} \right\} $.
+
+\noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
+\textbf{CapacityScaling}$\left(D,c,w,b\right)$:
+\begin{enumerate}
+\item Setze $f=0$, $\pi=0$, $\Delta=2^{\left\lfloor \log_{2}U\right\rfloor }$.
+\item Solange $\Delta\geq1:$
+\begin{enumerate}
+\item Für alle Kanten $\left(u,v\right)\in A_{f}$ mit $r_{uv}\geq\Delta$
+und $w_{uv}^{\pi}<0$:
+\begin{enumerate}
+\item Setze $f_{uv}=f_{uv}+r_{uv}$, $e\left(u\right)=e\left(u\right)-r_{uv}$
+und $e\left(v\right)=e\left(v\right)+r_{uv}$.
+\item Setze $A_{f}=A_{f}\setminus\left\{ \left(u,v\right)\right\} \cup\left\{ \left(v,u\right)\right\} $
+mit $r_{vu}=f_{uv}$
+\end{enumerate}
+\item Setze $S\left(\Delta\right)=\left\{ v|e\left(v\right)\geq\Delta\right\} $
+und $T\left(\Delta\right)=\left\{ v|e\left(v\right)\leq-\Delta\right\} $
+\item Solange $S\left(\Delta\right)=\emptyset$ und $T\left(\Delta\right)=\emptyset$:
+\begin{enumerate}
+\item Wähle $s\in S\left(\Delta\right)$ und $t\in T\left(\Delta\right)$.
+\item Berechne Kürzeste-Wege-Distanzen $\delta\left(s,v\right)$, für alle
+$v\in V$. Sei $P$ der kürzeste $\left(s,t\right)$-Weg.
+\item Setze $\pi_{v}=\pi_{v}-\delta\left(s,v\right)$, für alle $v\in V$.
+\item Augmentiere entlang $P$ um $\min\left\{ c_{f}\left(P\right),e\left(s\right),-e\left(t\right)\right\} $.
+\item Ändere $S\left(\Delta\right)$, $T\left(\Delta\right)$ und $D_{f}$
+entsprechend.
+\end{enumerate}
+\item Setze $\Delta=\Delta/2$.
+\end{enumerate}
+\end{enumerate}
+%
+\end{minipage}}
+
+Laufzeit: $\mathcal{O}\left(AV^{2}\log U\right)$ oder $\mathcal{O}\left(A^{2}\log V\log U\right)$
+mit Dijkstra. 
+\begin{prop}
+Die Laufzeit von \emph{CapacityScaling} ist richtig.
+\end{prop}
+
+
+\subsection{Minimale-Mittlere-Kreise-Verfahren}
+
+........
 \end{document}
