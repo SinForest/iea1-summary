@@ -66,10 +66,10 @@ theorems-sec
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2.5cm
-\topmargin 2.5cm
-\rightmargin 2.5cm
-\bottommargin 2.5cm
+\leftmargin 1.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -187,6 +187,7 @@ Durchsuchen
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Breitensuche
 \end_layout
@@ -251,6 +252,7 @@ reference "BFS"
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Tiefensuche
 \end_layout
@@ -315,6 +317,7 @@ Topologische Sortierung
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Topsort
 \end_layout
@@ -381,6 +384,7 @@ Komponenten finden
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 StrongComponents
 \end_layout
@@ -445,6 +449,7 @@ Minimum Spanning Tree
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Boruvka
 \end_layout
@@ -512,6 +517,7 @@ reference "Boruvka"
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Kruskal
 \end_layout
@@ -576,6 +582,7 @@ reference "Kruskal"
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Prim
 \end_layout
@@ -868,6 +875,7 @@ reference "Prim2"
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Round Robin
 \end_layout
@@ -934,6 +942,7 @@ reference "RoundRobin"
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 OneTree
 \end_layout
@@ -997,6 +1006,7 @@ Maximales Branching
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Branching
 \end_layout
@@ -1124,6 +1134,7 @@ Kürzeste Wege
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Dijkstra
 \end_layout
@@ -1355,6 +1366,7 @@ reference "BellmanFord"
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 DAGShortestPath
 \end_layout
@@ -1620,6 +1632,7 @@ Minimales Matching
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 Ungarische Methode
 \end_layout
@@ -1750,6 +1763,7 @@ Maximaler
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 FordFulkerson
 \end_layout
@@ -2129,6 +2143,7 @@ Minimaler Schnitt
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 NagamochiIbaraki
 \end_layout
@@ -2318,6 +2333,7 @@ Netzwerkfluss
 
 \begin_layout Plain Layout
 
+\series bold
 \size footnotesize
 SteppingStone
 \end_layout
@@ -2989,10 +3005,6 @@ polynomiales Problem
 \begin_inset Separator plain
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
@@ -9479,15 +9491,15 @@ Alle Zeilen ohne unabhängige Null erhalten die Markierung
 \end_layout
 
 \begin_layout Enumerate
-Gibt es keine markierte, noch nicht überprüfte Zeile, so gehe zu (4).
-\begin_inset Newline newline
-\end_inset
-
-Andernfalls sei 
+Sei 
 \begin_inset Formula $i$
 \end_inset
 
- eine solche Zeile.
+ eine markierte, noch nicht überprüfte Zeile.
+\begin_inset Newline newline
+\end_inset
+
+Gibt es keine solche Zeile, so gehe zu (4).
 \end_layout
 
 \begin_deeper
@@ -9500,19 +9512,19 @@ Erkläre
 \end_layout
 
 \begin_layout Enumerate
-Existiert keine unmarkierte Spalte, die in Zeile 
-\begin_inset Formula $i$
-\end_inset
-
- eine Null enthält, gehe zu (3).
-\begin_inset Newline newline
-\end_inset
-
-Andernfalls sei 
+Sei 
 \begin_inset Formula $j$
 \end_inset
 
- eine solche Spalte.
+ eine unmarkierte Spalte, die in Zeile 
+\begin_inset Formula $i$
+\end_inset
+
+ eine Null enthält.
+\begin_inset Newline newline
+\end_inset
+
+Gibt es keine solche Spalte, gehe zu (3).
 \end_layout
 
 \begin_layout Enumerate
@@ -9551,15 +9563,15 @@ Andernfalls kann durch Verfolgen der Markierungen ausgehend von
 
 \end_deeper
 \begin_layout Enumerate
-Gibt es keine markierte, noch nicht überprüfte Spalte, so gehe zu (5).
-\begin_inset Newline newline
-\end_inset
-
-Andernfalls sei 
+Sei 
 \begin_inset Formula $j$
 \end_inset
 
- eine solche Spalte.
+ eine markierte, noch nicht überprüfte Spalte.
+\begin_inset Newline newline
+\end_inset
+
+Gibt es keine solche Spalte, so gehe zu (5).
 \end_layout
 
 \begin_deeper
