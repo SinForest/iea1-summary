@@ -1,4 +1,4 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.3.0 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[ngerman]{article}
 \usepackage[T1]{fontenc}
@@ -30,25 +30,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \theoremstyle{plain}
 \newtheorem{thm}{\protect\theoremname}[section]
-  \theoremstyle{definition}
-  \newtheorem{defn}[thm]{\protect\definitionname}
- \theoremstyle{definition}
- \newtheorem*{defn*}{\protect\definitionname}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{definition}
+\newtheorem*{defn*}{\protect\definitionname}
 \newenvironment{lyxlist}[1]
-{\begin{list}{}
-{\settowidth{\labelwidth}{#1}
- \setlength{\leftmargin}{\labelwidth}
- \addtolength{\leftmargin}{\labelsep}
- \renewcommand{\makelabel}[1]{##1\hfil}}}
-{\end{list}}
-  \theoremstyle{plain}
-  \newtheorem{lem}[thm]{\protect\lemmaname}
-  \theoremstyle{plain}
-  \newtheorem{prop}[thm]{\protect\propositionname}
-  \theoremstyle{plain}
-  \newtheorem{cor}[thm]{\protect\corollaryname}
-  \theoremstyle{plain}
-  \newtheorem*{prop*}{\protect\propositionname}
+	{\begin{list}{}
+		{\settowidth{\labelwidth}{#1}
+		 \setlength{\leftmargin}{\labelwidth}
+		 \addtolength{\leftmargin}{\labelsep}
+		 \renewcommand{\makelabel}[1]{##1\hfil}}}
+	{\end{list}}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+\theoremstyle{plain}
+\newtheorem*{prop*}{\protect\propositionname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \usepackage{pstricks}
@@ -60,10 +60,10 @@
 
 \makeatother
 
-  \providecommand{\corollaryname}{Korollar}
-  \providecommand{\definitionname}{Definition}
-  \providecommand{\lemmaname}{Lemma}
-  \providecommand{\propositionname}{Satz}
+\providecommand{\corollaryname}{Korollar}
+\providecommand{\definitionname}{Definition}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\propositionname}{Satz}
 \providecommand{\theoremname}{Theorem}
 
 \begin{document}
@@ -81,15 +81,15 @@
 {\footnotesize{}Zweck} & {\footnotesize{}Name} & {\footnotesize{}Laufzeit} & {\footnotesize{}Kommentar} & {\footnotesize{}Link}\tabularnewline
 \midrule
 \midrule 
-\multirow{2}{*}{{\footnotesize{}Durchsuchen}} & \textbf{\footnotesize{}Breitensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)$} & {\footnotesize{}Laufzeit je nach Adjazenzstruktur} & {\footnotesize{}\vref{BFS}}\tabularnewline
+\multirow{2}{*}{{\footnotesize{}Durchsuchen}} & \textbf{\footnotesize{}Breitensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} & {\footnotesize{}Laufzeit je nach Adjazenzstruktur} & {\footnotesize{}\vref{BFS}}\tabularnewline
 \cmidrule{2-5} 
- & \textbf{\footnotesize{}Tiefensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)$} &  & {\footnotesize{}\vref{DFS}}\tabularnewline
+ & \textbf{\footnotesize{}Tiefensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} &  & {\footnotesize{}\vref{DFS}}\tabularnewline
 \midrule 
-{\footnotesize{}Topologische Sortierung} & \textbf{\footnotesize{}Topsort} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)$} & {\footnotesize{}findet auch Kreise} & {\footnotesize{}\vref{TopSort}}\tabularnewline
+{\footnotesize{}Topologische Sortierung} & \textbf{\footnotesize{}Topsort} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} & {\footnotesize{}findet auch Kreise} & {\footnotesize{}\vref{TopSort}}\tabularnewline
 \midrule 
-{\footnotesize{}Komponenten finden} & \textbf{\footnotesize{}StrongComponents} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)$(?)} &  & {\footnotesize{}\vref{StrongComponents}}\tabularnewline
+{\footnotesize{}Komponenten finden} & \textbf{\footnotesize{}StrongComponents} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$(?)} &  & {\footnotesize{}\vref{StrongComponents}}\tabularnewline
 \midrule 
-\multirow{8}{*}{{\footnotesize{}Minimum Spanning Tree}} & \textbf{\footnotesize{}Boruvka} & {\footnotesize{}¯\textbackslash{}\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}paralleler Ansatz} & {\footnotesize{}\vref{Boruvka}}\tabularnewline
+\multirow{8}{*}{{\footnotesize{}Minimum Spanning Tree}} & \textbf{\footnotesize{}Boruvka} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}paralleler Ansatz} & {\footnotesize{}\vref{Boruvka}}\tabularnewline
 \cmidrule{2-5} 
  & \textbf{\footnotesize{}Kruskal} & {\footnotesize{}$\mathcal{O}\left(E\log V\right)$} & {\footnotesize{}Kanten sortieren} & {\footnotesize{}\vref{Kruskal}}\tabularnewline
 \cmidrule{2-5} 
@@ -139,9 +139,9 @@
 \multirow{3}{*}{{\footnotesize{}Minimaler Schnitt}} & \multirow{2}{*}{\textbf{\footnotesize{}NagamochiIbaraki}} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & \multirow{2}{*}{{\footnotesize{}legale Ordnung}} & \multirow{2}{*}{{\footnotesize{}\vref{NagamochiIbaraki}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(V^{2}+VE\log V\right)$} &  & \tabularnewline
 \cmidrule{2-5} 
- & {\footnotesize{}Karger} & {\footnotesize{}¯\textbackslash{}\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}MC-Algo, $p=\frac{2}{n\left(n-1\right)}$} & {\footnotesize{}\vref{Karger}}\tabularnewline
+ & {\footnotesize{}Karger} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}MC-Algo, $p=\frac{2}{n\left(n-1\right)}$} & {\footnotesize{}\vref{Karger}}\tabularnewline
 \midrule 
-\multirow{6}{*}{{\footnotesize{}Netzwerkfluss}} & \textbf{\footnotesize{}SteppingStone} & {\footnotesize{}¯\textbackslash{}\_($\ddot{\smile}$)\_/¯} &  & \tabularnewline
+\multirow{6}{*}{{\footnotesize{}Netzwerkfluss}} & \textbf{\footnotesize{}SteppingStone} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} &  & \tabularnewline
 \cmidrule{2-5} 
  & {\footnotesize{}Neg.-Kreise-Verfahren} & {\footnotesize{}$\mathcal{O}\left(V^{2}AUW\right)\cancel{\boxast}$} & {\footnotesize{}zul. Fluss wird kostenminimiert} & {\footnotesize{}\vref{CycleCanceling}}\tabularnewline
 \cmidrule{2-5} 
@@ -153,7 +153,10 @@ KW existieren} & {\footnotesize{}\vref{SuccShortestPath2}}\tabularnewline
  & \multirow{2}{*}{{\footnotesize{}CapacityScaling}} & {\footnotesize{}$\mathcal{O}\left(AV^{2}\log U\right)$} & \multirow{2}{*}{{\footnotesize{}analog zu ScalingMaxFlow}} & \multirow{2}{*}{{\footnotesize{}\vref{CapacityScaling}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A^{2}\log V\log U\right)$} &  & \tabularnewline
 \cmidrule{2-5} 
-\end{tabular}{\footnotesize \par}
+\end{tabular}{\footnotesize\par}
+
+$\star$$\mathcal{O}\left(V^{2}\right)$ für Matrix, $\mathcal{O}\left(V+E\right)$
+für Liste
 
 \pagebreak{}
 
@@ -639,7 +642,7 @@ einzeln pro Komponente lösbar wäre.)%
 \subsubsection{Ein allgemeiner MST-Algorithmus}
 
 Dieser Algorithmus färbt Kanten nach festen Regeln blau und rot. Es
-ist stets die Invariante \emph{\glqq Es gibt einen minimalen, aufspannenden
+ist stets die Invariante \emph{,,Es gibt einen minimalen, aufspannenden
 Baum, der alle blauen und keine rote Kante enthält.``} erfüllt.
 \begin{description}
 \item [{Regel~B}] Wähle einen Schnitt, der keine blaue Kante enthält.
@@ -731,8 +734,8 @@ Es folgt eine einfach Implementierung. $T$ ist der angehende Baum:
 \textbf{Prim1}$\left(G,c,s\right)$:
 \begin{enumerate}
 \item Setze $V_{T}=\left\{ s\right\} $, $T=\emptyset$ und $i=0$.
-\item Falls $i=n-1$, \emph{Stop}(\glqq T ist MST``).
-\item Bestimme $u\in V_{T}$ und $v\in V\setminus T_{T}$ mit $c_{uv}=\min\left\{ c_{xy}|x\in V_{T},y\in V\setminus V_{T}\right\} $.
+\item Falls $i=n-1$, \emph{Stop}(,,T ist MST``).
+\item Bestimme $u\in V_{T}$ und $v\in V\setminus V_{T}$ mit $c_{uv}=\min\left\{ c_{xy}|x\in V_{T},y\in V\setminus V_{T}\right\} $.
 \item Setze $V_{T}=V_{T}\cup\left\{ v\right\} $ und $T=T\cup\left\{ uv\right\} $
 und $i=i+1$. Gehe zu (2).
 \end{enumerate}
@@ -753,8 +756,8 @@ den nächsten Baumknoten, $d\left[v\right]$ die zugehörige Distanz.
 $d\left[v\right]=c_{sv}$ und $t\left[v\right]=s$, falls $sv\in E$,
 setze $d\left[v\right]=\infty$ und $t\left[v\right]=\bot$, falls
 $sv\notin E$.
-\item Falls $i=n-1$, \emph{Stop}(\glqq T ist MST``).
-\item Bestimme $v\in V\setminus T_{T}$ mit $d\left[v\right]=\min\left\{ d\left[u\right]|u\in V\setminus V_{T}\right\} $.
+\item Falls $i=n-1$, \emph{Stop}(,,T ist MST``).
+\item Bestimme $v\in V\setminus V_{T}$ mit $d\left[v\right]=\min\left\{ d\left[u\right]|u\in V\setminus V_{T}\right\} $.
 \item Setze $V_{T}=V_{T}\cup\left\{ v\right\} $ und $T=T\cup\left\{ t\left[v\right]v\right\} $.
 \item Für alle $w$ adjazent zu $v$:
 \begin{enumerate}
@@ -936,7 +939,7 @@ c\left(B\right)-\overline{c}\left(\overline{B}\right)=\sum_{i=1}^{k}c\left(C_{i}
 \textbf{Branching}$\left(D,c\right)$:
 \begin{enumerate}
 \item Bestimme einen kritischen Graphen $H$ für $D$.
-\item Ist $H$ azyklisch, dann \emph{Stop}(\glqq $H$ ist optimales Branching
+\item Ist $H$ azyklisch, dann \emph{Stop}(,,$H$ ist optimales Branching
 für $D$``).
 \item Schrumpfe die Kreise von $H$, um $\overline{D}$ und $\overline{c}$
 zu erhalten.
@@ -1062,10 +1065,10 @@ aus.
 \end{enumerate}
 \item Für alle $\left(u,v\right)\in A$:
 \begin{enumerate}
-\item Falls $d\left[v\right]>d\left[u\right]+c_{uv}$ dann \emph{Stop}(\glqq Graph
+\item Falls $d\left[v\right]>d\left[u\right]+c_{uv}$ dann \emph{Stop}(,,Graph
 enthält negativen Kreis``).
 \end{enumerate}
-\item \emph{Stop}(\glqq Der Kürzeste-Wege-Baum wurde berechnet``).
+\item \emph{Stop}(,,Der Kürzeste-Wege-Baum wurde berechnet``).
 \end{enumerate}
 %
 \end{minipage}}
@@ -1241,7 +1244,7 @@ Laufzeit: $\mathcal{O}\left(V^{3}\right)$
 $A^{\prime}=A\cup\left\{ \left(s,v\right)|v\in V\right\} $ und setze
 $c_{sv}=0$, für alle $v\in V$.
 \item Führe \emph{Bellman-Ford}$\left(D^{\prime},c,s\right)$ aus.
-\item Enthält $D^{\prime}$ negative Kreise, \emph{Stop}(\glqq Algorithmus
+\item Enthält $D^{\prime}$ negative Kreise, \emph{Stop}(,,Algorithmus
 nicht anwendbar``)
 \item Setze für jeden Knoten $v\in V:h\left[v\right]=\delta\left(s,v\right)$.
 \item Setze für jede Kante $\left(u,v\right)\in A:\overline{c}_{uv}=c_{uv}+h\left[u\right]-h\left[v\right]$.
@@ -1341,6 +1344,7 @@ Das duale Programm dazu ist:
 \end{alignedat}
 \end{aligned}
 \]
+
 \begin{prop*}
 Schwacher Dualitätssatz (am Beispiel)
 
@@ -1380,7 +1384,7 @@ x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
 setze $i=0$.
 \item Konstruiere zu $\left(u^{i},v^{i}\right)$ einen 0/1-Vektor $x^{i}$,
 so dass die Bedingungen vom komplementären Schlupf erfüllt sind.
-\item Beschreibt $x^{i}$ eine Zuordnung, \emph{Stop}(\glqq Zuordnung optimal``)
+\item Beschreibt $x^{i}$ eine Zuordnung, \emph{Stop}(,,Zuordnung optimal``)
 \item Berechne eine neue dual zulässige Lösung $\left(u^{i+1},v^{i+1}\right)$,
 setze $i=i+1$, gehe zu (2).
 \end{enumerate}
@@ -1447,14 +1451,14 @@ Zeilenindex als unabhängige Null aus.
 \begin{enumerate}
 \item Alle Zeilen und Spalten von $\overline{C}$ seien unmarkiert und nicht
 überprüft. Sind $n$ unabhängige Nullen vorhanden gehe zu (5).
-\item Alle Zeilen ohne unabhängige Null erhalten die Markierung \glqq ($-$)``.
+\item Alle Zeilen ohne unabhängige Null erhalten die Markierung ,,($-$)``.
 \item Sei $i$ eine markierte, noch nicht überprüfte Zeile.\\
 Gibt es keine solche Zeile, so gehe zu (4).
 \begin{enumerate}
 \item Erkläre $i$ für überprüft.
 \item Sei $j$ eine unmarkierte Spalte, die in Zeile $i$ eine Null enthält.\\
 Gibt es keine solche Spalte, gehe zu (3).
-\item Markiere $j$ mit \glqq (i)``.
+\item Markiere $j$ mit ,,(i)``.
 \item Besitzt $j$ schon eine unabhängige Null gehe zu (3.2).\\
 Andernfalls kann durch Verfolgen der Markierungen ausgehend von $j$
 eine alternierende Kette von abhängigen und unabhänigen Nullen konstruiert
@@ -1465,7 +1469,7 @@ Gibt es keine solche Spalte, so gehe zu (5).
 \begin{enumerate}
 \item Erkläre $j$ für überprüft.
 \item Markiere die Zeile, in der die unabhängige Null von Spalte $j$ steht,
-mit \glqq (j)``.
+mit ,,(j)``.
 \item Gehe zu (3).
 \end{enumerate}
 \item Die Maximalzahl unabhängiger Nullen ist berechnet. Die zugehörige
@@ -1565,7 +1569,7 @@ und $F$ enthält eine optimale Zuordnung.
 \begin{enumerate}
 \item Bestimme einen dual zulässigen Superwald $F_{0}$ mit Dualvariablen
 $\left(u^{0},v^{0}\right)$ und setze $i=0$.
-\item Falls $F_{i}$ dual zulässig und $F_{i}^{S}$ leer ist, \emph{Stop}(\glqq $F_{i}$
+\item Falls $F_{i}$ dual zulässig und $F_{i}^{S}$ leer ist, \emph{Stop}(,,$F_{i}$
 enthält eine optimale Zuordnung``).
 \item Iteration $i$:
 \begin{enumerate}
@@ -1647,7 +1651,7 @@ $\tabularnewline
 
 \subsubsection{Korrektur der Dualvariablen}
 
-$F_{m}^{\ast}$ ist anschaulich die Komponente, die \glqq umgehängt``
+$F_{m}^{\ast}$ ist anschaulich die Komponente, die ,,umgehängt``
 wurde.
 
 Ist Fall 1 oder 2 eingetreten, gilt:
@@ -1806,7 +1810,7 @@ sind äquivalent:
 \begin{enumerate}
 \item Für alle $\left(u,v\right)\in A$ setze $f\left[u,v\right]=f\left[v,u\right]=0$.
 \item Konstruiere das reduzierte Netzwerk $D_{f}$.
-\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(\glqq $f$
+\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(,,$f$
 ist maximal``), andernfalls sei $P$ ein solcher Weg mit Restkapazität
 $c_{f}\left(P\right)$.
 \item Für jede Kante $\left(u,v\right)$ des Weges $P$ setze $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
@@ -1865,7 +1869,7 @@ $k-1$ beliebigen Knoten noch einen Weg von $s$ nach $t$ gibt.
 \begin{enumerate}
 \item Für alle $\left(u,v\right)\in A$ setze $f\left[u,v\right]=f\left[v,u\right]=0$.
 \item Konstruiere das reduzierte Netzwerk $D_{f}$.
-\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(\glqq $f$
+\item Falls kein augmentierender $\left(s,t\right)$-Weg existiert, \emph{Stop}(,,$f$
 ist maximal``), andernfalls sei $P$ ein solcher Weg \emph{mit möglichst
 wenigen Kanten} und Restkapazität $c_{f}\left(P\right)$.
 \item Für jede Kante $\left(u,v\right)$ des Weges $P$ setze $f\left[u,v\right]=f\left[u,v\right]+c_{f}\left(P\right)$
@@ -1946,8 +1950,8 @@ Ein Knoten $u\in V\setminus\left\{ s,t\right\} $ heißt \textbf{aktiv},
 falls $e\left(u\right)>0$.
 \end{defn}
 
-(Ein Präfluss ist also ein Fluss, der statt der Flusserhaltung \glqq $\text{Flow-In}=\text{Flow-Out}$``
-nur die Bedingung \glqq $\text{Flow-In}\geq\text{Flow-Out}$`` erfüllen
+(Ein Präfluss ist also ein Fluss, der statt der Flusserhaltung ,,$\text{Flow-In}=\text{Flow-Out}$``
+nur die Bedingung ,,$\text{Flow-In}\geq\text{Flow-Out}$`` erfüllen
 muss.)
 \begin{defn}
 Sei $D$ ein Netzwerk und $f$ ein Präfluss. Eine Funktion $h:V\rightarrow\mathbb{N}_{0}$
@@ -2326,6 +2330,7 @@ Als lineares Programm formuliert:
 x_{ij}\geq0 & i=1,\ldots,m,j=1,\ldots,n
 \end{align*}
 
+
 \subsubsection{Die Nordwestecken-Regel}
 
 ...liefert eine Startlösung.
@@ -2417,7 +2422,7 @@ für alle $\left(u,v\right)\in A_{f^{\ast}}$.
 \begin{enumerate}
 \item Bestimme einen zulässigen Fluss $f$.
 \item Generiere das reduzierte Netzwerk $D_{f}$.
-\item Enthält $D_{f}$ keinen negativen Kreis, dann \emph{Stop}(\glqq $f$
+\item Enthält $D_{f}$ keinen negativen Kreis, dann \emph{Stop}(,,$f$
 is kostenminimal``). Andernfalls sein $C$ ein negativer Kreis.
 \item Bestimme die Restkapazität $\Delta$ von $C$ und setze $f_{uv}=f_{uv}+\Delta$
 für alle $\left(u,v\right)\in C$. Gehe zu (2).
@@ -2505,7 +2510,7 @@ mit $B$ als Summe über alle Angebote.
 \item Wähle einen Überschussknoten $s$.
 \item Führe den Dijkstra-Algorithmus mit Startknoten $s$ aus und stoppe
 ihn, sobald ein Defizitknoten permanent markiert wird. Wird kein Defizitknoten
-erreicht, \emph{Stop}(\glqq Problem unlösbar``).
+erreicht, \emph{Stop}(,,Problem unlösbar``).
 \item Sei $t$ der erste permanent markierte Defizitknoten.
 \item Setze $\pi_{u}=\begin{cases}
 \pi_{u}-\delta\left(s,u\right) & u\text{ ist permanent markiert worden,}\\
