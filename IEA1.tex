@@ -1,4 +1,4 @@
-%% LyX 2.3.0 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.3.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[ngerman]{article}
 \usepackage[T1]{fontenc}
@@ -67,11 +67,8 @@
 \providecommand{\theoremname}{Theorem}
 
 \begin{document}
-
 \title{\noindent Effiziente Algorithmen 1 - Zusammenfassung}
-
 \author{\noindent Patrick Dammann}
-
 \date{\noindent 21.05.2017}
 
 \maketitle
@@ -82,7 +79,7 @@
 \midrule
 \midrule 
 \multirow{2}{*}{{\footnotesize{}Durchsuchen}} & \textbf{\footnotesize{}Breitensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} & {\footnotesize{}Laufzeit je nach Adjazenzstruktur} & {\footnotesize{}\vref{BFS}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}Tiefensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} &  & {\footnotesize{}\vref{DFS}}\tabularnewline
 \midrule 
 {\footnotesize{}Topologische Sortierung} & \textbf{\footnotesize{}Topsort} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} & {\footnotesize{}findet auch Kreise} & {\footnotesize{}\vref{TopSort}}\tabularnewline
@@ -90,17 +87,17 @@
 {\footnotesize{}Komponenten finden} & \textbf{\footnotesize{}StrongComponents} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$(?)} &  & {\footnotesize{}\vref{StrongComponents}}\tabularnewline
 \midrule 
 \multirow{8}{*}{{\footnotesize{}Minimum Spanning Tree}} & \textbf{\footnotesize{}Boruvka} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}paralleler Ansatz} & {\footnotesize{}\vref{Boruvka}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}Kruskal} & {\footnotesize{}$\mathcal{O}\left(E\log V\right)$} & {\footnotesize{}Kanten sortieren} & {\footnotesize{}\vref{Kruskal}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{5}{*}{\textbf{\footnotesize{}Prim}} & {\footnotesize{}$-$} & {\footnotesize{}baut MST von Startknoten} & {\footnotesize{}\vref{Prim}}\tabularnewline
-\cmidrule{3-5} 
+\cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  &  & {\footnotesize{}$\mathcal{O}\left(VE\right)$} & {\footnotesize{}Implementierung} & {\footnotesize{}\vref{Prim1}}\tabularnewline
-\cmidrule{3-5} 
+\cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  &  & {\footnotesize{}$\mathcal{O}\left(V^{2}\right)$} & \multirow{3}{*}{{\footnotesize{}Bessere Impl., sucht sinnvoller}} & \multirow{3}{*}{{\footnotesize{}\vref{Prim2}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(E\log V\right)$} &  & \tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(E+V\log V\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}Round Robin} & {\footnotesize{}$\mathcal{O}\left(E\log\log V\right)$} & {\footnotesize{}baut MST von überall} & {\footnotesize{}\vref{RoundRobin}}\tabularnewline
 \midrule 
 {\footnotesize{}1-Baum} & \textbf{\footnotesize{}OneTree} & {\footnotesize{}-> MST} & {\footnotesize{}Untere Schranke TSP} & {\footnotesize{}\vref{OneTree}}\tabularnewline
@@ -111,48 +108,48 @@
 \multirow{5}{*}{{\footnotesize{}Kürzeste Wege}} & \multirow{3}{*}{\textbf{\footnotesize{}Dijkstra}} & {\footnotesize{}$\mathcal{O}\left(V^{2}\right)$} & \multirow{3}{*}{{\footnotesize{}Keine neg. Kanten}} & \multirow{3}{*}{{\footnotesize{}\vref{Dijkstra}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A\log V\right)$} &  & \tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A+V\log V\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}BellmanFord} & {\footnotesize{}$\mathcal{O}\left(VA\right)$} &  & {\footnotesize{}\vref{BellmanFord}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}DAGShortestPath} & {\footnotesize{}$\mathcal{O}\left(V+A\right)$} & {\footnotesize{}Nur in DAGs} & {\footnotesize{}\vref{DAGShortestPath}}\tabularnewline
 \midrule 
 \multirow{2}{*}{{\footnotesize{}Alle kürzesten Wege}} & {\footnotesize{}FloydWarshall} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & {\footnotesize{}Wege über erste k Knoten} & {\footnotesize{}\vref{FloydWarshall}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Johnson} & {\footnotesize{}$\mathcal{O}\left(V\times\text{Dijkstra}\right)$} & {\footnotesize{}1$\times$BF, $\left|V\right|\times$Dijkstra} & {\footnotesize{}\vref{Johnson}}\tabularnewline
 \midrule 
 {\footnotesize{}Kreise mit bestem KZV} & {\footnotesize{}<kein Name>} & {\footnotesize{}$\mathcal{O}\left(VA\log\left(CVT\right)\right)$} & {\footnotesize{}$\mu$ schätzen} & \tabularnewline
 \midrule 
 \multirow{2}{*}{{\footnotesize{}Minimales Matching}} & \textbf{\footnotesize{}Ungarische Methode} & {\footnotesize{}$\mathcal{O}\left(n^{3}\right)$} &  & {\footnotesize{}\vref{HungarianMethod}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}AKP-Algorithmus} & {\footnotesize{}$\mathcal{O}\left(n^{3}\right)$} &  & {\footnotesize{}\vref{AKP}}\tabularnewline
 \midrule 
 \multirow{6}{*}{{\footnotesize{}Maximaler $\left(s,t\right)$-Fluss}} & \textbf{\footnotesize{}FordFulkerson} & {\footnotesize{}$\mathcal{O}\left(A\left|f^{*}\right|\right)\cancel{\boxast}$} & {\footnotesize{}a.W. im reduzierten Netzwerk} & {\footnotesize{}\vref{FordFulkerson}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}EdmondsKarp} & {\footnotesize{}$\mathcal{O}\left(VA^{2}\right)$} & {\footnotesize{}FF mit wenig Kanten auf a.W.} & {\footnotesize{}\vref{EdmondsKarp}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{2}{*}{{\footnotesize{}ScalingMaxFlow}} & {\footnotesize{}$\mathcal{O}\left(A^{2}\log C\right)$} & \multirow{2}{*}{{\footnotesize{}nur Kanten mit $c_{f}>K$}} & \multirow{2}{*}{{\footnotesize{}\vref{ScalingMaxFlow}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(VA\log C\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Preflow-Push} & {\footnotesize{}$\mathcal{O}\left(V^{2}A\right)$} & {\footnotesize{}Push, Lift} & {\footnotesize{}\vref{PrefowPush}}\tabularnewline
  & {\footnotesize{}(FIFO-Variante)} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & {\footnotesize{}(Examine)} & {\footnotesize{}\vref{FIFO-PFP}}\tabularnewline
 \midrule 
 \multirow{3}{*}{{\footnotesize{}Minimaler Schnitt}} & \multirow{2}{*}{\textbf{\footnotesize{}NagamochiIbaraki}} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & \multirow{2}{*}{{\footnotesize{}legale Ordnung}} & \multirow{2}{*}{{\footnotesize{}\vref{NagamochiIbaraki}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(V^{2}+VE\log V\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Karger} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}MC-Algo, $p=\frac{2}{n\left(n-1\right)}$} & {\footnotesize{}\vref{Karger}}\tabularnewline
 \midrule 
 \multirow{6}{*}{{\footnotesize{}Netzwerkfluss}} & \textbf{\footnotesize{}SteppingStone} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Neg.-Kreise-Verfahren} & {\footnotesize{}$\mathcal{O}\left(V^{2}AUW\right)\cancel{\boxast}$} & {\footnotesize{}zul. Fluss wird kostenminimiert} & {\footnotesize{}\vref{CycleCanceling}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{2}{*}{{\footnotesize{}Kürz.-Wege-Verfahren}} & {\footnotesize{}$\mathcal{O}\left(BV^{2}\right)\cancel{\boxast}$} & {\footnotesize{}kostenmin. Fluss wird zulässig} & {\footnotesize{}\vref{SuccShortestPath}}\tabularnewline
-\cmidrule{4-5} 
+\cmidrule{4-5} \cmidrule{5-5} 
  &  & {\footnotesize{}$\mathcal{O}\left(BA\log V\right)\cancel{\boxast}$} & {\footnotesize{}auch ohne dass }\textbf{\footnotesize{}alle}{\footnotesize{}
 KW existieren} & {\footnotesize{}\vref{SuccShortestPath2}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{2}{*}{{\footnotesize{}CapacityScaling}} & {\footnotesize{}$\mathcal{O}\left(AV^{2}\log U\right)$} & \multirow{2}{*}{{\footnotesize{}analog zu ScalingMaxFlow}} & \multirow{2}{*}{{\footnotesize{}\vref{CapacityScaling}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A^{2}\log V\log U\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
 \end{tabular}{\footnotesize\par}
 
 $\star$$\mathcal{O}\left(V^{2}\right)$ für Matrix, $\mathcal{O}\left(V+E\right)$
@@ -257,7 +254,7 @@ in $W$ und $V\setminus W$ heißt \textbf{Schnitt}.
 \item Kurzform von $\delta\left(\left\{ v\right\} \right)$ ist $\delta\left(v\right)$.
 \item Der \textbf{Grad} eines Knoten $v$ ist die Anzahl seiner Nachbarn,
 bzw. $\left|\delta\left(v\right)\right|$.
-\item Ein \textbf{(s,t)-Schnitt} ist ein Schnitt $\delta\left(V\right)$
+\item Ein \textbf{(s,t)-Schnitt} ist ein Schnitt $\delta\left(W\right)$
 mit $s\in W$ und $t\in V\setminus W$ und gleichzeitig ein (t,s)-Schnitt.
 \item Mit $W\subseteq V$ ist $E\left(W\right)$ die Menge aller Kanten
 mit beiden Endknoten in $W$.
