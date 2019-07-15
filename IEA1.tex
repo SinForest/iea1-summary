@@ -1425,11 +1425,11 @@ gleich der minimalen Kardinalität einer Kantenüberdeckung mit Knoten.)
 \noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
 \textbf{Start}$\left(n,C\right)$:
 \begin{enumerate}
-\item Berechne Zeilenminima $u_{i}=\min\left\{ c_{ij}|j=1,\ldots,n\right\} $,
+\item Berechne Zeilenminima $u_{i}=\min\left\{ \bar{c}_{ij}|j=1,\ldots,n\right\} $,
 für alle $i=1,\ldots,n$.
 \item Setze $\overline{c}_{ij}=c_{ij}-u_{i}$, für alle $i=1,\ldots,n$,
 $j=1,\ldots,n$.
-\item Berechne Spaltenminima $v_{j}=\min\left\{ c_{ij}|i=1,\ldots,n\right\} $,
+\item Berechne Spaltenminima $v_{j}=\min\left\{ \bar{c}_{ij}|i=1,\ldots,n\right\} $,
 für alle $j=1,\ldots,n$.
 \item Setze $\overline{c}_{ij}=\overline{c}_{ij}-v_{j}$, für alle $i=1,\ldots,n$,
 $j=1,\ldots,n$.

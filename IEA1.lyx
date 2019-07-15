@@ -9381,7 +9381,7 @@ Start
 
 \begin_layout Enumerate
 Berechne Zeilenminima 
-\begin_inset Formula $u_{i}=\min\left\{ c_{ij}|j=1,\ldots,n\right\} $
+\begin_inset Formula $u_{i}=\min\left\{ \bar{c}_{ij}|j=1,\ldots,n\right\} $
 \end_inset
 
 , für alle 
@@ -9409,7 +9409,7 @@ Setze
 
 \begin_layout Enumerate
 Berechne Spaltenminima 
-\begin_inset Formula $v_{j}=\min\left\{ c_{ij}|i=1,\ldots,n\right\} $
+\begin_inset Formula $v_{j}=\min\left\{ \bar{c}_{ij}|i=1,\ldots,n\right\} $
 \end_inset
 
 , für alle 
