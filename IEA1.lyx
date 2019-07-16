@@ -8914,6 +8914,421 @@ Laufzeit:
 
 \end_layout
 
+\begin_layout Section*
+Sonderkapitel Lineare Programmierung
+\end_layout
+
+\begin_layout Subsection*
+Formulierung des primalen Programms
+\end_layout
+
+\begin_layout Standard
+Gesucht wird das minimum/maximum einer lineare Funktion mit lineare Randbedingun
+gen.
+\end_layout
+
+\begin_layout Standard
+Die Randbedingungen werden als Un- oder Gleichheitsbedingung formuliert
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{aligned}min\; & x_{1} & + & x_{2}\\
+ & x_{1} & + & 2x_{2} & \leq & 4\\
+ & x_{1} & + & 2x_{2} & \leq & 12\\
+- & x_{1} & + & x_{2} & \leq & 1\\
+ & x_{1} &  &  & \geq & 0\\
+ &  &  & x_{2} & \geq & 0
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Dualität von lineare Programmen
+\end_layout
+
+\begin_layout Standard
+Lineare Programme können als Maximierungs- oder Minimierungsproblem formuliert
+ werden.
+\begin_inset Formula 
+\[
+\begin{aligned}\max(c^{T}x) &  & min(y^{T}b)\\
+\begin{aligned}Ax & \leq & b\\
+x & \geq & 0
+\end{aligned}
+ & \qquad\longleftrightarrow\qquad & \begin{aligned}y^{T}A & \geq & c^{T}\\
+y & \geq & 0
+\end{aligned}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+oder
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\begin{aligned}c_{1}x_{1} & + & c_{2}x_{2} & + & \cdots & + & c_{n}x_{n} & = & \mathbf{\max}\mathbf{(c}^{T}\mathbf{x)}\\
+\\
+a_{11}x_{1} & + & a_{12}x_{2} & + & \cdots & + & a_{1n}x_{n} & \leq & b_{1}\\
+a_{21}x_{1} & + & a_{22}x_{2} & + & \cdots & + & a_{2n}x_{n} & \leq & b_{2}\\
+ &  &  &  &  &  &  & \vdots\\
+a_{m1}x_{1} & + & a_{m2}x_{2} & + & \cdots & + & a_{mn}x_{n} & \leq & b_{m}\\
+\\
+x_{1}\geq0 & , & x_{2}\geq0 & , & \cdots &  & x_{n}\geq0
+\end{aligned}
+ & \begin{aligned}\qquad\;\qquad\longleftrightarrow\qquad\;\qquad\quad\quad\\
+\quad min/max\;Transformierung\quad
+\end{aligned}
+ & \begin{aligned}y_{1}b_{1} & + & y_{2}b{}_{2} & + & \cdots & + & y_{m}b_{m} & = & \mathbf{\min}\mathbf{(y^{T}}\mathbf{b)}\\
+\\
+y_{1}a_{11} & + & y_{2}a_{21} & + & \cdots & + & y_{m}a_{m1} & \geq & c_{1}\\
+y_{1}a_{12} & + & y_{2}a_{22} & + & \cdots & + & y_{m}a_{m2} & \geq & c_{2}\\
+ &  &  &  &  &  &  & \vdots\\
+y_{1}a_{1n} & + & y_{2}a_{2n} & + & \cdots & + & y_{m}a_{mn} & \geq & c_{n}\\
+\\
+y_{1}\geq0 & , & y_{2}\geq0 & , & \cdots &  & y_{m}\geq0
+\end{aligned}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Dualisierungsregeln
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Primales Programm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Duales Programm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variablen
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1},\ldots,x_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1},\ldots,y_{m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Matrix
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A^{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rechte Seite
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $c$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zielfunktion
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+i-te Nebenbedingung hat 
+\begin_inset Formula $\begin{aligned}\leq\\
+\geq\\
+=
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{aligned}y_{i}\geq0\\
+y_{i}\leq0\\
+y_{i}\in\mathbb{K}
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nebenbedingungen
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{aligned}x_{j}\geq0\\
+x_{j}\leq0\\
+x_{j}\in\mathbb{K}
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+j-te Nebenbedingung hat 
+\begin_inset Formula $\begin{aligned}\geq\\
+\leq\\
+=
+\end{aligned}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+Schwacher Dualitätssatz (am Beispiel)
+\end_layout
+
+\begin_layout Proposition*
+Wenn 
+\begin_inset Formula $x$
+\end_inset
+
+ zulässig für (AP) ist und 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ zulässig für (AP
+\begin_inset Formula $_{D}$
+\end_inset
+
+) sind, gilt: 
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\sum_{j=1}^{n}c_{ij}x_{ij}\geq\sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+Satz vom komplenetären Schlupf (am Bsp.)
+\end_layout
+
+\begin_layout Proposition*
+Ein Paar von zulässigen Lösungen 
+\begin_inset Formula $x$
+\end_inset
+
+ für (AP) und 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ für (AP
+\begin_inset Formula $_{D}$
+\end_inset
+
+) sind genau dann optimal, wenn gilt
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Formula 
+\[
+u_{i}+v_{j}<c_{ij}\Rightarrow x_{ij}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+bzw.
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Formula 
+\[
+x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Das Zuordnungsproblem
 \end_layout
@@ -9034,90 +9449,6 @@ Das duale Programm dazu ist:
  & u_{i}+v_{j}\leq c_{ij}\text{, für }1,2,\ldots,n\text{, }j=1,2,\ldots n.
 \end{alignedat}
 \end{aligned}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proposition*
-Schwacher Dualitätssatz (am Beispiel)
-\end_layout
-
-\begin_layout Proposition*
-Wenn 
-\begin_inset Formula $x$
-\end_inset
-
- zulässig für (AP) ist und 
-\begin_inset Formula $\left(u,v\right)$
-\end_inset
-
- zulässig für (AP
-\begin_inset Formula $_{D}$
-\end_inset
-
-) sind, gilt: 
-\end_layout
-
-\begin_layout Proposition*
-\begin_inset Formula 
-\[
-\sum_{i=1}^{n}\sum_{j=1}^{n}c_{ij}x_{ij}\geq\sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proposition*
-Satz vom komplenetären Schlupf (am Bsp.)
-\end_layout
-
-\begin_layout Proposition*
-Ein Paar von zulässigen Lösungen 
-\begin_inset Formula $x$
-\end_inset
-
- für (AP) und 
-\begin_inset Formula $\left(u,v\right)$
-\end_inset
-
- für (AP
-\begin_inset Formula $_{D}$
-\end_inset
-
-) sind genau dann optimal, wenn gilt
-\end_layout
-
-\begin_layout Proposition*
-\begin_inset Formula 
-\[
-u_{i}+v_{j}<c_{ij}\Rightarrow x_{ij}=0
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proposition*
-bzw.
-\end_layout
-
-\begin_layout Proposition*
-\begin_inset Formula 
-\[
-x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
 \]
 
 \end_inset
