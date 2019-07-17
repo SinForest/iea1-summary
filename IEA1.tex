@@ -1,4 +1,4 @@
-%% LyX 2.3.0 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.3.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[ngerman]{article}
 \usepackage[T1]{fontenc}
@@ -67,11 +67,8 @@
 \providecommand{\theoremname}{Theorem}
 
 \begin{document}
-
 \title{\noindent Effiziente Algorithmen 1 - Zusammenfassung}
-
 \author{\noindent Patrick Dammann}
-
 \date{\noindent 21.05.2017}
 
 \maketitle
@@ -82,7 +79,7 @@
 \midrule
 \midrule 
 \multirow{2}{*}{{\footnotesize{}Durchsuchen}} & \textbf{\footnotesize{}Breitensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} & {\footnotesize{}Laufzeit je nach Adjazenzstruktur} & {\footnotesize{}\vref{BFS}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}Tiefensuche} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} &  & {\footnotesize{}\vref{DFS}}\tabularnewline
 \midrule 
 {\footnotesize{}Topologische Sortierung} & \textbf{\footnotesize{}Topsort} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$} & {\footnotesize{}findet auch Kreise} & {\footnotesize{}\vref{TopSort}}\tabularnewline
@@ -90,17 +87,17 @@
 {\footnotesize{}Komponenten finden} & \textbf{\footnotesize{}StrongComponents} & {\footnotesize{}$\mathcal{O}\left(\text{Adj.}\right)\star$(?)} &  & {\footnotesize{}\vref{StrongComponents}}\tabularnewline
 \midrule 
 \multirow{8}{*}{{\footnotesize{}Minimum Spanning Tree}} & \textbf{\footnotesize{}Boruvka} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}paralleler Ansatz} & {\footnotesize{}\vref{Boruvka}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}Kruskal} & {\footnotesize{}$\mathcal{O}\left(E\log V\right)$} & {\footnotesize{}Kanten sortieren} & {\footnotesize{}\vref{Kruskal}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{5}{*}{\textbf{\footnotesize{}Prim}} & {\footnotesize{}$-$} & {\footnotesize{}baut MST von Startknoten} & {\footnotesize{}\vref{Prim}}\tabularnewline
-\cmidrule{3-5} 
+\cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  &  & {\footnotesize{}$\mathcal{O}\left(VE\right)$} & {\footnotesize{}Implementierung} & {\footnotesize{}\vref{Prim1}}\tabularnewline
-\cmidrule{3-5} 
+\cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  &  & {\footnotesize{}$\mathcal{O}\left(V^{2}\right)$} & \multirow{3}{*}{{\footnotesize{}Bessere Impl., sucht sinnvoller}} & \multirow{3}{*}{{\footnotesize{}\vref{Prim2}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(E\log V\right)$} &  & \tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(E+V\log V\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}Round Robin} & {\footnotesize{}$\mathcal{O}\left(E\log\log V\right)$} & {\footnotesize{}baut MST von überall} & {\footnotesize{}\vref{RoundRobin}}\tabularnewline
 \midrule 
 {\footnotesize{}1-Baum} & \textbf{\footnotesize{}OneTree} & {\footnotesize{}-> MST} & {\footnotesize{}Untere Schranke TSP} & {\footnotesize{}\vref{OneTree}}\tabularnewline
@@ -111,48 +108,48 @@
 \multirow{5}{*}{{\footnotesize{}Kürzeste Wege}} & \multirow{3}{*}{\textbf{\footnotesize{}Dijkstra}} & {\footnotesize{}$\mathcal{O}\left(V^{2}\right)$} & \multirow{3}{*}{{\footnotesize{}Keine neg. Kanten}} & \multirow{3}{*}{{\footnotesize{}\vref{Dijkstra}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A\log V\right)$} &  & \tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A+V\log V\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}BellmanFord} & {\footnotesize{}$\mathcal{O}\left(VA\right)$} &  & {\footnotesize{}\vref{BellmanFord}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \textbf{\footnotesize{}DAGShortestPath} & {\footnotesize{}$\mathcal{O}\left(V+A\right)$} & {\footnotesize{}Nur in DAGs} & {\footnotesize{}\vref{DAGShortestPath}}\tabularnewline
 \midrule 
 \multirow{2}{*}{{\footnotesize{}Alle kürzesten Wege}} & {\footnotesize{}FloydWarshall} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & {\footnotesize{}Wege über erste k Knoten} & {\footnotesize{}\vref{FloydWarshall}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Johnson} & {\footnotesize{}$\mathcal{O}\left(V\times\text{Dijkstra}\right)$} & {\footnotesize{}1$\times$BF, $\left|V\right|\times$Dijkstra} & {\footnotesize{}\vref{Johnson}}\tabularnewline
 \midrule 
 {\footnotesize{}Kreise mit bestem KZV} & {\footnotesize{}<kein Name>} & {\footnotesize{}$\mathcal{O}\left(VA\log\left(CVT\right)\right)$} & {\footnotesize{}$\mu$ schätzen} & \tabularnewline
 \midrule 
 \multirow{2}{*}{{\footnotesize{}Minimales Matching}} & \textbf{\footnotesize{}Ungarische Methode} & {\footnotesize{}$\mathcal{O}\left(n^{3}\right)$} &  & {\footnotesize{}\vref{HungarianMethod}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}AKP-Algorithmus} & {\footnotesize{}$\mathcal{O}\left(n^{3}\right)$} &  & {\footnotesize{}\vref{AKP}}\tabularnewline
 \midrule 
 \multirow{6}{*}{{\footnotesize{}Maximaler $\left(s,t\right)$-Fluss}} & \textbf{\footnotesize{}FordFulkerson} & {\footnotesize{}$\mathcal{O}\left(A\left|f^{*}\right|\right)\cancel{\boxast}$} & {\footnotesize{}a.W. im reduzierten Netzwerk} & {\footnotesize{}\vref{FordFulkerson}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}EdmondsKarp} & {\footnotesize{}$\mathcal{O}\left(VA^{2}\right)$} & {\footnotesize{}FF mit wenig Kanten auf a.W.} & {\footnotesize{}\vref{EdmondsKarp}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{2}{*}{{\footnotesize{}ScalingMaxFlow}} & {\footnotesize{}$\mathcal{O}\left(A^{2}\log C\right)$} & \multirow{2}{*}{{\footnotesize{}nur Kanten mit $c_{f}>K$}} & \multirow{2}{*}{{\footnotesize{}\vref{ScalingMaxFlow}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(VA\log C\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Preflow-Push} & {\footnotesize{}$\mathcal{O}\left(V^{2}A\right)$} & {\footnotesize{}Push, Lift} & {\footnotesize{}\vref{PrefowPush}}\tabularnewline
  & {\footnotesize{}(FIFO-Variante)} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & {\footnotesize{}(Examine)} & {\footnotesize{}\vref{FIFO-PFP}}\tabularnewline
 \midrule 
 \multirow{3}{*}{{\footnotesize{}Minimaler Schnitt}} & \multirow{2}{*}{\textbf{\footnotesize{}NagamochiIbaraki}} & {\footnotesize{}$\mathcal{O}\left(V^{3}\right)$} & \multirow{2}{*}{{\footnotesize{}legale Ordnung}} & \multirow{2}{*}{{\footnotesize{}\vref{NagamochiIbaraki}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(V^{2}+VE\log V\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Karger} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} & {\footnotesize{}MC-Algo, $p=\frac{2}{n\left(n-1\right)}$} & {\footnotesize{}\vref{Karger}}\tabularnewline
 \midrule 
 \multirow{6}{*}{{\footnotesize{}Netzwerkfluss}} & \textbf{\footnotesize{}SteppingStone} & {\footnotesize{}¯\textbackslash\_($\ddot{\smile}$)\_/¯} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & {\footnotesize{}Neg.-Kreise-Verfahren} & {\footnotesize{}$\mathcal{O}\left(V^{2}AUW\right)\cancel{\boxast}$} & {\footnotesize{}zul. Fluss wird kostenminimiert} & {\footnotesize{}\vref{CycleCanceling}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{2}{*}{{\footnotesize{}Kürz.-Wege-Verfahren}} & {\footnotesize{}$\mathcal{O}\left(BV^{2}\right)\cancel{\boxast}$} & {\footnotesize{}kostenmin. Fluss wird zulässig} & {\footnotesize{}\vref{SuccShortestPath}}\tabularnewline
-\cmidrule{4-5} 
+\cmidrule{4-5} \cmidrule{5-5} 
  &  & {\footnotesize{}$\mathcal{O}\left(BA\log V\right)\cancel{\boxast}$} & {\footnotesize{}auch ohne dass }\textbf{\footnotesize{}alle}{\footnotesize{}
 KW existieren} & {\footnotesize{}\vref{SuccShortestPath2}}\tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
  & \multirow{2}{*}{{\footnotesize{}CapacityScaling}} & {\footnotesize{}$\mathcal{O}\left(AV^{2}\log U\right)$} & \multirow{2}{*}{{\footnotesize{}analog zu ScalingMaxFlow}} & \multirow{2}{*}{{\footnotesize{}\vref{CapacityScaling}}}\tabularnewline
  &  & {\footnotesize{}$\mathcal{O}\left(A^{2}\log V\log U\right)$} &  & \tabularnewline
-\cmidrule{2-5} 
+\cmidrule{2-5} \cmidrule{3-5} \cmidrule{4-5} \cmidrule{5-5} 
 \end{tabular}{\footnotesize\par}
 
 $\star$$\mathcal{O}\left(V^{2}\right)$ für Matrix, $\mathcal{O}\left(V+E\right)$
@@ -257,7 +254,7 @@ in $W$ und $V\setminus W$ heißt \textbf{Schnitt}.
 \item Kurzform von $\delta\left(\left\{ v\right\} \right)$ ist $\delta\left(v\right)$.
 \item Der \textbf{Grad} eines Knoten $v$ ist die Anzahl seiner Nachbarn,
 bzw. $\left|\delta\left(v\right)\right|$.
-\item Ein \textbf{(s,t)-Schnitt} ist ein Schnitt $\delta\left(V\right)$
+\item Ein \textbf{(s,t)-Schnitt} ist ein Schnitt $\delta\left(W\right)$
 mit $s\in W$ und $t\in V\setminus W$ und gleichzeitig ein (t,s)-Schnitt.
 \item Mit $W\subseteq V$ ist $E\left(W\right)$ die Menge aller Kanten
 mit beiden Endknoten in $W$.
@@ -1308,6 +1305,129 @@ weniger als $\frac{1}{n^{2}T^{2}}$ auseinander liegen. $\left(T=\max\tau_{ij}\ri
 
 Laufzeit: $\mathcal{O}\left(VA\log\left(CVT\right)\right)$
 
+\section*{Sonderkapitel Lineare Programmierung}
+
+\subsection*{Formulierung des primalen Programms}
+
+Gesucht wird das minimum/maximum einer lineare Funktion mit lineare
+Randbedingungen.
+
+Die Randbedingungen werden als Un- oder Gleichheitsbedingung formuliert
+
+$\begin{aligned}min\; & x_{1} & + & x_{2}\\
+ & x_{1} & + & 2x_{2} & \leq & 4\\
+ & x_{1} & + & 2x_{2} & \leq & 12\\
+- & x_{1} & + & x_{2} & \leq & 1\\
+ & x_{1} &  &  & \geq & 0\\
+ &  &  & x_{2} & \geq & 0
+\end{aligned}
+$
+
+\subsection*{Dualität von lineare Programmen}
+
+Lineare Programme können als Maximierungs- oder Minimierungsproblem
+formuliert werden.
+\[
+\begin{aligned}\max(c^{T}x) &  & min(y^{T}b)\\
+\begin{aligned}Ax & \leq & b\\
+x & \geq & 0
+\end{aligned}
+ & \qquad\longleftrightarrow\qquad & \begin{aligned}y^{T}A & \geq & c^{T}\\
+y & \geq & 0
+\end{aligned}
+\end{aligned}
+\]
+
+oder
+
+\[
+\begin{aligned}\begin{aligned}c_{1}x_{1} & + & c_{2}x_{2} & + & \cdots & + & c_{n}x_{n} & = & \mathbf{\max}\mathbf{(c}^{T}\mathbf{x)}\\
+\\
+a_{11}x_{1} & + & a_{12}x_{2} & + & \cdots & + & a_{1n}x_{n} & \leq & b_{1}\\
+a_{21}x_{1} & + & a_{22}x_{2} & + & \cdots & + & a_{2n}x_{n} & \leq & b_{2}\\
+ &  &  &  &  &  &  & \vdots\\
+a_{m1}x_{1} & + & a_{m2}x_{2} & + & \cdots & + & a_{mn}x_{n} & \leq & b_{m}\\
+\\
+x_{1}\geq0 & , & x_{2}\geq0 & , & \cdots &  & x_{n}\geq0
+\end{aligned}
+ & \begin{aligned}\qquad\longleftrightarrow\quad\quad\\
+\\
+\end{aligned}
+ & \begin{aligned}y_{1}b_{1} & + & y_{2}b{}_{2} & + & \cdots & + & y_{m}b_{m} & = & \mathbf{\min}\mathbf{(y^{T}}\mathbf{b)}\\
+\\
+y_{1}a_{11} & + & y_{2}a_{21} & + & \cdots & + & y_{m}a_{m1} & \geq & c_{1}\\
+y_{1}a_{12} & + & y_{2}a_{22} & + & \cdots & + & y_{m}a_{m2} & \geq & c_{2}\\
+ &  &  &  &  &  &  & \vdots\\
+y_{1}a_{1n} & + & y_{2}a_{2n} & + & \cdots & + & y_{m}a_{mn} & \geq & c_{n}\\
+\\
+y_{1}\geq0 & , & y_{2}\geq0 & , & \cdots &  & y_{m}\geq0
+\end{aligned}
+\end{aligned}
+\]
+
+
+\subsubsection*{Dualisierungsregeln}
+
+\begin{tabular}{|c|c|c|}
+\hline 
+ & Primales Programm & Duales Programm\tabularnewline
+\hline 
+\hline 
+Variablen & $x_{1},\ldots,x_{n}$ & $y_{1},\ldots,y_{m}$\tabularnewline
+\hline 
+Matrix & $A$ & $A^{T}$\tabularnewline
+\hline 
+Rechte Seite & $b$ & $c$\tabularnewline
+\hline 
+Zielfunktion & i-te Nebenbedingung hat $\begin{aligned}\leq\\
+\geq\\
+=
+\end{aligned}
+$ & $\begin{aligned}y_{i}\geq0\\
+y_{i}\leq0\\
+y_{i}\in\mathbb{K}
+\end{aligned}
+$\tabularnewline
+\hline 
+Nebenbedingungen & $\begin{aligned}x_{j}\geq0\\
+x_{j}\leq0\\
+x_{j}\in\mathbb{K}
+\end{aligned}
+$ & j-te Nebenbedingung hat $\begin{aligned}\geq\\
+\leq\\
+=
+\end{aligned}
+$\tabularnewline
+\hline 
+\end{tabular}
+\begin{prop*}
+Schwacher Dualitätssatz (am Beispiel)
+
+Wenn $x$ zulässig für (AP) ist und $\left(u,v\right)$ zulässig für
+(AP$_{D}$) sind, gilt: 
+
+\[
+\sum_{i=1}^{n}\sum_{j=1}^{n}c_{ij}x_{ij}\geq\sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}
+\]
+\end{prop*}
+%
+\begin{prop*}
+Satz vom komplenetären Schlupf (am Bsp.)
+
+Ein Paar von zulässigen Lösungen $x$ für (AP) und $\left(u,v\right)$
+für (AP$_{D}$) sind genau dann optimal, wenn gilt
+
+\[
+u_{i}+v_{j}<c_{ij}\Rightarrow x_{ij}=0
+\]
+
+bzw.
+
+\[
+x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
+\]
+\end{prop*}
+
 \section{Das Zuordnungsproblem}
 
 \subsection{Anwendungen und Grundlagen}
@@ -1345,33 +1465,6 @@ Das duale Programm dazu ist:
 \end{aligned}
 \]
 
-\begin{prop*}
-Schwacher Dualitätssatz (am Beispiel)
-
-Wenn $x$ zulässig für (AP) ist und $\left(u,v\right)$ zulässig für
-(AP$_{D}$) sind, gilt: 
-
-\[
-\sum_{i=1}^{n}\sum_{j=1}^{n}c_{ij}x_{ij}\geq\sum_{i=1}^{n}u_{i}+\sum_{j=1}^{n}v_{j}
-\]
-\end{prop*}
-%
-\begin{prop*}
-Satz vom komplenetären Schlupf (am Bsp.)
-
-Ein Paar von zulässigen Lösungen $x$ für (AP) und $\left(u,v\right)$
-für (AP$_{D}$) sind genau dann optimal, wenn gilt
-
-\[
-u_{i}+v_{j}<c_{ij}\Rightarrow x_{ij}=0
-\]
-
-bzw.
-
-\[
-x_{ij}>0\Rightarrow u_{i}+v_{j}=c_{ij}
-\]
-\end{prop*}
 
 \subsection{Die Ungarische Methode}
 
@@ -1428,11 +1521,11 @@ gleich der minimalen Kardinalität einer Kantenüberdeckung mit Knoten.)
 \noindent\doublebox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 7.5\fboxrule - 1pt}%
 \textbf{Start}$\left(n,C\right)$:
 \begin{enumerate}
-\item Berechne Zeilenminima $u_{i}=\min\left\{ c_{ij}|j=1,\ldots,n\right\} $,
+\item Berechne Zeilenminima $u_{i}=\min\left\{ \bar{c}_{ij}|j=1,\ldots,n\right\} $,
 für alle $i=1,\ldots,n$.
 \item Setze $\overline{c}_{ij}=c_{ij}-u_{i}$, für alle $i=1,\ldots,n$,
 $j=1,\ldots,n$.
-\item Berechne Spaltenminima $v_{j}=\min\left\{ c_{ij}|i=1,\ldots,n\right\} $,
+\item Berechne Spaltenminima $v_{j}=\min\left\{ \bar{c}_{ij}|i=1,\ldots,n\right\} $,
 für alle $j=1,\ldots,n$.
 \item Setze $\overline{c}_{ij}=\overline{c}_{ij}-v_{j}$, für alle $i=1,\ldots,n$,
 $j=1,\ldots,n$.
